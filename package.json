@@ -1,0 +1,19 @@
+{
+  "name": "game-pirates",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn mocha",
+    "dev": "yarn watch 'yarn build:dev' src",
+    "build:dev": "yarn uglifyjs --beautify --verbose --warn src/*.js -o build/game.js",
+    "build:prod": "yarn uglifyjs --compress --mangle --verbose --warn src/*.js -o build/game.min.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "uglify-es": "^3.3.9",
+    "watch": "^1.0.2"
+  }
+}
