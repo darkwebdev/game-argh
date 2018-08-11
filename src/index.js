@@ -2,14 +2,19 @@
 
 this._.start = ({ Controller, game }) => {
   console.log('Starting game...');
+  const { locations } = _.const
   const { emit, events } = _.events
-  // const { steps } = this.const
   Controller(game)
 
   const initialState = {
-
-    // step: steps.CHOOSE_WEAPON,
-    // score: [0, 0]
+    hp: 100,
+    armor: 100,
+    damage: 100,
+    location: locations.HOME_PORT,
+    menu: [
+      events.SAIL,
+      events.SHOP
+    ]
   }
 
   emit(events.UPDATE_STATE, initialState)

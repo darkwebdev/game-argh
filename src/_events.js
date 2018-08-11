@@ -10,7 +10,9 @@ this._.events = (() => {
   return {
     events: {
       UPDATE_STATE: 'update-state',
-      STATE_CHANGED: 'state-changed'
+      STATE_CHANGED: 'state-changed',
+      SAIL: 'sail',
+      SHOP: 'shop'
     },
 
     on(event, cb) {

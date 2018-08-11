@@ -1,0 +1,9 @@
+.game-version {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.menu button {
+    display: block;
+}

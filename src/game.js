@@ -1,6 +1,7 @@
 'use strict'
 
 this._.game = ((_) => ({
+  name: 'Pirates',
   version: '0.1'
 }))(this._)
 
