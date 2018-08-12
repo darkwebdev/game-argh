@@ -1,28 +1,31 @@
 'use strict'
 
-this._.Controller = ((_) => {
-  const { emit, on, events } = _.events
+const { emit, on, events } = require('./events')
+const locations = require('./locations')
+const renderView = require('./views')
 
-  const rootEl = document.querySelector('#app');
-  let state = {}
+const rootEl = document.querySelector('#app');
+let state = {}
 
-  return game => {
+module.exports = game => {
+  on(events.SAIL, () => {
+    const newState = {
+      location: locations.SEA
+    }
+    emit(events.UPDATE_STATE, newState)
+  })
 
-    on(events.UPDATE_STATE, newState => {
-      state = { ...state, ...newState }
+  on(events.UPDATE_STATE, newState => {
+    state = { ...state, ...newState }
 
-      emit(events.STATE_CHANGED, state)
+    emit(events.STATE_CHANGED, state)
+  })
+
+  on(events.STATE_CHANGED, newState => {
+    console.log('STATE', newState)
+    rootEl.innerHTML = renderView({
+      state: newState,
+      game
     })
-
-    on(events.STATE_CHANGED, newState => {
-      rootEl.innerHTML = _.renderView({
-        state: newState,
-        game
-      })
-    })
-  }
-})(this._)
-
-if (typeof module !== 'undefined') {
-  module.exports = global
+  })
 }

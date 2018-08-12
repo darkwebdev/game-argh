@@ -1,13 +1,13 @@
 'use strict'
 
-this._.renderMenu = (({ events }) => {
-  const menuStrings = {
-    [events.SAIL]: 'Sail to open sea',
-    [events.SHOP]: 'Buy, sell, upgrade'
-  }
+const { events } = require('../events')
 
-  return ({ state }) =>
-    (state.menu || []).map(event =>
-      `<button class="menu-${event}">${menuStrings[event]}</button>`
-    ).join('')
-})(this._.events)
+const menuStrings = {
+  [events.SAIL]: 'Sail to open sea',
+  [events.SHOP]: 'Buy, sell, upgrade'
+}
+
+module.exports = ({ state }) =>
+  (state.menu || []).map(event =>
+    `<button onclick="window.emit('${event}')">${menuStrings[event]}</button>`
+  ).join('')

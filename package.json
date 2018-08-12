@@ -8,14 +8,16 @@
     "dev": "yarn watch 'yarn build:dev' src",
     "build:dev": "yarn build:styles:dev && yarn build:js:dev",
     "build:styles:dev": "cp src/views/styles.css build/styles.css",
-    "build:js:dev": "yarn uglifyjs --beautify --verbose --warn src/*.js src/**/*.js -o build/game.js",
-    "build:prod": "yarn uglifyjs --compress --mangle --verbose --warn src/*.js src/**/*.js -o build/game.min.js"
+    "build:js:dev": "yarn browserify src -o build/game.js",
+    "build:js:prod": "yarn browserify -t uglifyify src -o build/game.min.js",
+    "build:prod": "yarn build:js:prod"
   },
   "dependencies": {},
   "devDependencies": {
+    "browserify": "^16.2.2",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-    "uglify-es": "^3.3.9",
+    "uglifyify": "^5.0.1",
     "watch": "^1.0.2"
   }
 }
