@@ -7,7 +7,7 @@ const renderView = require('./views')
 const rootEl = document.querySelector('#app');
 let state = {}
 
-module.exports = game => {
+module.exports = ({ game, config }) => {
   on(events.SAIL, () => {
     const newState = {
       location: locations.SEA
@@ -25,7 +25,7 @@ module.exports = game => {
     console.log('STATE', newState)
     rootEl.innerHTML = renderView({
       state: newState,
-      game
+      config
     })
   })
 }

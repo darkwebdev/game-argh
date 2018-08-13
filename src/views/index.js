@@ -3,22 +3,26 @@
 const renderMenu = require('./menu')
 const renderWorld = require('./world')
 
-module.exports = ({ state, game }) => `
-  <h1>${game.name}</h1>
-  <div class="game-version">Game version: ${game.version}</div>
+module.exports = ({ state, config }) => `
+  <h1>${config.name}</h1>
+  <div class="game-version">version: ${config.version}</div>
   
-  <aside>
-    <div>Location: ${state.location.name}</div>
+  <aside class="location">
+    <h2>Location: ${state.location.name}</h2>
     <p>${state.location.description}</p>
-    
-    <h2>Vehicle</h2>
-    <div>HP: ${state.hp}</div>
-    <div>Armor: ${state.armor}</div>
-    <div>Damage: ${state.damage}</div>
-    
+  </aside>
+  
+  <aside class="actions">
     <h2>Your actions</h2>
     <div class="menu">${renderMenu({ state })}</div>
   </aside>
   
+  <aside class="stats">
+    <h2>Your ship</h2>
+    <div>HP: ${state.hp}</div>
+    <div>Armor: ${state.armor}</div>
+    <div>Damage: ${state.damage}</div>
+  </aside>
+
   <div class="world">${renderWorld({ state })}</div>
 `
