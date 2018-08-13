@@ -1,3 +1,15 @@
+aside {
+    position: absolute;
+    width: 20em;
+    top: 3em;
+    bottom: 0;
+    left: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
 .game-version {
     position: absolute;
     top: 0;
@@ -7,3 +19,23 @@
 .menu button {
     display: block;
 }
+
+.world {
+    position: absolute;
+    width: 100px;
+    top: 3em;
+    left: 20em;
+}
+
+.world > div {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.cell-1 { background: #00c0ff; }
+.cell-2 { background: #a57902; }
+.cell-3 { background: #bb3c45; }
+.cell-4 { background: #94e3ac; }
+.cell-5 { background: #f5f410; }
