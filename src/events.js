@@ -8,6 +8,7 @@ const subscribe = (event, cb) => {
 
 module.exports = {
   events: {
+    KEY_PRESSED: 'key-pressed',
     UPDATE_STATE: 'update-state',
     STATE_CHANGED: 'state-changed',
     SAIL: 'sail',

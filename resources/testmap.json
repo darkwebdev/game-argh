@@ -21,6 +21,18 @@
                  "height":1,
                  "id":1,
                  "name":"",
+                 "properties":
+                    {
+                     "armor":100,
+                     "damage":100,
+                     "hp":100
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -33,6 +45,18 @@
                  "height":1,
                  "id":2,
                  "name":"",
+                 "properties":
+                    {
+                     "armor":50,
+                     "damage":50,
+                     "hp":50
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -45,6 +69,18 @@
                  "height":1,
                  "id":4,
                  "name":"",
+                 "properties":
+                    {
+                     "armor":50,
+                     "damage":50,
+                     "hp":50
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,

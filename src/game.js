@@ -1,22 +1,15 @@
 'use strict'
 
-// const { layers = [], width } = require('./tilemaps')
-const { layers = [], width } = require('../resources/testmap.json')
-
-const chunked = (arr=[], n) =>
-  arr.length ? [ arr.slice(0, n) ].concat(chunked(arr.slice(n), n)) : []
+const { directions } = require('./const')
+const { coords, position } = require('./world')
 
 module.exports = {
-  world() {
-    const terrain = layers.find(l => l.name === "Terrain") || {}
-    const entities = layers.find(l => l.name === "Entities") || {}
-
+  locationAt({ x, y }, direction) {// todo: estimate edges
     return {
-      terrain: terrain.data,
-      entities: entities.objects
-    }
-    // const mapData = (layers[0] || {}).data
-
-    // return chunked(mapData, width)
+      [directions.NORTH]: { x, y: y - 1},
+      [directions.SOUTH]: { x, y: y + 1},
+      [directions.EAST]: { x: x + 1, y },
+      [directions.WEST]: { x: x - 1, y }
+    }[direction] || { x, y }
   }
 }

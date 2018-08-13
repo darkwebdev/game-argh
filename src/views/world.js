@@ -1,13 +1,24 @@
 'use strict'
 
-const cells = [ , 'w', 'l', 'x', 'x', 'x' ]
+const { terrains } = require('../const')
+const { coords } = require('../world')
+const { entityAt } = require('../enitity')
+
+const cells = {
+  [terrains.gids.WATER]: 'w',
+  [terrains.gids.LAND]: 'l'
+}
 
 module.exports = ({ state }) =>
-  (state.world || [])
-    .map(cell => {
+  (state.world.terrain || [])
+    .map((cell, i) => {
       const el = cells[cell]
+      const { x, y } = coords(i) // todo: optimize for performance
+      const entity = entityAt(state.entities, x, y)
+      const className = entity && `entity-${entity.gid}`
+      const attrs = className ? ` class="${className}"` : '';
 
-      return `<${el}></${el}>`
+      return `<${el}${attrs}></${el}>`
     })
     .join('')
   // (state.world || []).map(row =>
