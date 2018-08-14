@@ -104,9 +104,23 @@ aside {
     width: 20%;
 }
 
-w { background: #00c0ff; }
-l { background: #a57902; }
-.entity-3 { background: #bb3c45; }
-.entity-4 { background: #94e3ac; }
-.entity-5 { background: #f5f410; }
-.entity-6 { background: #000; }
+w {
+    background-color: #00c0ff;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+l {
+    background: #a57902;
+}
+.entity-3 {
+    background-image: url('../resources/ship-red.png');
+}
+.entity-4 {
+    background-image: url('../resources/ship-green.png');
+}
+.entity-5 {
+    background-image: url('../resources/ship-black.png');
+}
+.entity-6 {
+    background: #000;/*port*/
+}
