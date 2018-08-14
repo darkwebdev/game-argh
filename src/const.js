@@ -1,4 +1,6 @@
 module.exports = {
+  gameName: "Aaaarrrrrgggghhh!!1",
+
   keys: {
     ARROW_LEFT: 37,
     ARROW_UP: 38,
@@ -24,7 +26,8 @@ module.exports = {
     gids: {
       ENEMY: 3,
       ALLY: 4,
-      PLAYER: 5
+      PLAYER: 5,
+      PORT: 6
     }
   }
 }

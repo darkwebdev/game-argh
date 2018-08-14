@@ -1,6 +1,7 @@
 'use strict'
 
 const { layers = [], width } = require('../resources/testmap.json')
+const { directions } = require('./const')
 
 const mapYoffset = 1 //weird Tiled stuff
 const minX = 0;
@@ -29,6 +30,15 @@ module.exports = {
 
   position(x, y) {
     return y * width + x
+  },
+
+  directionCoords({ x, y, direction }) {
+    return {
+      [directions.NORTH]: { x, y: y - 1 },
+      [directions.SOUTH]: { x, y: y + 1 },
+      [directions.EAST]: { x: x + 1, y },
+      [directions.WEST]: { x: x - 1, y }
+    }[direction]
   }
 }
 

@@ -3,14 +3,15 @@
 const renderMenu = require('./menu')
 const renderWorld = require('./world')
 const locations = require('../locations')
-const { player } = require('../enitity')
+const { playerEntity } = require('../enitity')
+const { gameName } = require('../const')
 
 module.exports = ({ state, config }) => {
-  const { x, y, properties } = player(state.entities)
+  const { x, y, properties } = playerEntity(state.entities)
   const location = locations.find(l => l.x === x && l.y === y) || locations[0]
 
   return `
-    <h1>${config.name}</h1>
+    <h1>${gameName}</h1>
     <div class="game-version">version: ${config.version}</div>
     
     <aside class="location">

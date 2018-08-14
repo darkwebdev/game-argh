@@ -14,7 +14,7 @@ module.exports = ({ state }) =>
     .map((cell, i) => {
       const el = cells[cell]
       const { x, y } = coords(i) // todo: optimize for performance
-      const entity = entityAt(state.entities, x, y)
+      const entity = entityAt({ entities: state.entities, x, y })
       const className = entity && `entity-${entity.gid}`
       const attrs = className ? ` class="${className}"` : '';
 

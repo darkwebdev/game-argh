@@ -1,13 +1,13 @@
 'use strict'
 
 const { emit, on, events } = require('./events')
-const locations = require('./locations')
 const renderView = require('./views')
-const { keys, directions, entities } = require('./const')
-const { player } = require('./enitity')
-const { position } = require('./world')
+const { keys, directions, terrains } = require('./const')
+const { playerEntity } = require('./enitity')
+const { terrainAt } = require('./terrain')
+const { entityAt } = require('./enitity')
+const { locationAt, menu } = require('./game')
 
-const rootEl = document.querySelector('#app');
 const actions = {
   [keys.ARROW_UP]: () => emit(events.SAIL, directions.NORTH),
   [keys.ARROW_DOWN]: () => emit(events.SAIL, directions.SOUTH),
@@ -16,7 +16,9 @@ const actions = {
 }
 let state = {}
 
-module.exports = ({ game, config }) => {
+module.exports = ({ config, root }) => {
+  const rootEl = document.querySelector(root)
+
   document.addEventListener('keydown', event => {
     emit(events.KEY_PRESSED, event.keyCode);
   });
@@ -29,15 +31,31 @@ module.exports = ({ game, config }) => {
   })
 
   on(events.SAIL, direction => {
-    const curPlayer = player(state.entities)
-    const newLoc = game.locationAt({ x: curPlayer.x, y: curPlayer.y }, direction)
+    const entities = state.entities
+    const terrain = state.world.terrain
+    const player = playerEntity(state.entities)
+    const { x, y } = locationAt({ x: player.x, y: player.y }, direction)
+    const terrainAtNewLoc = terrainAt({ terrain, x, y })
+    const entityAtNewLoc = entityAt({ entities, x, y })
+
+    if (terrainAtNewLoc === terrains.gids.LAND) {
+      console.log('Can not travel by land')
+      return
+    }
+
+    if (entityAtNewLoc) {
+      console.log('Location already busy')
+      return
+    }
+
     const newState = {
+      menu: menu({ state, x, y }),
       entities: {
         ...state.entities,
-        [curPlayer.gid]: {
-          ...curPlayer,
-          x: newLoc.x,
-          y: newLoc.y
+        [player.gid]: {
+          ...player,
+          x,
+          y
         }
       }
     }

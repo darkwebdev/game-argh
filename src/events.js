@@ -12,7 +12,9 @@ module.exports = {
     UPDATE_STATE: 'update-state',
     STATE_CHANGED: 'state-changed',
     SAIL: 'sail',
-    SHOP: 'shop'
+    SHOP: 'shop',
+    TRADE: 'trade',
+    FIGHT: 'fight'
   },
 
   on(event, cb) {

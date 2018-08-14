@@ -1,21 +1,61 @@
 'use strict';
 
-const { entities: eConsts } = require('./const')
+const { find } = require('./helpers')
+const { directionCoords } = require('./world')
+const { entities: eConsts, directions } = require('./const')
 
 module.exports = {
-  player(entities) {
-    return find(entities, e => e.gid === eConsts.gids.PLAYER)
+  playerEntity(entities) {
+    return find(entities, isPlayer)
   },
 
-  entityAt(entities, x, y) {
-    return find(entities, e => e.x === x & e.y === y)
+  entityAt,
+
+  entityNearby,
+
+  allyNearby({ entities, x, y }) {
+    return entityNearby({ entities, x, y, filter: isAlly })
+  },
+
+  enemyNearby({ entities, x, y }) {
+    return entityNearby({ entities, x, y, filter: isEnemy })
+  },
+
+  portNearby({ entities, x, y }) {
+    return entityNearby({ entities, x, y, filter: isPort })
   }
 }
 
-function map(obj, cb) {
-  return Object.keys(obj).map(key => cb(obj[key])).reduce((acc, item) => ({ ...acc, item }))
+function entityAt({ entities, x, y }) {
+  return find(entities, e => e.x === x & e.y === y)
 }
 
-function find(obj, cb) {
-  return obj[Object.keys(obj).find(key => cb(obj[key]))]
+function entityNearby({ entities, x, y, filter = () => true }) {
+  const entityTo = (direction) => {
+    const { x: dx, y: dy } = directionCoords({ direction, x, y })
+    const entity = entityAt({ entities, x: dx, y: dy })
+
+    return (entity && filter(entity)) ? entity : undefined
+  }
+
+  return entityTo(directions.NORTH) ||
+    entityTo(directions.EAST) ||
+    entityTo(directions.SOUTH) ||
+    entityTo(directions.WEST)
+}
+
+function isAlly(entity) {
+  return entity.gid === eConsts.gids.ALLY
+}
+
+function isEnemy(entity) {
+  return entity.gid === eConsts.gids.ENEMY
+}
+
+function isPlayer(entity) {
+  return entity.gid === eConsts.gids.PLAYER
+}
+
+function isPort(entity) {
+  return entity.gid === eConsts.gids.PORT
 }

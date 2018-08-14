@@ -17,34 +17,10 @@
          "name":"Entities",
          "objects":[
                 {
-                 "gid":5,
-                 "height":1,
-                 "id":1,
-                 "name":"",
-                 "properties":
-                    {
-                     "armor":100,
-                     "damage":100,
-                     "hp":100
-                    },
-                 "propertytypes":
-                    {
-                     "armor":"int",
-                     "damage":"int",
-                     "hp":"int"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1,
-                 "x":1,
-                 "y":4
-                }, 
-                {
                  "gid":4,
                  "height":1,
                  "id":2,
-                 "name":"",
+                 "name":"Ally",
                  "properties":
                     {
                      "armor":50,
@@ -68,7 +44,7 @@
                  "gid":3,
                  "height":1,
                  "id":4,
-                 "name":"",
+                 "name":"Enemy",
                  "properties":
                     {
                      "armor":50,
@@ -87,6 +63,42 @@
                  "width":1,
                  "x":4,
                  "y":1
+                }, 
+                {
+                 "gid":6,
+                 "height":1,
+                 "id":5,
+                 "name":"Port",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":1,
+                 "y":5
+                }, 
+                {
+                 "gid":5,
+                 "height":1,
+                 "id":1,
+                 "name":"Player",
+                 "properties":
+                    {
+                     "armor":100,
+                     "damage":100,
+                     "hp":100
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":1,
+                 "y":4
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -94,7 +106,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":5,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
