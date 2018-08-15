@@ -47,5 +47,5 @@ function withFixedOffset(entity) {
 }
 
 function entitiesObject(entities) {
-  return entities.reduce((obj, entity) => ({ ...obj, [entity.gid]: withFixedOffset(entity) }), {})
+  return entities.reduce((obj, entity) => ({ ...obj, [entity.id]: withFixedOffset(entity) }), {})
 }

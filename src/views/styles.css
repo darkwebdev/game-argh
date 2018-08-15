@@ -104,23 +104,48 @@ aside {
     width: 20%;
 }
 
-w {
-    background-color: #00c0ff;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
 l {
     background: #a57902;
 }
-.entity-3 {
+
+w {
+    position: relative;
+    background: #00c0ff;
+}
+w::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none no-repeat 50% 50%;
+}
+w.sink::after {
+    animation: 1s sink ease-out;
+    transform: translateY(70px) rotateZ(-45deg);
+}
+
+.entity-3::after {
+    content: '';
     background-image: url('../resources/ship-red.png');
 }
-.entity-4 {
+.entity-4::after  {
+    content: '';
     background-image: url('../resources/ship-green.png');
 }
-.entity-5 {
+.entity-5::after  {
+    content: '';
     background-image: url('../resources/ship-black.png');
 }
-.entity-6 {
+.entity-6::after  {
     background: #000;/*port*/
+}
+
+@keyframes sink {
+    0% {
+        transform: translateY(0) rotateZ(0);
+    }
+    100% {
+        transform: translateY(70px) rotateZ(-45deg);
+    }
 }

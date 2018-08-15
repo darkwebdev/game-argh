@@ -6,6 +6,18 @@ const { events } = require('./events')
 const { enemyNearby, allyNearby, portNearby } = require('./enitity')
 
 module.exports = {
+  roundOutcome(entity1, entity2) {
+    const { hp: hp1, damage: dmg1, armor: arm1 } = entity1.properties
+    const { hp: hp2, damage: dmg2, armor: arm2 } = entity2.properties
+
+    return {
+      hp1: hpDamage(hp1, arm1, dmg2),
+      hp2: hpDamage(hp2, arm2, dmg1),
+      armor1: armorDamage(arm1, dmg2),
+      armor2: armorDamage(arm2, dmg1)
+    }
+  },
+
   locationAt({ x, y }, direction) {
     return {// do we need edge checks here or outside?
       [directions.NORTH]: { x, y: y > minY ? y - 1 : y },
@@ -23,7 +35,10 @@ module.exports = {
       ...fightEvent({ entities, x, y }),
       ...shopEvent({ entities, x, y })
     ]
-  }
+  },
+
+  hpDamage,
+  armorDamage
 }
 
 function tradeEvent({ entities, x, y }) {
@@ -42,4 +57,14 @@ function shopEvent({ entities, x, y }) {
   const port = portNearby({ entities, x, y });
 
   return port ? [ { event: events.SHOP, entityId: port.id } ] : [];
+}
+
+function armorDamage(armor, damage) {
+  return armor < damage ? 0 : armor - damage
+}
+
+function hpDamage(hp, armor, damage) {
+  const newHp = (hp + armor < damage) ? 0 : hp + armor - damage
+
+  return Math.min(newHp, hp)
 }

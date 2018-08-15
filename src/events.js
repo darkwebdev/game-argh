@@ -11,6 +11,7 @@ module.exports = {
     KEY_PRESSED: 'key-pressed',
     UPDATE_STATE: 'update-state',
     STATE_CHANGED: 'state-changed',
+    ENTITY_DESTROYED: 'entity-destroyed',
     SAIL: 'sail',
     SHOP: 'shop',
     TRADE: 'trade',
