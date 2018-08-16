@@ -10,12 +10,18 @@
     "build:styles:dev": "cp src/views/styles.css build/styles.css",
     "build:js:dev": "yarn browserify src -o build/game.js",
     "build:js:prod": "yarn browserify -t uglifyify src -o build/game.min.js",
-    "build:prod": "yarn build:js:prod"
+    "build:styles:prod": "yarn csso src/views/styles.css build/styles.css --stat",
+    "build:html:prod": "yarn html-minifier index.html -o build/index.html",
+    "build:fonts:prod": "cp resources/retro.woff2 build/",
+    "build:prod": "yarn build:js:prod && yarn build:styles:prod && yarn build:html:prod && yarn build:fonts:prod",
+    "zip": "zip -9 build/game.zip build/game.min.js build/index.html build/retro.woff2 build/styles.css"
   },
   "dependencies": {},
   "devDependencies": {
     "browserify": "^16.2.2",
     "chai": "^4.1.2",
+    "csso-cli": "^1.1.0",
+    "html-minifier": "^3.5.19",
     "mocha": "^5.2.0",
     "uglifyify": "^5.0.1",
     "watch": "^1.0.2"

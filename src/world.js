@@ -1,6 +1,6 @@
 'use strict'
 
-const { layers = [], width } = require('../resources/testmap.json')
+const { layers = [], width } = require('../resources/map.json')
 const { directions } = require('./const')
 
 const mapYoffset = 1 //weird Tiled stuff

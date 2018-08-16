@@ -1,13 +1,14 @@
 'use strict'
 
-const renderMenu = require('./menu')
-const renderWorld = require('./world')
+const Menu = require('./menu')
+const World = require('./world')
+const Stats = require('./stats')
 const locations = require('../locations')
 const { playerEntity } = require('../enitity')
 const { gameName } = require('../const')
 
 module.exports = ({ state, config }) => {
-  const { x, y, properties } = playerEntity(state.entities)
+  const { x, y } = playerEntity(state.entities)
   const location = locations.find(l => l.x === x && l.y === y) || locations[0]
 
   return `
@@ -22,16 +23,13 @@ module.exports = ({ state, config }) => {
     
     <aside class="actions">
       <h2>Your actions</h2>
-      <div class="menu">${renderMenu({ state })}</div>
+      <div class="menu">${Menu({ state })}</div>
     </aside>
     
     <aside class="stats">
-      <h2>Your ship</h2>
-      <div>HP: ${properties.hp}</div>
-      <div>Armor: ${properties.armor}</div>
-      <div>Damage: ${properties.damage}</div>
+      ${Stats({ state })}
     </aside>
   
-    <div class="world">${renderWorld({ state })}</div>
+    <div class="world">${World({ state })}</div>
   `
 }

@@ -64,6 +64,7 @@ module.exports = ({ config, root }) => {
     }
 
     const newState = {
+      enemyId: enemy.id,
       // todo: update menu?
       entities: {
         ...state.entities,

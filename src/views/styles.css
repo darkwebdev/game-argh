@@ -90,8 +90,15 @@ aside {
     right: 2em;
     width: 18%;
 }
+.warning {
+    color: #9c7516;
+}
+.danger {
+    color: #bb3c45;
+}
 
 .world {
+    overflow: hidden;
     position: absolute;
     right: 25%;
     top: 6em;
