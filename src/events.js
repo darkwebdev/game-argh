@@ -8,10 +8,15 @@ const subscribe = (event, cb) => {
 
 module.exports = {
   events: {
+    END_TURN: 'end-turn',
+    NPC_TURN: 'npc-turn',
+    WORLD_TURN: 'world-turn',
+    START_TURN: 'next-turn',
     KEY_PRESSED: 'key-pressed',
     UPDATE_STATE: 'update-state',
     STATE_CHANGED: 'state-changed',
     ENTITY_DESTROYED: 'entity-destroyed',
+    ANIMATION_END: 'animation-end',
     SAIL: 'sail',
     SHOP: 'shop',
     TRADE: 'trade',

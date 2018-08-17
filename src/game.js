@@ -3,12 +3,12 @@
 const { directions } = require('./const')
 const { minX, maxX, minY, maxY } = require('./world')
 const { events } = require('./events')
-const { enemyNearby, allyNearby, portNearby } = require('./enitity')
+const { enemyNearby, allyNearby, portNearby, playerEntity } = require('./enitity')
 
 module.exports = {
   roundOutcome(entity1, entity2) {
-    const { hp: hp1, damage: dmg1, armor: arm1 } = entity1.properties
-    const { hp: hp2, damage: dmg2, armor: arm2 } = entity2.properties
+    const { hp: hp1, damage: dmg1, armor: arm1 } = entity1
+    const { hp: hp2, damage: dmg2, armor: arm2 } = entity2
 
     return {
       hp1: hpDamage(hp1, arm1, dmg2),
@@ -27,8 +27,9 @@ module.exports = {
     }[direction] || { x, y }
   },
 
-  menu({ state, x, y }) {
+  playerActions({ state }) {
     const entities = state.entities
+    const { x, y } = playerEntity(entities)
 
     return [
       ...tradeEvent({ entities, x, y }),
@@ -38,7 +39,7 @@ module.exports = {
   },
 
   hpDamage,
-  armorDamage
+  armorDamage,
 }
 
 function tradeEvent({ entities, x, y }) {

@@ -7,9 +7,9 @@ module.exports = ({ state }) => {
   const enemy = state.enemyId && state.entities[state.enemyId]
 
   return `
-        ${stats(player.properties)}
+        ${stats(player)}
         <br/>
-        ${enemy ? stats({ title: 'Enemy ship', ...enemy.properties }) : ''}
+        ${enemy ? stats({ title: 'Enemy ship', ...enemy }) : ''}
     `
 };
 
@@ -28,9 +28,7 @@ function stats({ title = 'Your ship', hp, maxHp, armor, maxArmor, damage }) {
 function colorClass(value, maxvalue){
   const factor = maxvalue/value;
 
-  if (factor < 2) {
-    return ''
-  }
+  if (factor < 2) return ''
 
   return factor >= 5 ? 'danger' : 'warning'
 }

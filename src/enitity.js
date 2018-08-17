@@ -26,14 +26,14 @@ module.exports = {
   }
 }
 
-function entityAt({ entities, x, y }) {
-  return find(entities, e => e.x === x & e.y === y)
+function entityAt({ entities, x, y, filter = () => true }) {
+  return find(entities, e => e.x === x && e.y === y && filter(e))
 }
 
 function entityNearby({ entities, x, y, filter = () => true }) {
   const entityTo = (direction) => {
     const { x: dx, y: dy } = directionCoords({ direction, x, y })
-    const entity = entityAt({ entities, x: dx, y: dy })
+    const entity = entityAt({ entities, x: dx, y: dy, filter: e => e.hp > 0 })
 
     return (entity && filter(entity)) ? entity : undefined
   }

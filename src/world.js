@@ -43,9 +43,22 @@ module.exports = {
 }
 
 function withFixedOffset(entity) {
-  return { ...entity, y: entity.y - mapYoffset }
+  return {
+    ...entity,
+    y: entity.y - mapYoffset
+  }
+}
+
+function flatten({ id, gid, name, visible, x, y, properties = undefined }) {
+  return {
+    id, gid, name, visible, x, y,
+    ...(properties ? properties : {})
+  }
 }
 
 function entitiesObject(entities) {
-  return entities.reduce((obj, entity) => ({ ...obj, [entity.id]: withFixedOffset(entity) }), {})
+  return entities.reduce((obj, entity) => ({
+    ...obj,
+    [entity.id]: withFixedOffset(flatten(entity))
+  }), {})
 }

@@ -8,7 +8,7 @@ const { playerEntity } = require('../enitity')
 const { gameName } = require('../const')
 
 module.exports = ({ state, config }) => {
-  const { x, y } = playerEntity(state.entities)
+  const { x, y } = playerEntity(state.entities) || {}
   const location = locations.find(l => l.x === x && l.y === y) || locations[0]
 
   return `

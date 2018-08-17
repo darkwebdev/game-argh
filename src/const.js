@@ -1,11 +1,16 @@
 module.exports = {
   gameName: "Aaaarrrrrgggghhh!!1",
 
+  animations: {
+    SINK: 'sink'
+  },
+
   keys: {
     ARROW_LEFT: 37,
     ARROW_UP: 38,
     ARROW_RIGHT: 39,
     ARROW_DOWN: 40,
+    A: 65,
   },
 
   directions: {

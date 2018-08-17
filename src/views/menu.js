@@ -10,6 +10,6 @@ const menuStrings = {
 }
 
 module.exports = ({ state }) =>
-  (state.menu || []).map(item =>
+  (state.actions || []).map(item =>
     `<button onclick="window.emit('${item.event}', ${item.entityId})">${menuStrings[item.event]}</button>`
   ).join('')
