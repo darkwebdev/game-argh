@@ -19,8 +19,9 @@ module.exports = ({ state }) => {
       const el = cells[cell]
       const { x, y } = coords(i) // todo: optimize for performance
       const entity = entityAt({ entities: visibleEntities, x, y })
-      const { hp, armor, damage } = entity || {}
-      const title = hp !== undefined ? ` title="${hp} hp + ${armor}, dmg: ${ damage }"` : ''
+      const { name, hp, armor, damage } = entity || {}
+      const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
+      const title = name ? ` title="${name}${stats}"` : ''
 
       const classes = [
         hp <= 0 && 'sink',

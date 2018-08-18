@@ -9,8 +9,8 @@ module.exports = {
     return obj[Object.keys(obj).find(key => cb(obj[key], key))]
   },
 
-  reduce(obj = {}, cb = item => item) {
-    return Object.keys(obj).reduce((acc, key) => cb(acc, obj[key], key))
+  reduce(obj = {}, cb = item => item, initial = {}) {
+    return Object.entries(obj).reduce((acc, [key, value]) => cb(acc, value, key), initial)
   },
 
   filter(obj = {}, cb = item => item) {

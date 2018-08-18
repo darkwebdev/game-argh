@@ -11,13 +11,14 @@ module.exports = {
     ARROW_RIGHT: 39,
     ARROW_DOWN: 40,
     A: 65,
-    N: 78
+    N: 78,
+    T: 84,
   },
 
   directions: {
     NORTH: 'north',
-    SOUTH: 'south',
     EAST: 'east',
+    SOUTH: 'south',
     WEST: 'west'
   },
 

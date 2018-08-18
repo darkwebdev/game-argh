@@ -4,46 +4,31 @@ const { emit, on, events } = require('./events')
 const { keys, directions, terrains } = require('./const')
 
 module.exports = {
-  [keys.ARROW_UP]: actions => {
-    const action = actions.find(a => a.event === events.SAIL)
+  [keys.ARROW_UP]: trySail(directions.NORTH),
+  [keys.ARROW_DOWN]: trySail(directions.SOUTH),
+  [keys.ARROW_LEFT]: trySail(directions.WEST),
+  [keys.ARROW_RIGHT]: trySail(directions.EAST),
+  [keys.A]: tryAction(events.FIGHT, 'entityId'),
+  [keys.N]: tryAction(events.NEW_GAME),
+  [keys.T]: tryAction(events.TRADE, 'entityId'),
+}
+
+function tryAction(event, prop) {
+  return actions => {
+    const action = actions.find(a => a.event === event)
 
     if (action) {
-      emit(events.SAIL, directions.NORTH)
+      emit(event, action[prop])
     }
-  },
-  [keys.ARROW_DOWN]: actions => {
-    const action = actions.find(a => a.event === events.SAIL)
+  }
+}
+
+function trySail(direction) {
+  return actions => {
+    const action = actions.find(a => a.event === events.SAIL && a.direction === direction)
 
     if (action) {
-      emit(events.SAIL, directions.SOUTH)
-    }
-  },
-  [keys.ARROW_LEFT]: actions => {
-    const action = actions.find(a => a.event === events.SAIL)
-
-    if (action) {
-      emit(events.SAIL, directions.WEST)
-    }
-  },
-  [keys.ARROW_RIGHT]: actions => {
-    const action = actions.find(a => a.event === events.SAIL)
-
-    if (action) {
-      emit(events.SAIL, directions.EAST)
-    }
-  },
-  [keys.A]: actions => {
-    const action = actions.find(a => a.event === events.FIGHT)
-
-    if (action) {
-      emit(events.FIGHT, action.entityId)
-    }
-  },
-  [keys.N]: actions => {
-    const action = actions.find(a => a.event === events.NEW_GAME)
-
-    if (action) {
-      emit(events.NEW_GAME)
+      emit(events.SAIL, direction)
     }
   }
 }

@@ -17,23 +17,23 @@ const menuItems = {
     text: `Sail ${direction} (${arrows[direction]})`,
     data: direction,
   }),
-  [events.SHOP]: ({ entityId }) => ({
-    text: `Buy, sell, upgrade at ${entityId} (B)`, //todo: port name here
+  [events.SHOP]: ({ entityId, entities }) => ({
+    text: `Buy, sell, upgrade at ${entities[entityId].name} (B)`,
     data: entityId,
   }),
-  [events.TRADE]: ({ entityId }) => ({
-    text: `Trade with ${entityId} (T)`, //todo: ship name here
+  [events.TRADE]: ({ entityId, entities }) => ({
+    text: `Trade with ${entities[entityId].name} (T)`,
     data: entityId,
   }),
-  [events.FIGHT]: ({ entityId }) => ({
-    text: `Attack ${entityId} (A)`, //todo: ship name here
+  [events.FIGHT]: ({ entityId, entities }) => ({
+    text: `Attack ${entities[entityId].name} (A)`,
     data: entityId,
   }),
 }
 
 module.exports = ({ state }) =>
   (state.actions || []).map(item => {
-    const { text, data } = menuItems[item.event](item)
+    const { text, data = '' } = menuItems[item.event]({ ...item, entities: state.entities })
 
     return `<button onclick="window.emit('${item.event}', '${data}')">${text}</button>`
   }).join('')

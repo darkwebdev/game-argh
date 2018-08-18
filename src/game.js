@@ -4,7 +4,7 @@ const { reduce } = require('./helpers')
 const { directions, terrains } = require('./const')
 const { minX, maxX, minY, maxY } = require('./world')
 const { events } = require('./events')
-const { enemyNearby, allyNearby, portNearby, playerEntity, entityAt } = require('./enitity')
+const { enemiesNearby, alliesNearby, portsNearby, playerEntity, entityAt } = require('./enitity')
 const { terrainAt } = require('./terrain')
 
 module.exports = {
@@ -31,9 +31,9 @@ module.exports = {
 
     return [
       ...sailEvents({ terrain, entities, x, y }),
-      ...tradeEvent({ entities, x, y }),
-      ...fightEvent({ entities, x, y }),
-      ...shopEvent({ entities, x, y })
+      ...tradeEvents({ entities, x, y }),
+      ...fightEvents({ entities, x, y }),
+      ...shopEvents({ entities, x, y }),
     ]
   },
 
@@ -73,22 +73,25 @@ function sailEvent({ terrain, entities, x, y, direction }) {
   return [ { event: events.SAIL, direction } ]
 }
 
-function tradeEvent({ entities, x, y }) {
-  const ally = allyNearby({ entities, x, y });
-
-  return ally ? [ { event: events.TRADE, entityId: ally.id } ] : [];
+function tradeEvents({ entities, x, y }) {
+  return alliesNearby({ entities, x, y }).map(a => ({
+    event: events.TRADE,
+    entityId: a.id
+  }))
 }
 
-function fightEvent({ entities, x, y }) {
-  const enemy = enemyNearby({ entities, x, y });
-
-  return enemy ? [ { event: events.FIGHT, entityId: enemy.id } ] : [];
+function fightEvents({ entities, x, y }) {
+  return enemiesNearby({ entities, x, y }).map(e => ({
+    event: events.FIGHT,
+    entityId: e.id
+  }))
 }
 
-function shopEvent({ entities, x, y }) {
-  const port = portNearby({ entities, x, y });
-
-  return port ? [ { event: events.SHOP, entityId: port.id } ] : [];
+function shopEvents({ entities, x, y }) {
+  return portsNearby({ entities, x, y }).map(p => ({
+    event: events.SHOP,
+    entityId: p.id
+  }))
 }
 
 function armorDamage(armor, damage) {
