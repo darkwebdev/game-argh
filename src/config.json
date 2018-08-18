@@ -1,4 +1,4 @@
 {
   "version": "0.1",
-  "entityRemovalDelayMs": 1000
+  "hpPerTurn": 10
 }

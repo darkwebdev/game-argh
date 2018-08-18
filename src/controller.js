@@ -6,6 +6,7 @@ const hotkeys = require('./hotkeys')
 const animations = require('./animations')
 const fightReducer = require('./reducers/fight')
 const sailReducer = require('./reducers/sail')
+const worldReducer = require('./reducers/world')
 const entityDestroyedReducer = require('./reducers/entity-destroyed')
 const { playerActions } = require('./game')
 
@@ -63,15 +64,16 @@ module.exports = ({ config, root, world }) => {
   on(events.END_TURN, newState => {
     console.log('+++++++++ TURN END +++++++++')
 
-    emit(events.NPC_TURN, newState)
-    // emit(events.WORLD_TURN, newState)
+    // emit(events.NPC_TURN, newState)
+    emit(events.WORLD_TURN, newState)
   })
 
-  on(events.NPC_TURN, newState => {
+  on(events.WORLD_TURN, newState => {
     emit(events.UPDATE_STATE, newState)
 
-    console.log('-------- NPC TURN -------')
-      // todo: npc random movement
+    console.log('-------- WORLD TURN -------')
+    emit(events.UPDATE_STATE, worldReducer({ state, config }))
+
     emit(events.START_TURN)
   })
 
