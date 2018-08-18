@@ -8,7 +8,7 @@
     "test": "yarn mocha",
     "dev": "yarn watch 'yarn build' src",
     "build": "yarn styles && yarn js",
-    "styles": "yarn lessc src/views/styles.less build/styles.css",
+    "styles": "yarn lessc src/views/index.less build/styles.css",
     "js": "yarn browserify src -o build/game.js",
     "fonts": "cp resources/retro.woff2 build/",
     "min:js": "yarn browserify -t uglifyify src -o build/game.min.js",

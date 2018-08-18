@@ -17,8 +17,18 @@ l {
 }
 
 w {
-  position: relative;
   background: @color-water;
+
+  &.sink::after {
+    animation: 1s sink ease-out;
+    transform: translateY(70px) rotateZ(-45deg);
+  }
+
+}
+
+l,
+w {
+  position: relative;
 
   &::after {
     position: absolute;
@@ -29,30 +39,26 @@ w {
     background: none no-repeat 50% 50%;
     background-size: contain;
   }
+}
 
-  &.sink::after {
-    animation: 1s sink ease-out;
-    transform: translateY(70px) rotateZ(-45deg);
-  }
+&.entity-3::after {
+  content: '';
+  background-image: url(@img-ship-enemy);
+}
 
-  .entity-3::after {
-    content: '';
-    background-image: url(@img-ship-enemy);
-  }
+&.entity-4::after {
+  content: '';
+  background-image: url(@img-ship-ally);
+}
 
-  .entity-4::after {
-    content: '';
-    background-image: url(@img-ship-ally);
-  }
+&.entity-5::after {
+  content: '';
+  background-image: url(@img-ship-player);
+}
 
-  .entity-5::after {
-    content: '';
-    background-image: url(@img-ship-player);
-  }
-
-  .entity-6::after {
-    background: @color-port;
-  }
+&.entity-6::after {
+  content: '';
+  background: @color-port;
 }
 
 @keyframes sink {
