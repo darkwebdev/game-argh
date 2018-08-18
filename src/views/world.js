@@ -29,7 +29,9 @@ module.exports = ({ state }) => {
 
       const classAttr = classes.length ? ` class="${classes}"` : ''
       const eventHandlers = [
-        ...(entity ? `onanimationend="window.emit('${events.ANIMATION_END}', { event, entityId: ${entity.id} })"` : [])
+        // todo: destroy entity on animationStart and don't rerender
+        // ...(entity ? `onanimationstart="window.emit('${events.ANIMATION_START}', { event, entityId: ${entity.id} })"` : []),
+        ...(entity ? `onanimationend="window.emit('${events.ANIMATION_END}', { event, entityId: ${entity.id} })"` : []),
       ].join('')
 
       return `<${el}${classAttr}${title}${eventHandlers}></${el}>`

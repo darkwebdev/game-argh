@@ -18,6 +18,7 @@ module.exports = {
     SET_STATE: 'set-state',
     STATE_CHANGED: 'state-changed',
     ENTITY_DESTROYED: 'entity-destroyed',
+    ANIMATION_START: 'animation-start',
     ANIMATION_END: 'animation-end',
     SAIL: 'sail',
     SHOP: 'shop',
