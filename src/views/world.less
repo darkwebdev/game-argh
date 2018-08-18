@@ -1,0 +1,65 @@
+.world {
+  overflow: hidden;
+  position: absolute;
+  right: 25%;
+  top: 6em;
+  left: 35%;
+
+  > * {
+    display: inline-block;
+    padding-top: 10%;
+    width: 10%;
+  }
+}
+
+l {
+  background: @color-land;
+}
+
+w {
+  position: relative;
+  background: @color-water;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none no-repeat 50% 50%;
+    background-size: contain;
+  }
+
+  &.sink::after {
+    animation: 1s sink ease-out;
+    transform: translateY(70px) rotateZ(-45deg);
+  }
+
+  .entity-3::after {
+    content: '';
+    background-image: url(@img-ship-enemy);
+  }
+
+  .entity-4::after {
+    content: '';
+    background-image: url(@img-ship-ally);
+  }
+
+  .entity-5::after {
+    content: '';
+    background-image: url(@img-ship-player);
+  }
+
+  .entity-6::after {
+    background: @color-port;
+  }
+}
+
+@keyframes sink {
+  0% {
+    transform: translateY(0) rotateZ(0);
+  }
+  100% {
+    transform: translateY(70px) rotateZ(-45deg);
+  }
+}
