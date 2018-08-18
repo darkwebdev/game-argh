@@ -11,7 +11,7 @@ const { playerActions } = require('./game')
 
 let state = {}
 
-module.exports = ({ config, root }) => {
+module.exports = ({ config, root, world }) => {
   const rootEl = document.querySelector(root)
 
   document.addEventListener('keydown', event => {
@@ -32,6 +32,20 @@ module.exports = ({ config, root }) => {
     if (action) {
       action(entityId)
     }
+  })
+
+  on(events.NEW_GAME, () => {
+    const entities = world.entities
+    const initialState = {
+      entities,
+      world: {
+        terrain: world.terrain,
+        width: world.width
+      }
+    }
+
+    emit(events.SET_STATE, initialState)
+    emit(events.START_TURN)
   })
 
   on(events.FIGHT, entityId => {
@@ -68,6 +82,12 @@ module.exports = ({ config, root }) => {
       actions: playerActions({ state }),
     }
     emit(events.UPDATE_STATE, newState)
+  })
+
+  on(events.SET_STATE, newState => {
+    state = { ...newState }
+
+    emit(events.STATE_CHANGED, state)
   })
 
   on(events.UPDATE_STATE, newState => {

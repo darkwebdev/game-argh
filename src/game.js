@@ -1,9 +1,11 @@
 'use strict'
 
-const { directions } = require('./const')
+const { reduce } = require('./helpers')
+const { directions, terrains } = require('./const')
 const { minX, maxX, minY, maxY } = require('./world')
 const { events } = require('./events')
-const { enemyNearby, allyNearby, portNearby, playerEntity } = require('./enitity')
+const { enemyNearby, allyNearby, portNearby, playerEntity, entityAt } = require('./enitity')
+const { terrainAt } = require('./terrain')
 
 module.exports = {
   roundOutcome(entity1, entity2) {
@@ -18,20 +20,17 @@ module.exports = {
     }
   },
 
-  locationAt({ x, y }, direction) {
-    return {// do we need edge checks here or outside?
-      [directions.NORTH]: { x, y: y > minY ? y - 1 : y },
-      [directions.SOUTH]: { x, y: y < maxY ? y + 1: y },
-      [directions.EAST]: { x: x < maxX ? x + 1 : x, y },
-      [directions.WEST]: { x: x > minX ? x - 1 : x, y }
-    }[direction] || { x, y }
-  },
+  locationAt,
 
   playerActions({ state }) {
+    if (state.gameOver) return [ { event: events.NEW_GAME } ]
+
     const entities = state.entities
+    const terrain = state.world.terrain
     const { x, y } = playerEntity(entities)
 
     return [
+      ...sailEvents({ terrain, entities, x, y }),
       ...tradeEvent({ entities, x, y }),
       ...fightEvent({ entities, x, y }),
       ...shopEvent({ entities, x, y })
@@ -40,6 +39,38 @@ module.exports = {
 
   hpDamage,
   armorDamage,
+}
+
+function locationAt({ x, y }, direction) {
+  return {// do we need edge checks here or outside?
+    [directions.NORTH]: { x, y: y > minY ? y - 1 : y },
+    [directions.SOUTH]: { x, y: y < maxY ? y + 1: y },
+    [directions.EAST]: { x: x < maxX ? x + 1 : x, y },
+    [directions.WEST]: { x: x > minX ? x - 1 : x, y }
+  }[direction] || { x, y }
+}
+
+function sailEvents({ terrain, entities, x, y }) {
+  return Object.keys(directions).reduce((arr, key) => [
+    ...arr,
+    ...sailEvent({ terrain, entities, x, y, direction: directions[key] })
+  ], [])
+}
+
+function sailEvent({ terrain, entities, x, y, direction }) {
+  const { x: newX, y: newY } = locationAt({ x, y }, direction)
+  const terrainAtNewLoc = terrainAt({ terrain, x: newX, y: newY })
+  const entityAtNewLoc = entityAt({ entities, x: newX, y: newY, filter: e => e.hp > 0 })
+
+  if (terrainAtNewLoc === terrains.gids.LAND) {
+    return []
+  }
+
+  if (entityAtNewLoc) {
+    return []
+  }
+
+  return [ { event: events.SAIL, direction } ]
 }
 
 function tradeEvent({ entities, x, y }) {

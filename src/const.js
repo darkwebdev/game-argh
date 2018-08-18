@@ -11,6 +11,7 @@ module.exports = {
     ARROW_RIGHT: 39,
     ARROW_DOWN: 40,
     A: 65,
+    N: 78
   },
 
   directions: {

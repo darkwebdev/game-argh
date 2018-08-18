@@ -10,9 +10,11 @@ const { gameName } = require('../const')
 module.exports = ({ state, config }) => {
   const { x, y } = playerEntity(state.entities) || {}
   const location = locations.find(l => l.x === x && l.y === y) || locations[0]
+  const headingText = state.gameOver ? 'Game Over' : gameName
+  const headingClasses = state.gameOver ? ' class="danger"' : ''
 
   return `
-    <h1>${gameName}</h1>
+    <h1${headingClasses}>${headingText}</h1>
     <div class="game-version">version: ${config.version}</div>
     
     <aside class="location">
