@@ -5,6 +5,7 @@ const { playerEntity } = require('../enitity')
 module.exports = ({ state, config }) => {
   const player = playerEntity(state.entities)
   // todo: npc random movement
+  // should other entities heal???
 
   return {
     entities: {

@@ -4,11 +4,14 @@ const { emit, on, events } = require('./events')
 const renderView = require('./views')
 const hotkeys = require('./hotkeys')
 const animations = require('./animations')
+
 const fightReducer = require('./reducers/fight')
 const sailReducer = require('./reducers/sail')
 const worldReducer = require('./reducers/world')
+const startTurnReducer = require('./reducers/start-turn')
+const gameOverReducer = require('./reducers/game-over')
+const newGameReducer = require('./reducers/new-game')
 const entityDestroyedReducer = require('./reducers/entity-destroyed')
-const { playerActions } = require('./game')
 
 let state = {}
 
@@ -16,7 +19,7 @@ module.exports = ({ config, root, world }) => {
   const rootEl = document.querySelector(root)
 
   document.addEventListener('keydown', event => {
-    emit(events.KEY_PRESSED, event.keyCode)
+    emit(events.KEY_PRESSED, event.code)
   })
 
   on(events.KEY_PRESSED, code => {
@@ -36,16 +39,7 @@ module.exports = ({ config, root, world }) => {
   })
 
   on(events.NEW_GAME, () => {
-    const entities = world.entities
-    const initialState = {
-      entities,
-      world: {
-        terrain: world.terrain,
-        width: world.width
-      }
-    }
-
-    emit(events.SET_STATE, initialState)
+    emit(events.SET_STATE, newGameReducer(world))
     emit(events.START_TURN)
   })
 
@@ -62,28 +56,29 @@ module.exports = ({ config, root, world }) => {
   })
 
   on(events.END_TURN, newState => {
-    console.log('+++++++++ TURN END +++++++++')
+    if (newState.gameOver) {
+      console.log('!!!!!!!!! GAME OVER !!!!!!!!')
+      emit(events.UPDATE_STATE, gameOverReducer(newState))
+    } else {
+      console.log('+++++++++ TURN END +++++++++')
 
-    // emit(events.NPC_TURN, newState)
-    emit(events.WORLD_TURN, newState)
+      // emit(events.NPC_TURN, newState)
+      emit(events.WORLD_TURN, newState)
+    }
   })
 
   on(events.WORLD_TURN, newState => {
     emit(events.UPDATE_STATE, newState)
 
     console.log('-------- WORLD TURN -------')
-    emit(events.UPDATE_STATE, worldReducer({ state, config }))
+    emit(events.UPDATE_STATE, worldReducer({ state: newState, config }))
 
     emit(events.START_TURN)
   })
 
   on(events.START_TURN, () => {
     console.log('+++++++++ TURN START +++++++++')
-    //cleanup
-    const newState = {
-      actions: playerActions({ state }),
-    }
-    emit(events.UPDATE_STATE, newState)
+    emit(events.UPDATE_STATE, startTurnReducer(state))
   })
 
   on(events.SET_STATE, newState => {

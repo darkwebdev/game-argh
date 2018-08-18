@@ -6,13 +6,13 @@ module.exports = {
   },
 
   keys: {
-    ARROW_LEFT: 37,
-    ARROW_UP: 38,
-    ARROW_RIGHT: 39,
-    ARROW_DOWN: 40,
-    A: 65,
-    N: 78,
-    T: 84,
+    ARROW_LEFT: 'ArrowLeft',
+    ARROW_UP: 'ArrowUp',
+    ARROW_RIGHT: 'ArrowRight',
+    ARROW_DOWN: 'ArrowDown',
+    A: 'KeyA',
+    N: 'KeyN',
+    T: 'KeyT',
   },
 
   directions: {
