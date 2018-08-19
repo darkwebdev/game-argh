@@ -9,11 +9,11 @@ module.exports = ({ state }) => {
   return `
         ${stats(player)}
         <br/>
-        ${enemy ? stats({ title: 'Enemy ship', ...enemy }) : ''}
+        ${enemy ? stats({ title: 'Enemy', ...enemy }) : ''}
     `
 };
 
-function stats({ title = 'Your ship', hp, maxHp, armor, maxArmor, damage }) {
+function stats({ title = 'Ship', hp, maxHp, armor, maxArmor, damage }) {
   const hpClass = colorClass(hp, maxHp)
   const armorClass = colorClass(armor, maxArmor)
 

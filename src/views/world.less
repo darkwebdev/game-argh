@@ -1,9 +1,12 @@
 .world {
   overflow: hidden;
   position: absolute;
-  right: 25%;
-  top: 6em;
-  left: 35%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-width: 65vw;
+  width: 100vh;
+  max-height: 65vw;
 
   > * {
     display: inline-block;
@@ -23,7 +26,6 @@ w {
     animation: 1s sink ease-out;
     transform: translateY(70px) rotateZ(-45deg);
   }
-
 }
 
 l,

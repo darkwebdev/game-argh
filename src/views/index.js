@@ -3,28 +3,18 @@
 const Menu = require('./menu')
 const World = require('./world')
 const Stats = require('./stats')
-const locations = require('../locations')
 const { playerEntity } = require('../enitity')
 const { gameName } = require('../const')
 
 module.exports = ({ state, config }) => {
   const { x, y } = playerEntity(state.entities) || {}
-  const location = locations.find(l => l.x === x && l.y === y) || locations[0]
   const headingText = state.gameOver ? 'Game Over' : gameName
   const headingClasses = state.gameOver ? ' class="danger"' : ''
 
   return `
     <h1${headingClasses}>${headingText}</h1>
-    <div class="game-version">version: ${config.version}</div>
-    
-    <aside class="location">
-      <h2>Location: ${location.name}</h2>
-      <p>coords: [${x}, ${y}]</p>
-      <p>${location.description}</p>
-    </aside>
     
     <aside class="actions">
-      <h2>Your actions</h2>
       <div class="menu">${Menu({ state })}</div>
     </aside>
     
@@ -33,5 +23,7 @@ module.exports = ({ state, config }) => {
     </aside>
   
     <div class="world">${World({ state })}</div>
+    
+    <div class="debug">version: ${config.version}, coords: [${x}, ${y}]</div>
   `
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  gameName: "Aaaarrrrrgggghhh!!1",
+  gameName: "Aaarrrrggg!!",
 
   animations: {
     SINK: 'sink'
