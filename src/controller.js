@@ -61,6 +61,7 @@ module.exports = ({ config, root, world, sound }) => {
   on(events.END_TURN, newState => {
     if (newState.gameOver) {
       console.log('!!!!!!!!! GAME OVER !!!!!!!!')
+      play(sounds.gameOver)
       emit(events.UPDATE_STATE, gameOverReducer(newState))
     } else {
       console.log('+++++++++ TURN END +++++++++')
