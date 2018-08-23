@@ -1,0 +1,31 @@
+.stats-bar {
+  position: relative;
+  display: inline-block;
+  margin: 5px 0;
+  height: 20px;
+  width: 110px;
+  vertical-align: middle;
+  color: @color-ok;
+  background: @color-ok;
+  border: 2px solid @color-border;
+
+  &.warning {
+    color: @color-warning;
+    background: @color-warning;
+  }
+
+  &.danger {
+    color: @color-danger;
+    background: @color-danger;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: 0;
+    line-height: 1.2;
+    background: @color-white;
+  }
+}

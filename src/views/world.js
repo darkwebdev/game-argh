@@ -22,9 +22,10 @@ module.exports = ({ state }) => {
       const { name, hp, armor, damage } = entity || {}
       const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
       const title = name ? ` title="${name}${stats}"` : ''
+      const isSinking = hp <= 0
 
       const classes = [
-        hp <= 0 && 'sink',
+        isSinking && 'sink',
         entity && `entity-${entity.gid}`
       ].filter(Boolean).join(' ')
 
@@ -33,6 +34,7 @@ module.exports = ({ state }) => {
         // todo: destroy entity on animationStart and don't rerender
         // ...(entity ? `onanimationstart="window.emit('${events.ANIMATION_START}', { event, entityId: ${entity.id} })"` : []),
         ...(entity ? `onanimationend="window.emit('${events.ANIMATION_END}', { event, entityId: ${entity.id} })"` : []),
+        ...(isSinking ? `onload="window.emit('${events.ENTITY_SINKING}', ${entity.id})"` : []),
       ].join('')
 
       return `<${el}${classAttr}${title}${eventHandlers}></${el}>`
