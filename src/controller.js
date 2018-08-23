@@ -15,7 +15,8 @@ const entityDestroyedReducer = require('./reducers/entity-destroyed')
 
 let state = {}
 
-module.exports = ({ config, root, world }) => {
+module.exports = ({ config, root, world, sound }) => {
+  const { sounds, play } = sound
   const rootEl = document.querySelector(root)
 
   document.addEventListener('keydown', event => {
@@ -44,6 +45,7 @@ module.exports = ({ config, root, world }) => {
   })
 
   on(events.FIGHT, entityId => {
+    play(sounds.cannons)
     emit(events.END_TURN, fightReducer(state)(entityId))
   })
 
@@ -52,6 +54,7 @@ module.exports = ({ config, root, world }) => {
   })
 
   on(events.SAIL, direction => {
+    play(sounds.sail)
     emit(events.END_TURN, sailReducer(state)(direction))
   })
 

@@ -30,10 +30,11 @@ function entityAt({ entities, x, y, filter = () => true }) {
   return find(entities, e => e.x === x && e.y === y && filter(e))
 }
 
+
 function entitiesNearby({ entities, x, y, filter = () => true }) {
   const entityTo = (direction) => {
     const { x: dx, y: dy } = directionCoords({ direction, x, y })
-    const entity = entityAt({ entities, x: dx, y: dy, filter: e => e.hp > 0 })
+    const entity = entityAt({ entities, x: dx, y: dy, filter: notSunk })
 
     return (entity && filter(entity)) ? [ entity ] : []
   }
@@ -42,6 +43,10 @@ function entitiesNearby({ entities, x, y, filter = () => true }) {
     ...arr,
     ...entityTo(d)
   ], [])
+}
+
+function notSunk(entity) {
+  return entity.hp === undefined || entity.hp > 0
 }
 
 function isAlly(entity) {

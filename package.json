@@ -6,24 +6,26 @@
   "scripts": {
     "lint": "yarn tslint --project tsconfig.json --format verbose",
     "test": "yarn mocha",
-    "dev": "yarn watch 'yarn build' src",
+    "dev": "yarn watch 'yarn build' src lib",
     "build": "yarn styles && yarn js",
     "styles": "yarn lessc src/views/index.less build/styles.css",
-    "js": "yarn browserify src -o build/game.js",
+    "js": "yarn browserify -p common-shakeify src -o build/game.js",
     "fonts": "cp resources/retro.woff2 build/",
-    "min:js": "yarn browserify -t uglifyify src -o build/game.min.js",
+    "min:js": "yarn uglifyjs build/game.js -o build/game.min.js -c drop_console,ecma=7,keep_fargs=false,passes=2,pure_getters=true,unsafe_arrows=true -m",
     "min:styles": "yarn csso build/styles.css build/styles.min.css --stat",
     "min:html": "yarn html-minifier build/index.html -o build/index.html",
-    "min": "yarn min:js && yarn min:styles && yarn min:html && yarn fonts",
+    "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html && yarn fonts",
     "zip": "zip -9 build/game.zip build/game.min.js build/index.html build/retro.woff2 build/styles.min.css"
   },
   "dependencies": {
-    "typescript": "^3.0.1"
+    "typescript": "^3.0.1",
+    "uglify-es": "^3.3.9"
   },
   "devDependencies": {
     "@types/node": "^10.7.1",
     "browserify": "^16.2.2",
     "chai": "^4.1.2",
+    "common-shakeify": "^0.5.1",
     "csso-cli": "^1.1.0",
     "html-minifier": "^3.5.19",
     "less": "^3.8.1",

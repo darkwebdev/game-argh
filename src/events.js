@@ -17,6 +17,7 @@ module.exports = {
     UPDATE_STATE: 'update-state',
     SET_STATE: 'set-state',
     STATE_CHANGED: 'state-changed',
+    ENTITY_SINKING: 'entity-sinking',
     ENTITY_DESTROYED: 'entity-destroyed',
     ANIMATION_START: 'animation-start',
     ANIMATION_END: 'animation-end',
