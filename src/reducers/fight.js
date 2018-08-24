@@ -13,6 +13,7 @@ module.exports = (state) => entityId => {
   if (hp2 <= 0) {
     console.log('X ==> Enemy ship has sunk')
   }
+  const lootedCannons = hp2 <= 0 ? Math.floor(enemy.damage / 10) : 0
 
   console.log('battle round results', hp1, armor1, hp2, armor2)
 
@@ -24,7 +25,8 @@ module.exports = (state) => entityId => {
       [player.id]: {
         ...player,
         hp: hp1,
-        armor: armor1
+        armor: armor1,
+        damage: player.damage + lootedCannons
       },
       [entityId]: {
         ...enemy,
