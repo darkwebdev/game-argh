@@ -11,6 +11,7 @@ const gameOverReducer = require('./reducers/game-over')
 const newGameReducer = require('./reducers/new-game')
 const entityDestroyedReducer = require('./reducers/entity-destroyed')
 const repairReducer = require('./reducers/repair')
+const upgradeReducer = require('./reducers/upgrade')
 
 let state = {}
 
@@ -60,6 +61,11 @@ module.exports = ({ config, root, world, sound }) => {
   on(events.REPAIR, portId => {
     // play repair sound
     emit(events.END_TURN, repairReducer(state))
+  })
+
+  on(events.UPGRADE, portId => {
+    // play upgrade sound
+    emit(events.END_TURN, upgradeReducer(state)(portId))
   })
 
   on(events.END_TURN, newState => {

@@ -17,17 +17,49 @@
          "name":"Entities",
          "objects":[
                 {
-                 "gid":4,
+                 "gid":6,
                  "height":1,
-                 "id":2,
-                 "name":"Weak Ally Ship",
+                 "id":10,
+                 "name":"Medium Port",
+                 "properties":
+                    {
+                     "armorUp":200
+                    },
+                 "propertytypes":
+                    {
+                     "armorUp":"int"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":5,
+                 "y":1
+                }, 
+                {
+                 "gid":6,
+                 "height":1,
+                 "id":5,
+                 "name":"Small Port",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":1,
+                 "y":10
+                }, 
+                {
+                 "gid":3,
+                 "height":1,
+                 "id":17,
+                 "name":"Fat Enemy Ship",
                  "properties":
                     {
                      "armor":50,
-                     "damage":50,
-                     "hp":50,
+                     "damage":5,
+                     "hp":5000,
                      "maxArmor":50,
-                     "maxHp":50
+                     "maxHp":5000
                     },
                  "propertytypes":
                     {
@@ -41,8 +73,36 @@
                  "type":"",
                  "visible":true,
                  "width":1,
-                 "x":3,
-                 "y":8
+                 "x":2,
+                 "y":9
+                }, 
+                {
+                 "gid":3,
+                 "height":1,
+                 "id":13,
+                 "name":"Boss Enemy Ship",
+                 "properties":
+                    {
+                     "armor":150,
+                     "damage":100,
+                     "hp":110,
+                     "maxArmor":150,
+                     "maxHp":110
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int",
+                     "maxArmor":"int",
+                     "maxHp":"int"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":5,
+                 "y":2
                 }, 
                 {
                  "gid":3,
@@ -73,46 +133,6 @@
                  "y":6
                 }, 
                 {
-                 "gid":6,
-                 "height":1,
-                 "id":5,
-                 "name":"Small Port",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1,
-                 "x":1,
-                 "y":10
-                }, 
-                {
-                 "gid":5,
-                 "height":1,
-                 "id":1,
-                 "name":"Player Ship",
-                 "properties":
-                    {
-                     "armor":100,
-                     "damage":70,
-                     "hp":100,
-                     "maxArmor":100,
-                     "maxHp":100
-                    },
-                 "propertytypes":
-                    {
-                     "armor":"int",
-                     "damage":"int",
-                     "hp":"int",
-                     "maxArmor":"int",
-                     "maxHp":"int"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1,
-                 "x":1,
-                 "y":9
-                }, 
-                {
                  "gid":3,
                  "height":1,
                  "id":6,
@@ -139,18 +159,6 @@
                  "width":1,
                  "x":2,
                  "y":6.0193923221918
-                }, 
-                {
-                 "gid":6,
-                 "height":1,
-                 "id":10,
-                 "name":"Medium Port",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1,
-                 "x":5,
-                 "y":1
                 }, 
                 {
                  "gid":3,
@@ -209,34 +217,6 @@
                  "y":4
                 }, 
                 {
-                 "gid":3,
-                 "height":1,
-                 "id":13,
-                 "name":"Boss Enemy Ship",
-                 "properties":
-                    {
-                     "armor":150,
-                     "damage":100,
-                     "hp":110,
-                     "maxArmor":150,
-                     "maxHp":110
-                    },
-                 "propertytypes":
-                    {
-                     "armor":"int",
-                     "damage":"int",
-                     "hp":"int",
-                     "maxArmor":"int",
-                     "maxHp":"int"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1,
-                 "x":5,
-                 "y":2
-                }, 
-                {
                  "gid":4,
                  "height":1,
                  "id":15,
@@ -265,17 +245,17 @@
                  "y":8
                 }, 
                 {
-                 "gid":3,
+                 "gid":4,
                  "height":1,
-                 "id":17,
-                 "name":"Fat Enemy Ship",
+                 "id":2,
+                 "name":"Weak Ally Ship",
                  "properties":
                     {
                      "armor":50,
-                     "damage":5,
-                     "hp":5000,
+                     "damage":50,
+                     "hp":50,
                      "maxArmor":50,
-                     "maxHp":5000
+                     "maxHp":50
                     },
                  "propertytypes":
                     {
@@ -289,7 +269,35 @@
                  "type":"",
                  "visible":true,
                  "width":1,
-                 "x":2,
+                 "x":3,
+                 "y":8
+                }, 
+                {
+                 "gid":5,
+                 "height":1,
+                 "id":1,
+                 "name":"Player Ship",
+                 "properties":
+                    {
+                     "armor":100,
+                     "damage":70,
+                     "hp":100,
+                     "maxArmor":100,
+                     "maxHp":100
+                    },
+                 "propertytypes":
+                    {
+                     "armor":"int",
+                     "damage":"int",
+                     "hp":"int",
+                     "maxArmor":"int",
+                     "maxHp":"int"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1,
+                 "x":1,
                  "y":9
                 }],
          "opacity":1,

@@ -87,11 +87,22 @@ function fightEvents({ entities, x, y }) {
 
 function portEvents({ entities, x, y, armor, maxArmor }) {
   const damagedArmor = maxArmor - armor
+  const ports = portsNearby({ entities, x, y })
 
-  return damagedArmor ? portsNearby({ entities, x, y }).map(p => ({
+  const armorRepairEvents = damagedArmor <= 0 ? [] : ports.map(p => ({
     event: events.REPAIR,
     entityId: p.id
-  })) : []
+  }))
+
+  const armorUpEvents = ports.filter(p => p.armorUp > maxArmor).map(p => ({
+    event: events.UPGRADE,
+    entityId: p.id
+  }))
+
+  return [
+    ...armorUpEvents,
+    ...armorRepairEvents,
+  ]
 }
 
 function armorDamage(armor, damage) {

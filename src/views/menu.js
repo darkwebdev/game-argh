@@ -20,7 +20,7 @@ const menuItems = {
     data: entityId,
   }),
   [events.UPGRADE]: ({ entityId, entities }) => ({
-    text: `Upgrade armor & cannons at ${entities[entityId].name} (U)`,
+    text: `Upgrade armor in ${entities[entityId].name} (U)`,
     data: entityId,
   }),
   [events.TRADE]: ({ entityId, entities }) => ({

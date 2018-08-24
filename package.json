@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "yarn tslint --project tsconfig.json --format verbose",
     "test": "yarn mocha",
-    "dev": "yarn watch 'yarn build' src lib",
+    "dev": "yarn watch 'yarn build' src lib resources",
     "build": "yarn styles && yarn js",
     "styles": "yarn lessc src/views/index.less build/styles.css",
     "js": "yarn browserify -p common-shakeify -t strictify src -o build/game.js",
