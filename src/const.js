@@ -12,7 +12,9 @@ module.exports = {
     ARROW_DOWN: 'ArrowDown',
     A: 'KeyA',
     N: 'KeyN',
+    R: 'KeyR',
     T: 'KeyT',
+    U: 'KeyU',
   },
 
   directions: {

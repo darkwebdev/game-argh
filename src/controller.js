@@ -1,5 +1,3 @@
-'use strict'
-
 const { emit, on, events } = require('./events')
 const renderView = require('./views')
 const hotkeys = require('./hotkeys')
@@ -12,6 +10,7 @@ const startTurnReducer = require('./reducers/start-turn')
 const gameOverReducer = require('./reducers/game-over')
 const newGameReducer = require('./reducers/new-game')
 const entityDestroyedReducer = require('./reducers/entity-destroyed')
+const repairReducer = require('./reducers/repair')
 
 let state = {}
 
@@ -56,6 +55,11 @@ module.exports = ({ config, root, world, sound }) => {
   on(events.SAIL, direction => {
     play(sounds.sail)
     emit(events.END_TURN, sailReducer(state)(direction))
+  })
+
+  on(events.REPAIR, portId => {
+    // play repair sound
+    emit(events.END_TURN, repairReducer(state))
   })
 
   on(events.END_TURN, newState => {

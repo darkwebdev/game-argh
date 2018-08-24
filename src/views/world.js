@@ -1,5 +1,3 @@
-'use strict'
-
 const { terrains } = require('../const')
 const { coords } = require('../world')
 const { entityAt } = require('../enitity')

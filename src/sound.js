@@ -1,5 +1,3 @@
-'use strict'
-
 const { toWebAudio, paramsFromArray } = require('../lib/sfxr')
 
 module.exports = AudioContext => {

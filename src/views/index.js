@@ -1,5 +1,3 @@
-'use strict'
-
 const Menu = require('./menu')
 const World = require('./world')
 const Stats = require('./stats')

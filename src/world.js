@@ -1,5 +1,3 @@
-'use strict'
-
 const { layers = [], width } = require('../resources/map.json')
 const { directions } = require('./const')
 

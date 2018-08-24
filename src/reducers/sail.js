@@ -1,5 +1,3 @@
-'use strict'
-
 const { playerEntity, entityAt } = require('../enitity')
 const { terrainAt } = require('../terrain')
 const { locationAt } = require('../game')

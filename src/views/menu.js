@@ -1,5 +1,3 @@
-'use strict'
-
 const { events } = require('../events')
 const { directions } = require('../const')
 
@@ -17,8 +15,12 @@ const menuItems = {
     text: `Sail ${direction} (${arrows[direction]})`,
     data: direction,
   }),
-  [events.SHOP]: ({ entityId, entities }) => ({
-    text: `Buy, sell, upgrade at ${entities[entityId].name} (B)`,
+  [events.REPAIR]: ({ entityId, entities }) => ({
+    text: `Repair armor at ${entities[entityId].name} (R)`,
+    data: entityId,
+  }),
+  [events.UPGRADE]: ({ entityId, entities }) => ({
+    text: `Upgrade armor & cannons at ${entities[entityId].name} (U)`,
     data: entityId,
   }),
   [events.TRADE]: ({ entityId, entities }) => ({

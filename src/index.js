@@ -1,5 +1,3 @@
-'use strict';
-
 const Controller = require('./controller')
 const { events, emit } = require('./events')
 const config = require('./config')

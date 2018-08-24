@@ -11,6 +11,8 @@ module.exports = {
   [keys.A]: tryAction(events.FIGHT, 'entityId'),
   [keys.N]: tryAction(events.NEW_GAME),
   [keys.T]: tryAction(events.TRADE, 'entityId'),
+  [keys.R]: tryAction(events.REPAIR, 'entityId'),
+  [keys.U]: tryAction(events.UPGRADE, 'entityId'),
 }
 
 function tryAction(event, prop) {

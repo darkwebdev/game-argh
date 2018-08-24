@@ -1,5 +1,3 @@
-'use strict'
-
 const { animations } = require('./const')
 const { events } = require('./events')
 

@@ -1,5 +1,3 @@
-'use strict'
-
 const subscribers = {}
 
 const subscribe = (event, cb) => {
@@ -22,7 +20,8 @@ module.exports = {
     ANIMATION_START: 'animation-start',
     ANIMATION_END: 'animation-end',
     SAIL: 'sail',
-    SHOP: 'shop',
+    REPAIR: 'repair',
+    UPGRADE: 'upgrade',
     TRADE: 'trade',
     FIGHT: 'fight'
   },

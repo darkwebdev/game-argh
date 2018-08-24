@@ -1,5 +1,3 @@
-'use strict'
-
 const { reduce } = require('./helpers')
 const { directions, terrains } = require('./const')
 const { minX, maxX, minY, maxY } = require('./world')
@@ -27,13 +25,13 @@ module.exports = {
 
     const entities = state.entities
     const terrain = state.world.terrain
-    const { x, y } = playerEntity(entities)
+    const { x, y, armor, maxArmor } = playerEntity(entities)
 
     return [
       ...sailEvents({ terrain, entities, x, y }),
       ...tradeEvents({ entities, x, y }),
       ...fightEvents({ entities, x, y }),
-      ...shopEvents({ entities, x, y }),
+      ...portEvents({ entities, x, y, armor, maxArmor }),
     ]
   },
 
@@ -87,11 +85,13 @@ function fightEvents({ entities, x, y }) {
   }))
 }
 
-function shopEvents({ entities, x, y }) {
-  return portsNearby({ entities, x, y }).map(p => ({
-    event: events.SHOP,
+function portEvents({ entities, x, y, armor, maxArmor }) {
+  const damagedArmor = maxArmor - armor
+
+  return damagedArmor ? portsNearby({ entities, x, y }).map(p => ({
+    event: events.REPAIR,
     entityId: p.id
-  }))
+  })) : []
 }
 
 function armorDamage(armor, damage) {

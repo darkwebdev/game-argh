@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = state => entityId => ({
   entities: {
     ...state.entities,

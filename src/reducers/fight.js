@@ -1,5 +1,3 @@
-'use strict'
-
 const { roundOutcome } = require('../game')
 const { playerEntity } = require('../enitity')
 

@@ -1,5 +1,3 @@
-'use strict'
-
 const { playerEntity } = require('../enitity')
 
 module.exports = ({ state, config }) => {
