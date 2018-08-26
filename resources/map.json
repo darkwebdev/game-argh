@@ -49,6 +49,34 @@
                         {
                          "gid":4,
                          "height":1,
+                         "id":26,
+                         "name":"Strong Ally",
+                         "properties":
+                            {
+                             "armor":100,
+                             "damage":100,
+                             "hp":100,
+                             "maxArmor":100,
+                             "maxHp":100
+                            },
+                         "propertytypes":
+                            {
+                             "armor":"int",
+                             "damage":"int",
+                             "hp":"int",
+                             "maxArmor":"int",
+                             "maxHp":"int"
+                            },
+                         "rotation":0,
+                         "type":"ship",
+                         "visible":true,
+                         "width":1,
+                         "x":9,
+                         "y":7
+                        }, 
+                        {
+                         "gid":4,
+                         "height":1,
                          "id":2,
                          "name":"Weak Ally",
                          "properties":
@@ -83,7 +111,7 @@
                             {
                              "armor":100,
                              "damage":70,
-                             "hp":100,
+                             "hp":110,
                              "maxArmor":100,
                              "maxHp":100
                             },
@@ -101,34 +129,6 @@
                          "width":1,
                          "x":1,
                          "y":19
-                        }, 
-                        {
-                         "gid":4,
-                         "height":1,
-                         "id":26,
-                         "name":"Strong Ally",
-                         "properties":
-                            {
-                             "armor":100,
-                             "damage":100,
-                             "hp":100,
-                             "maxArmor":100,
-                             "maxHp":100
-                            },
-                         "propertytypes":
-                            {
-                             "armor":"int",
-                             "damage":"int",
-                             "hp":"int",
-                             "maxArmor":"int",
-                             "maxHp":"int"
-                            },
-                         "rotation":0,
-                         "type":"ship",
-                         "visible":true,
-                         "width":1,
-                         "x":9,
-                         "y":7
                         }],
                  "opacity":1,
                  "type":"objectgroup",
@@ -147,7 +147,7 @@
                          "name":"Big Port",
                          "properties":
                             {
-                             "armorUp":200
+                             "armorUp":300
                             },
                          "propertytypes":
                             {
@@ -587,11 +587,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/..\/test\/game-pirates\/resources\/tiles1px.json"
+         "source":"tiles1px.json"
         }, 
         {
          "firstgid":11,
-         "source":"..\/..\/test\/game-pirates\/resources\/tileset_16x16_final_1.json"
+         "source":"tileset_16x16_final_1.json"
         }],
  "tilewidth":1,
  "type":"map",

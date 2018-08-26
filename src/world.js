@@ -16,7 +16,7 @@ module.exports = {
   world: {
     width,
     terrain: terrain.data,
-    entities: entitiesObject(entities.objects)
+    entities: entitiesObject(entities.layers)
   },
 
   coords(pos) {
@@ -54,7 +54,9 @@ function flatten({ id, gid, name, visible, x, y, properties = undefined }) {
   }
 }
 
-function entitiesObject(entities) {
+function entitiesObject(layers) {
+  const entities = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
+
   return entities.reduce((obj, entity) => ({
     ...obj,
     [entity.id]: withFixedOffset(flatten(entity))
