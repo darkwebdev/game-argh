@@ -15,7 +15,7 @@ module.exports = ({ state }) => {
   return (state.world.terrain || [])
     .map((cell, i) => {
       const el = cells[cell]
-      const { x, y } = coords(i) // todo: optimize for performance
+      const { x, y } = coords(i) // todo: optimize for performance???
       const entity = entityAt({ entities: visibleEntities, x, y })
       const { name, hp, armor, damage } = entity || {}
       const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
@@ -29,10 +29,7 @@ module.exports = ({ state }) => {
 
       const classAttr = classes.length ? ` class="${classes}"` : ''
       const eventHandlers = [
-        // todo: destroy entity on animationStart and don't rerender
-        // ...(entity ? `onanimationstart="window.emit('${events.ANIMATION_START}', { event, entityId: ${entity.id} })"` : []),
-        ...(entity ? `onanimationend="window.emit('${events.ANIMATION_END}', { event, entityId: ${entity.id} })"` : []),
-        ...(isSinking ? `onload="window.emit('${events.ENTITY_SINKING}', ${entity.id})"` : []),
+        // ...(isSinking ? `onload="window.emit('${events.ENTITY_SINKING}', ${entity.id})"` : []),
       ].join('')
 
       return `<${el}${classAttr}${title}${eventHandlers}></${el}>`

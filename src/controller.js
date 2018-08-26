@@ -16,7 +16,7 @@ const upgradeReducer = require('./reducers/upgrade')
 let state = {}
 
 module.exports = ({ config, root, world, sound }) => {
-  const { sounds, play } = sound
+  const { sounds, play, playSounds } = sound
   const rootEl = document.querySelector(root)
 
   document.addEventListener('keydown', event => {
@@ -31,13 +31,13 @@ module.exports = ({ config, root, world, sound }) => {
     }
   })
 
-  on(events.ANIMATION_END, ({ event, entityId }) => {
-    const action = animations[event.animationName]
-
-    if (action) {
-      action(entityId)
-    }
-  })
+  // on(events.ANIMATION_END, ({ event, entityId }) => {
+  //   const action = animations[event.animationName]
+  //
+  //   if (action) {
+  //     action(entityId)
+  //   }
+  // })
 
   on(events.NEW_GAME, () => {
     emit(events.SET_STATE, newGameReducer(world))
@@ -82,10 +82,10 @@ module.exports = ({ config, root, world, sound }) => {
   })
 
   on(events.WORLD_TURN, newState => {
-    emit(events.UPDATE_STATE, newState)
+    // emit(events.UPDATE_STATE, newState)
 
     console.log('-------- WORLD TURN -------')
-    emit(events.UPDATE_STATE, worldReducer({ state: newState, config }))
+    emit(events.UPDATE_STATE, worldReducer({ oldState: state, state: newState, config }))
 
     emit(events.START_TURN)
   })
@@ -109,9 +109,12 @@ module.exports = ({ config, root, world, sound }) => {
 
   on(events.STATE_CHANGED, newState => {
     console.log('========== STATE', newState)
+
     rootEl.innerHTML = renderView({
       state: newState,
       config
     })
+
+    playSounds({ state: newState })
   })
 }
