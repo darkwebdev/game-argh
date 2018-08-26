@@ -10,12 +10,13 @@
     "build": "yarn styles && yarn js",
     "styles": "yarn lessc src/views/index.less build/styles.css",
     "js": "yarn browserify -p common-shakeify -t strictify src -o build/game.js",
-    "fonts": "cp resources/retro.woff2 build/",
+    "fonts": "cp fonts/retro-subset.woff2 build/",
+    "img": "cp img/ship-black.png img/ship-green.png img/ship-red.png build/",
     "min:js": "yarn uglifyjs build/game.js -o build/game.min.js -c drop_console,ecma=7,keep_fargs=false,passes=2,pure_getters=true,unsafe_arrows=true -m",
     "min:styles": "yarn csso build/styles.css build/styles.min.css --stat",
     "min:html": "yarn html-minifier build/index.html -o build/index.html",
     "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html && yarn fonts",
-    "zip": "zip -9 build/game.zip build/game.min.js build/index.html build/retro.woff2 build/styles.min.css"
+    "zip": "rm -f build/game.zip && zip -9 build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css"
   },
   "dependencies": {},
   "devDependencies": {
