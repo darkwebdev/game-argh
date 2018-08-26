@@ -10,6 +10,7 @@ module.exports = state => portId => {
       ...state.entities,
       [player.id]: {
         ...player,
+        hp: player.maxHp,
         armor: betterArmor,
         maxArmor: betterArmor,
       }
