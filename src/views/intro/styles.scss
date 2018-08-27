@@ -1,0 +1,51 @@
+@import '../common';
+
+intro {
+  h1 {
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+    left: 0;
+    text-align: center;
+    color: white;
+  }
+
+  menu {
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    left: 0;
+    bottom: 15%;
+    text-align: center;
+
+    button {
+      margin: 10px 0;
+      width: auto;
+    }
+  }
+}
+
+flag {
+  position: absolute;
+  height: 300px;
+  top: 0;
+  left: 0;
+  transform-origin: left 20%;
+
+  span {
+    animation: wave 2s ease-in-out infinite alternate;
+    background: $color-black no-repeat url('img/skull.png') 50%;
+    background-size: 200px 60%;
+    height: 100%;
+    display: inline-block;
+    image-rendering: optimizespeed; //ff
+    image-rendering: pixelated; //chrome
+  }
+}
+
+@keyframes wave {
+  100% {
+    transform: translateY(10%);
+  }
+}
+

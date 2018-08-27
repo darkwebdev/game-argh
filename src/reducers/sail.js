@@ -9,7 +9,7 @@ module.exports = state => direction => {
   const player = playerEntity(state.entities)
   const { x, y } = locationAt({ x: player.x, y: player.y }, direction)
   const terrainAtNewLoc = terrainAt({ terrain, x, y })
-  const entityAtNewLoc = entityAt({ entities, x, y, filter: e => e.visible })
+  const entityAtNewLoc = entityAt({ entities, x, y, filter: e => e.hp > 0 })
 
   if (terrainAtNewLoc === terrains.gids.LAND) {
     console.log('Can not travel by land')

@@ -1,0 +1,56 @@
+@import 'common';
+
+$button-bg: #333;
+$button-shadow: #666;
+$button-shadow-depth: 3px;
+$button-border-width: 4px;
+$button-border: $button-border-width solid $color-white;
+
+button {
+  @include font;
+
+  position: relative;
+  display: inline-block;
+  padding: .3em 2em .5em;
+  text-align: center;
+  font-size: 14px;
+  color: $color-white;
+  background: $button-bg;
+  box-shadow: inset #{-$button-shadow-depth} #{-$button-shadow-depth} 0 0 $button-shadow;
+
+  &:hover {
+    box-shadow: inset #{-$button-shadow-depth - 1} #{-$button-shadow-depth - 1} 0 0 $button-shadow;
+  }
+
+  &:active {
+    background: $button-bg;
+    box-shadow: inset $button-shadow-depth $button-shadow-depth 0 0 $button-shadow;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+  }
+
+  &::before {
+    top: -$button-border-width;
+    left: 0;
+    border-top: $button-border;
+    border-bottom: $button-border;
+  }
+
+  &::after {
+    left: -$button-border-width;
+    top: 0;
+    border-left: $button-border;
+    border-right: $button-border;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -20,8 +20,14 @@ module.exports = {
 
   locationAt,
 
-  playerActions({ state }) {
-    if (state.gameOver) return [ { event: events.NEW_GAME } ]
+  playerActions({ state } = {}) {
+    if (!state) return [
+      { event: events.NEW_GAME }
+    ]
+
+    if (state.gameOver) return [
+      { event: events.NEW_GAME }
+    ]
 
     const entities = state.entities
     const terrain = state.world.terrain

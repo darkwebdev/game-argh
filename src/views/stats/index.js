@@ -1,4 +1,4 @@
-const { playerEntity } = require('../enitity')
+const { playerEntity } = require('../../enitity')
 
 module.exports = ({ state }) => {
   const player = playerEntity(state.entities)

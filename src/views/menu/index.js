@@ -1,5 +1,5 @@
-const { events } = require('../events')
-const { directions } = require('../const')
+const { events } = require('../../events')
+const { directions } = require('../../const')
 
 const arrows = {
   [directions.NORTH]: '^', // todo: sprite imgs here
@@ -37,5 +37,5 @@ module.exports = ({ state }) =>
   (state.actions || []).map(item => {
     const { text, data = '' } = menuItems[item.event]({ ...item, entities: state.entities })
 
-    return `<button onclick="window.emit('${item.event}', '${data}')">${text}</button>`
+    return `<button onclick="emit('${item.event}', '${data}')">${text}</button>`
   }).join('')

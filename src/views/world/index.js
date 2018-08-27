@@ -1,8 +1,8 @@
-const { terrains } = require('../const')
-const { coords } = require('../world')
-const { entityAt } = require('../enitity')
-const { filter } = require('../helpers')
-const { events } = require('../events')
+const { terrains } = require('../../const')
+const { coords } = require('../../world')
+const { entityAt } = require('../../enitity')
+const { filter } = require('../../helpers')
+const { events } = require('../../events')
 
 const cells = {
   [terrains.gids.WATER]: 'w',
@@ -28,9 +28,7 @@ module.exports = ({ state }) => {
       ].filter(Boolean).join(' ')
 
       const classAttr = classes.length ? ` class="${classes}"` : ''
-      const eventHandlers = [
-        // ...(isSinking ? `onload="window.emit('${events.ENTITY_SINKING}', ${entity.id})"` : []),
-      ].join('')
+      const eventHandlers = [].join('')
 
       return `<${el}${classAttr}${title}${eventHandlers}></${el}>`
     })

@@ -10,4 +10,4 @@ console.log('Starting game...')
 window.emit = emit
 Controller({ config, root: '#app', world, sound })
 
-emit(events.NEW_GAME)
+emit(events.INTRO)

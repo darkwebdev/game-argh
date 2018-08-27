@@ -1,5 +1,3 @@
-'use strict';
-
 const { find } = require('./helpers')
 const { position } = require('./world')
 

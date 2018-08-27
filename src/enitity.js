@@ -1,5 +1,3 @@
-'use strict';
-
 const { find, reduce } = require('./helpers')
 const { directionCoords } = require('./world')
 const { entities: eConsts, directions } = require('./const')

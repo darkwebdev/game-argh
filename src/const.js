@@ -1,8 +1,13 @@
 module.exports = {
   gameName: "Aaarrrrggg!!",
 
+  stages: {
+    INTRO: 'intro',
+    WORLD: 'world',
+  },
+
   animations: {
-    SINK: 'sink'
+    SINK: 'sink',
   },
 
   keys: {
@@ -21,13 +26,13 @@ module.exports = {
     NORTH: 'north',
     EAST: 'east',
     SOUTH: 'south',
-    WEST: 'west'
+    WEST: 'west',
   },
 
   terrains: {
     gids: {
       WATER: 1,
-      LAND: 2
+      LAND: 2,
     }
   },
 
@@ -36,7 +41,7 @@ module.exports = {
       ENEMY: 3,
       ALLY: 4,
       PLAYER: 5,
-      PORT: 6
+      PORT: 6,
     }
   }
 }

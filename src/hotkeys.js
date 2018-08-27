@@ -1,5 +1,3 @@
-'use strict';
-
 const { emit, on, events } = require('./events')
 const { keys, directions, terrains } = require('./const')
 

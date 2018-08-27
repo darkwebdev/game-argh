@@ -6,6 +6,7 @@ const subscribe = (event, cb) => {
 
 module.exports = {
   events: {
+    INTRO: 'intro',
     NEW_GAME: 'new-game',
     END_TURN: 'end-turn',
     NPC_TURN: 'npc-turn',

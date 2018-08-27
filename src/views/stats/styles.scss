@@ -1,3 +1,5 @@
+@import '../common';
+
 .stats-bar {
   position: relative;
   display: inline-block;
@@ -5,18 +7,18 @@
   height: 20px;
   width: 110px;
   vertical-align: middle;
-  color: @color-ok;
-  background: @color-ok;
-  border: 2px solid @color-border;
+  color: $color-ok;
+  background: $color-ok;
+  border: 2px solid $color-border;
 
   &.warning {
-    color: @color-warning;
-    background: @color-warning;
+    color: $color-warning;
+    background: $color-warning;
   }
 
   &.danger {
-    color: @color-danger;
-    background: @color-danger;
+    color: $color-danger;
+    background: $color-danger;
   }
 
   span {
@@ -26,6 +28,6 @@
     left: 100%;
     right: 0;
     line-height: 1.2;
-    background: @color-white;
+    background: $color-white;
   }
 }

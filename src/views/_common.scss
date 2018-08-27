@@ -1,0 +1,31 @@
+$color-black: #333;
+$color-white: #fff;
+
+$color-border: $color-black;
+$color-ok: #94e3ac;
+$color-warning: #9c7516;
+$color-danger: #bb3c45;
+
+$color-water: #00c0ff;
+$color-land: #a57902;
+$color-port: $color-black;
+
+$img-ship-enemy: '../img/ship-red.png';
+$img-ship-ally: '../img/ship-green.png';
+$img-ship-player: '../img/ship-black.png';
+
+@font-face {
+  font-family: 'pixel-font';
+  src: url('../fonts/retro-subset.woff2') format('woff2');
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+@mixin font {
+  font-family: pixel-font, sans-serif;
+  text-transform: uppercase;
+}
+
+[game-over] {
+  opacity: .5;
+}

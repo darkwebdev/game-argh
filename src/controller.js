@@ -1,7 +1,9 @@
 const { emit, on, events } = require('./events')
-const renderView = require('./views')
+const MainView = require('./views/main')
+const Intro = require('./views/intro')
 const hotkeys = require('./hotkeys')
-const animations = require('./animations')
+// const animations = require('./animations')
+const { stages } = require('./const')
 
 const fightReducer = require('./reducers/fight')
 const sailReducer = require('./reducers/sail')
@@ -9,6 +11,7 @@ const worldReducer = require('./reducers/world')
 const startTurnReducer = require('./reducers/start-turn')
 const gameOverReducer = require('./reducers/game-over')
 const newGameReducer = require('./reducers/new-game')
+const introReducer = require('./reducers/intro')
 const entityDestroyedReducer = require('./reducers/entity-destroyed')
 const repairReducer = require('./reducers/repair')
 const upgradeReducer = require('./reducers/upgrade')
@@ -38,6 +41,10 @@ module.exports = ({ config, root, world, sound }) => {
   //     action(entityId)
   //   }
   // })
+
+  on(events.INTRO, () => {
+    emit(events.SET_STATE, introReducer())
+  })
 
   on(events.NEW_GAME, () => {
     emit(events.SET_STATE, newGameReducer(world))
@@ -110,10 +117,12 @@ module.exports = ({ config, root, world, sound }) => {
   on(events.STATE_CHANGED, newState => {
     console.log('========== STATE', newState)
 
-    rootEl.innerHTML = renderView({
-      state: newState,
-      config
-    })
+    const viewFn = {
+      [stages.INTRO]: Intro,
+      [stages.WORLD]: MainView,
+    }[newState.stage]
+
+    rootEl.innerHTML = viewFn({ state: newState, config })
 
     playSounds({ state: newState })
   })

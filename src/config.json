@@ -1,4 +1,6 @@
 {
   "version": "0.1",
-  "hpPerTurn": 10
+  "hpPerTurn": 10,
+  "flagFragmentWidthPx": 25,
+  "flagFragments": 20
 }

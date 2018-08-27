@@ -17,5 +17,9 @@ module.exports = {
     return Object.entries(obj)
       .filter(([key, value]) => cb(value, key))
       .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+  },
+
+  range(length) {
+    return [...Array(length).keys()]
   }
 }

@@ -7,16 +7,16 @@
     "lint": "yarn tslint --project tsconfig.json --format verbose",
     "test": "yarn mocha",
     "dev": "yarn watch 'yarn build' src lib resources",
-    "build": "yarn styles && yarn js",
-    "styles": "yarn lessc src/views/index.less build/styles.css",
+    "build": "yarn styles && yarn js && yarn img && yarn fonts",
+    "styles": "yarn node-sass src/views -o build/styles && cat build/styles/**/styles.css > build/styles.css",
     "js": "yarn browserify -p common-shakeify -t strictify src -o build/game.js",
     "fonts": "cp fonts/retro-subset.woff2 build/",
-    "img": "cp img/ship-black.png img/ship-green.png img/ship-red.png build/",
+    "img": "mkdir -p build/img && cp img/skull.png img/ship-black.png img/ship-green.png img/ship-red.png build/img",
     "min:js": "yarn uglifyjs build/game.js -o build/game.min.js -c drop_console,ecma=7,keep_fargs=false,passes=2,pure_getters=true,unsafe_arrows=true -m",
     "min:styles": "yarn csso build/styles.css build/styles.min.css --stat",
     "min:html": "yarn html-minifier build/index.html -o build/index.html",
-    "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html && yarn fonts",
-    "zip": "rm -f build/game.zip && zip -9 build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css"
+    "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html",
+    "zip": "rm -f build/game.zip && zip -9 build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css build/img"
   },
   "dependencies": {},
   "devDependencies": {
@@ -25,8 +25,8 @@
     "common-shakeify": "^0.5.1",
     "csso-cli": "^1.1.0",
     "html-minifier": "^3.5.19",
-    "less": "^3.8.1",
     "mocha": "^5.2.0",
+    "node-sass": "^4.9.3",
     "strictify": "^0.2.0",
     "uglify-es": "^3.3.9",
     "watch": "^1.0.2"
