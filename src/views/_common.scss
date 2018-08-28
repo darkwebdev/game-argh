@@ -12,18 +12,7 @@ $color-port: $color-black;
 
 $img-ship: 'img/ship.png';
 
-@font-face {
-  font-family: 'pixel-font';
-  src: url('retro-subset.woff2') format('woff2');
-  -webkit-font-smoothing: none;
-  font-smooth: never;
-}
-
 @mixin font {
   font-family: pixel-font, sans-serif;
   text-transform: uppercase;
-}
-
-[game-over] {
-  opacity: .5;
 }
