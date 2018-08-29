@@ -29,5 +29,22 @@ module.exports = {
 
   range(length) {
     return [...Array(length).keys()]
+  },
+
+  keyThrottle(cb, delayMs) {
+    let wait
+    let lastKey
+
+    return event => {
+      if (!wait || event.code !== lastKey) {
+        cb(event.code)
+        wait = true
+
+        setTimeout(() => {
+          wait = false
+        }, delayMs);
+      }
+      lastKey = event.code
+    }
   }
 }

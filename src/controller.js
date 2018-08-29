@@ -3,6 +3,7 @@ const MainView = require('./views/main')
 const Intro = require('./views/intro')
 const hotkeys = require('./hotkeys')
 const { STAGES } = require('./const')
+const { keyThrottle } = require('./helpers')
 const soundController = require('./sound-controller')
 
 const fightReducer = require('./reducers/fight')
@@ -23,9 +24,9 @@ module.exports = ({ config, root, world, sound }) => {
   const { sounds, play } = sound
   const rootEl = document.querySelector(root)
 
-  document.addEventListener('keydown', event => {
-    emit(EVENTS.KEY_PRESSED, event.code)
-  })
+  document.addEventListener('keydown', keyThrottle(keyCode => {
+    emit(EVENTS.KEY_PRESSED, keyCode)
+  }, config.throttleKeysMs))
 
   on(EVENTS.KEY_PRESSED, code => {
     const action = hotkeys[code]
