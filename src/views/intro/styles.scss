@@ -38,8 +38,8 @@ flag {
     background-size: 200px 60%;
     height: 100%;
     display: inline-block;
+    image-rendering: -moz-crisp-edges;
     image-rendering: pixelated; //chrome
-    image-rendering: optimizespeed; //ff
   }
 }
 

@@ -1,6 +1,6 @@
 const { find, reduce } = require('./helpers')
 const { directionCoords } = require('./world')
-const { entities: eConsts, directions } = require('./const')
+const { EGIDS, DIRECTIONS } = require('./const')
 
 module.exports = {
   toObj(entities) {
@@ -47,7 +47,7 @@ function entitiesNearby({ entities, x, y, filter = () => true }) {
     return (entity && filter(entity)) ? [ entity ] : []
   }
 
-  return reduce(directions, (arr, d) => [
+  return reduce(DIRECTIONS, (arr, d) => [
     ...arr,
     ...entityTo(d)
   ], [])
@@ -58,17 +58,17 @@ function notSunk(entity) {
 }
 
 function isAlly(entity) {
-  return entity.gid === eConsts.gids.ALLY
+  return entity.gid === EGIDS.ALLY
 }
 
 function isEnemy(entity) {
-  return entity.gid === eConsts.gids.ENEMY
+  return entity.gid === EGIDS.ENEMY
 }
 
 function isPlayer(entity) {
-  return entity.gid === eConsts.gids.PLAYER
+  return entity.gid === EGIDS.PLAYER
 }
 
 function isPort(entity) {
-  return entity.gid === eConsts.gids.PORT
+  return entity.gid === EGIDS.PORT
 }

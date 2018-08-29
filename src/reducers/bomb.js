@@ -1,9 +1,9 @@
-const { entities: eConst } = require('../const')
+const { EGIDS } = require('../const')
 const { toObj, entitiesNearby } = require('../enitity')
 const { filterValues } = require('../helpers')
 
 module.exports = entities => {
-  const bombs = filterValues(entities, e => e.gid === eConst.gids.BOMB && e.visible)
+  const bombs = filterValues(entities, e => e.gid === EGIDS.BOMB && e.visible)
   const explodedEntities = bomb => {
     const { id, x, y, damage } = bomb
     const affectedEntities = entitiesNearby({

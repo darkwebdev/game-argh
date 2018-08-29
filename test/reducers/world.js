@@ -1,11 +1,11 @@
 const { expect } = require('chai')
-const { entities: es } = require('../../src/const')
+const { EGIDS } = require('../../src/const')
 const reducer = require('../../src/reducers/world')
 const config = { hpPerTurn: 1 }
 const player = {
   0: {
     id: 0,
-    gid: es.gids.PLAYER,
+    gid: EGIDS.PLAYER,
     hp: 10,
     maxHp: 20
   }
@@ -13,7 +13,7 @@ const player = {
 const healedPlayer = {
   0: {
     id: 0,
-    gid: es.gids.PLAYER,
+    gid: EGIDS.PLAYER,
     hp: 11,
     maxHp: 20
   }

@@ -1,17 +1,17 @@
-const { emit, events } = require('./events')
-const { keys, directions } = require('./const')
+const { emit, EVENTS } = require('./events')
+const { DIRECTIONS } = require('./const')
 
 module.exports = {
-  [keys.ARROW_UP]: trySail(directions.NORTH),
-  [keys.ARROW_DOWN]: trySail(directions.SOUTH),
-  [keys.ARROW_LEFT]: trySail(directions.WEST),
-  [keys.ARROW_RIGHT]: trySail(directions.EAST),
-  [keys.A]: tryAction(events.FIGHT),
-  [keys.B]: tryAction(events.BOMB),
-  [keys.N]: tryAction(events.NEW_GAME),
-  [keys.T]: tryAction(events.TRADE),
-  [keys.R]: tryAction(events.REPAIR),
-  [keys.U]: tryAction(events.UPGRADE),
+  ArrowUp: trySail(DIRECTIONS.NORTH),
+  ArrowDown: trySail(DIRECTIONS.SOUTH),
+  ArrowLeft: trySail(DIRECTIONS.WEST),
+  ArrowRight: trySail(DIRECTIONS.EAST),
+  KeyA: tryAction(EVENTS.FIGHT),
+  KeyB: tryAction(EVENTS.BOMB),
+  KeyN: tryAction(EVENTS.NEW_GAME),
+  KeyT: tryAction(EVENTS.TRADE),
+  KeyR: tryAction(EVENTS.REPAIR),
+  KeyU: tryAction(EVENTS.UPGRADE),
 }
 
 function tryAction(event) {
@@ -28,10 +28,10 @@ function tryAction(event) {
 
 function trySail(direction) {
   return actions => {
-    const action = actions.find(a => a.event === events.SAIL && a.direction === direction)
+    const action = actions.find(a => a.event === EVENTS.SAIL && a.direction === direction)
 
     if (action) {
-      emit(events.SAIL, direction)
+      emit(EVENTS.SAIL, direction)
     }
   }
 }

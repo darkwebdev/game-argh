@@ -1,4 +1,4 @@
-const { entities: es } = require('../const')
+const { EGIDS } = require('../const')
 const { newId } = require('../enitity')
 
 module.exports = state => (x, y) => {
@@ -9,7 +9,7 @@ module.exports = state => (x, y) => {
       ...state.entities,
       [bombId]: {
         id: bombId,
-        gid: es.gids.BOMB,
+        gid: EGIDS.BOMB,
         name: 'Time bomb',
         visible: true,
         x,

@@ -1,7 +1,7 @@
-const { stages } = require('../const')
+const { STAGES } = require('../const')
 const { playerActions } = require('../game')
 
 module.exports = () => ({
-  stage: stages.INTRO,
+  stage: STAGES.INTRO,
   actions: playerActions(),
 })

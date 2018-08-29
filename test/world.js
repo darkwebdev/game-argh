@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const { directionCoords } = require('../src/world')
-const { directions } = require('../src/const')
+const { DIRECTIONS } = require('../src/const')
 const x = 0
 const y = 0
 
@@ -10,20 +10,20 @@ describe('world', () => {
       expect(directionCoords({ direction: undefined, x, y })).to.be.undefined
     })
 
-    it('should return coords to the North given directions.NORTH', () => {
-      expect(directionCoords({ direction: directions.NORTH, x, y })).to.deep.equal({ x, y: -1 })
+    it('should return coords to the North given NORTH', () => {
+      expect(directionCoords({ direction: DIRECTIONS.NORTH, x, y })).to.deep.equal({ x, y: -1 })
     })
 
-    it('should return coords to the South given directions.SOUTH', () => {
-      expect(directionCoords({ direction: directions.SOUTH, x, y })).to.deep.equal({ x, y: 1 })
+    it('should return coords to the South given SOUTH', () => {
+      expect(directionCoords({ direction: DIRECTIONS.SOUTH, x, y })).to.deep.equal({ x, y: 1 })
     })
 
-    it('should return coords to the East given directions.EAST', () => {
-      expect(directionCoords({ direction: directions.EAST, x, y })).to.deep.equal({ x: 1, y })
+    it('should return coords to the East given EAST', () => {
+      expect(directionCoords({ direction: DIRECTIONS.EAST, x, y })).to.deep.equal({ x: 1, y })
     })
 
-    it('should return coords to the West given directions.WEST', () => {
-      expect(directionCoords({ direction: directions.WEST, x, y })).to.deep.equal({ x: -1, y })
+    it('should return coords to the West given WEST', () => {
+      expect(directionCoords({ direction: DIRECTIONS.WEST, x, y })).to.deep.equal({ x: -1, y })
     })
   })
 })

@@ -2,7 +2,7 @@ const Menu = require('../menu')
 const World = require('../world')
 const Stats = require('../stats')
 const { playerEntity } = require('../../enitity')
-const { gameName } = require('../../const')
+const { GAME_NAME } = require('../../const')
 
 module.exports = ({ state, config }) => {
   const { x, y } = playerEntity(state.entities) || {}
@@ -10,7 +10,7 @@ module.exports = ({ state, config }) => {
   const gameOver = state.gameOver ? '<game-over>Game Over</game-over>' : ''
 
   return `
-    <h1>${gameName}</h1>
+    <h1>${GAME_NAME}</h1>
     
     ${gameOver}
     

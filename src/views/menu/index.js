@@ -1,46 +1,46 @@
-const { events } = require('../../events')
-const { directions } = require('../../const')
+const { EVENTS } = require('../../events')
+const { DIRECTIONS } = require('../../const')
 
 const arrows = {
-  [directions.NORTH]: '^', // todo: sprite imgs here
-  [directions.EAST]: '>',
-  [directions.SOUTH]: 'V',
-  [directions.WEST]: '<',
+  [DIRECTIONS.NORTH]: '^', // todo: sprite imgs here
+  [DIRECTIONS.EAST]: '>',
+  [DIRECTIONS.SOUTH]: 'V',
+  [DIRECTIONS.WEST]: '<',
 }
 const menuItems = {
-  [events.NEW_GAME]: () => ({
+  [EVENTS.NEW_GAME]: () => ({
     text: `Start a new game (N)`,
   }),
-  [events.SAIL]: ({ direction }) => ({
+  [EVENTS.SAIL]: ({ direction }) => ({
     text: `Sail ${direction} (${arrows[direction]})`,
     data: direction,
   }),
-  [events.REPAIR]: ({ portId, entities }) => ({
+  [EVENTS.REPAIR]: ({ portId, entities }) => ({
     text: `Repair armor at ${entities[portId].name} (R)`,
     data: portId,
   }),
-  [events.UPGRADE]: ({ portId, entities }) => ({
+  [EVENTS.UPGRADE]: ({ portId, entities }) => ({
     text: `Upgrade armor in ${entities[portId].name} (U)`,
     data: portId,
   }),
-  [events.TRADE]: ({ entityId, entities }) => ({
+  [EVENTS.TRADE]: ({ entityId, entities }) => ({
     text: `Trade with ${entities[entityId].name} (T)`,
     data: entityId,
   }),
-  [events.FIGHT]: ({ entityId, entities }) => ({
+  [EVENTS.FIGHT]: ({ entityId, entities }) => ({
     text: `Attack ${entities[entityId].name} (A)`,
     data: entityId,
   }),
-  [events.BOMB]: ({ x, y }) => ({
+  [EVENTS.BOMB]: ({ x, y }) => ({
     text: `Drop time bomb (B)`,
     data: { x, y },
   }),
 }
 
 module.exports = ({ state }) =>
-  (state.actions || []).map(item => {
-    const { text, data = '' } = menuItems[item.event]({ ...item, entities: state.entities })
+  (state.actions || []).map(a => {
+    const { text, data = '' } = menuItems[a.event]({ ...a, entities: state.entities })
     const dataStr = typeof data === 'object' ? JSON.stringify(data) : `"${data}"`
 
-    return `<button onclick='emit("${item.event}", ${dataStr})'>${text}</button>`
+    return `<button onclick='emit("${a.event.toString()}", ${dataStr})'>${text}</button>`
   }).join('')

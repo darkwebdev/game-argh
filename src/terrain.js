@@ -1,4 +1,3 @@
-const { find } = require('./helpers')
 const { position } = require('./world')
 
 module.exports = {

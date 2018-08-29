@@ -1,5 +1,5 @@
 const { range } = require('../../helpers')
-const { gameName } = require('../../const')
+const { GAME_NAME } = require('../../const')
 const Menu = require('../menu')
 
 module.exports = ({ state, config }) => {
@@ -23,7 +23,7 @@ module.exports = ({ state, config }) => {
         ${frags}
       </flag>
       
-      <h1>${gameName}</h1>
+      <h1>${GAME_NAME}</h1>
       
       <menu>${Menu({ state })}</menu>    
       

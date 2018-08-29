@@ -1,5 +1,5 @@
 const { layers = [], width } = require('../resources/map.json')
-const { directions } = require('./const')
+const { DIRECTIONS } = require('./const')
 
 const mapYoffset = 1 //weird Tiled stuff
 const minX = 0;
@@ -32,10 +32,10 @@ module.exports = {
 
   directionCoords({ x, y, direction }) {
     return {
-      [directions.NORTH]: { x, y: y - 1 },
-      [directions.SOUTH]: { x, y: y + 1 },
-      [directions.EAST]: { x: x + 1, y },
-      [directions.WEST]: { x: x - 1, y }
+      [DIRECTIONS.NORTH]: { x, y: y - 1 },
+      [DIRECTIONS.SOUTH]: { x, y: y + 1 },
+      [DIRECTIONS.EAST]: { x: x + 1, y },
+      [DIRECTIONS.WEST]: { x: x - 1, y }
     }[direction]
   }
 }

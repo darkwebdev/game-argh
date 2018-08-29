@@ -1,7 +1,6 @@
-const { reduce } = require('./helpers')
-const { directions, terrains } = require('./const')
+const { TGIDS, DIRECTIONS } = require('./const')
 const { minX, maxX, minY, maxY } = require('./world')
-const { events } = require('./events')
+const { EVENTS } = require('./events')
 const { enemiesNearby, alliesNearby, portsNearby, playerEntity, entityAt } = require('./enitity')
 const { terrainAt } = require('./terrain')
 
@@ -22,11 +21,11 @@ module.exports = {
 
   playerActions({ state } = {}) {
     if (!state) return [
-      { event: events.NEW_GAME }
+      { event: EVENTS.NEW_GAME }
     ]
 
     if (state.gameOver) return [
-      { event: events.NEW_GAME }
+      { event: EVENTS.NEW_GAME }
     ]
 
     const entities = state.entities
@@ -47,17 +46,17 @@ module.exports = {
 
 function locationAt({ x, y }, direction) {
   return {// do we need edge checks here or outside?
-    [directions.NORTH]: { x, y: y > minY ? y - 1 : y },
-    [directions.SOUTH]: { x, y: y < maxY ? y + 1: y },
-    [directions.EAST]: { x: x < maxX ? x + 1 : x, y },
-    [directions.WEST]: { x: x > minX ? x - 1 : x, y }
+    [DIRECTIONS.NORTH]: { x, y: y > minY ? y - 1 : y },
+    [DIRECTIONS.SOUTH]: { x, y: y < maxY ? y + 1: y },
+    [DIRECTIONS.EAST]: { x: x < maxX ? x + 1 : x, y },
+    [DIRECTIONS.WEST]: { x: x > minX ? x - 1 : x, y }
   }[direction] || { x, y }
 }
 
 function sailEvents({ terrain, entities, x, y }) {
-  return Object.keys(directions).reduce((arr, key) => [
+  return Object.keys(DIRECTIONS).reduce((arr, key) => [
     ...arr,
-    ...sailEvent({ terrain, entities, x, y, direction: directions[key] })
+    ...sailEvent({ terrain, entities, x, y, direction: DIRECTIONS[key] })
   ], [])
 }
 
@@ -66,7 +65,7 @@ function sailEvent({ terrain, entities, x, y, direction }) {
   const terrainAtNewLoc = terrainAt({ terrain, x: newX, y: newY })
   const entityAtNewLoc = entityAt({ entities, x: newX, y: newY, filter: e => e.hp > 0 || e.timeout > 0 })
 
-  if (terrainAtNewLoc === terrains.gids.LAND) {
+  if (terrainAtNewLoc === TGIDS.LAND) {
     return []
   }
 
@@ -74,24 +73,24 @@ function sailEvent({ terrain, entities, x, y, direction }) {
     return []
   }
 
-  return [ { event: events.SAIL, direction } ]
+  return [ { event: EVENTS.SAIL, direction } ]
 }
 
 function tradeEvents({ entities, x, y }) {
   return alliesNearby({ entities, x, y }).map(a => ({
-    event: events.TRADE,
+    event: EVENTS.TRADE,
     entityId: a.id
   }))
 }
 
 function fightEvents({ entities, x, y }) {
   const enemyFightEvents = enemiesNearby({ entities, x, y }).map(e => ({
-    event: events.FIGHT,
+    event: EVENTS.FIGHT,
     entityId: e.id
   }))
 
   const bombEvent = {
-    event: events.BOMB,
+    event: EVENTS.BOMB,
     x,
     y
   }
@@ -107,12 +106,12 @@ function portEvents({ entities, x, y, armor, maxArmor }) {
   const ports = portsNearby({ entities, x, y })
 
   const armorRepairEvents = damagedArmor <= 0 ? [] : ports.map(p => ({
-    event: events.REPAIR,
+    event: EVENTS.REPAIR,
     portId: p.id
   }))
 
   const armorUpEvents = ports.filter(p => p.armorUp > maxArmor).map(p => ({
-    event: events.UPGRADE,
+    event: EVENTS.UPGRADE,
     portId: p.id
   }))
 

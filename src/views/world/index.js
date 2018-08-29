@@ -1,12 +1,11 @@
-const { terrains } = require('../../const')
+const { TGIDS } = require('../../const')
 const { coords } = require('../../world')
 const { entityAt } = require('../../enitity')
 const { filter } = require('../../helpers')
-const { events } = require('../../events')
 
 const cells = {
-  [terrains.gids.WATER]: 'w',
-  [terrains.gids.LAND]: 'l'
+  [TGIDS.WATER]: 'w',
+  [TGIDS.LAND]: 'l'
 }
 
 module.exports = ({ state }) => {
@@ -28,9 +27,8 @@ module.exports = ({ state }) => {
       ].filter(Boolean).join(' ')
 
       const classAttr = classes.length ? ` class="${classes}"` : ''
-      const eventHandlers = [].join('')
 
-      return `<${el}${classAttr}${title}${eventHandlers}></${el}>`
+      return `<${el}${classAttr}${title}></${el}>`
     })
     .join('')
 }

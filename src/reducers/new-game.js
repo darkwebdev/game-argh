@@ -1,7 +1,7 @@
-const { stages } = require('../const')
+const { STAGES } = require('../const')
 
 module.exports = ({ entities, terrain, width }) => ({
-  stage: stages.WORLD,
+  stage: STAGES.WORLD,
   entities,
   world: {
     terrain,
