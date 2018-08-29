@@ -3,6 +3,10 @@ const { directionCoords } = require('./world')
 const { entities: eConsts, directions } = require('./const')
 
 module.exports = {
+  toObj(entities) {
+    return entities.reduce((es, e) => ({ ...es, [e.id]: e }), {})
+  },
+
   playerEntity(entities) {
     return find(entities, isPlayer)
   },
@@ -21,6 +25,12 @@ module.exports = {
 
   portsNearby({ entities, x, y }) {
     return entitiesNearby({ entities, x, y, filter: isPort })
+  },
+
+  newId(entities) {
+    const maxId = reduce(entities, (maxId, e) => Math.max(maxId, e.id), 0)
+
+    return maxId + 1
   }
 }
 
@@ -30,7 +40,7 @@ function entityAt({ entities, x, y, filter = () => true }) {
 
 
 function entitiesNearby({ entities, x, y, filter = () => true }) {
-  const entityTo = (direction) => {
+  const entityTo = direction => {
     const { x: dx, y: dy } = directionCoords({ direction, x, y })
     const entity = entityAt({ entities, x: dx, y: dy, filter: notSunk })
 

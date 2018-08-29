@@ -64,7 +64,7 @@ function sailEvents({ terrain, entities, x, y }) {
 function sailEvent({ terrain, entities, x, y, direction }) {
   const { x: newX, y: newY } = locationAt({ x, y }, direction)
   const terrainAtNewLoc = terrainAt({ terrain, x: newX, y: newY })
-  const entityAtNewLoc = entityAt({ entities, x: newX, y: newY, filter: e => e.hp > 0 })
+  const entityAtNewLoc = entityAt({ entities, x: newX, y: newY, filter: e => e.hp > 0 || e.timeout > 0 })
 
   if (terrainAtNewLoc === terrains.gids.LAND) {
     return []
@@ -85,10 +85,21 @@ function tradeEvents({ entities, x, y }) {
 }
 
 function fightEvents({ entities, x, y }) {
-  return enemiesNearby({ entities, x, y }).map(e => ({
+  const enemyFightEvents = enemiesNearby({ entities, x, y }).map(e => ({
     event: events.FIGHT,
     entityId: e.id
   }))
+
+  const bombEvent = {
+    event: events.BOMB,
+    x,
+    y
+  }
+
+  return [
+    ...enemyFightEvents,
+    bombEvent,
+  ]
 }
 
 function portEvents({ entities, x, y, armor, maxArmor }) {
@@ -97,12 +108,12 @@ function portEvents({ entities, x, y, armor, maxArmor }) {
 
   const armorRepairEvents = damagedArmor <= 0 ? [] : ports.map(p => ({
     event: events.REPAIR,
-    entityId: p.id
+    portId: p.id
   }))
 
   const armorUpEvents = ports.filter(p => p.armorUp > maxArmor).map(p => ({
     event: events.UPGRADE,
-    entityId: p.id
+    portId: p.id
   }))
 
   return [

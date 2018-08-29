@@ -24,15 +24,12 @@ module.exports = {
     REPAIR: 'repair',
     UPGRADE: 'upgrade',
     TRADE: 'trade',
-    FIGHT: 'fight'
+    FIGHT: 'fight',
+    BOMB: 'bomb',
   },
 
   on(event, cb) {
     subscribe(event, cb);
-  },
-
-  off(event, cb) { // todo: simplify design
-    subscribers[event] = (subscribers[event] || []).filter(ccb => ccb !== cb)
   },
 
   emit(event, data) {

@@ -15,13 +15,13 @@ const menuItems = {
     text: `Sail ${direction} (${arrows[direction]})`,
     data: direction,
   }),
-  [events.REPAIR]: ({ entityId, entities }) => ({
-    text: `Repair armor at ${entities[entityId].name} (R)`,
-    data: entityId,
+  [events.REPAIR]: ({ portId, entities }) => ({
+    text: `Repair armor at ${entities[portId].name} (R)`,
+    data: portId,
   }),
-  [events.UPGRADE]: ({ entityId, entities }) => ({
-    text: `Upgrade armor in ${entities[entityId].name} (U)`,
-    data: entityId,
+  [events.UPGRADE]: ({ portId, entities }) => ({
+    text: `Upgrade armor in ${entities[portId].name} (U)`,
+    data: portId,
   }),
   [events.TRADE]: ({ entityId, entities }) => ({
     text: `Trade with ${entities[entityId].name} (T)`,
@@ -31,11 +31,16 @@ const menuItems = {
     text: `Attack ${entities[entityId].name} (A)`,
     data: entityId,
   }),
+  [events.BOMB]: ({ x, y }) => ({
+    text: `Drop time bomb (B)`,
+    data: { x, y },
+  }),
 }
 
 module.exports = ({ state }) =>
   (state.actions || []).map(item => {
     const { text, data = '' } = menuItems[item.event]({ ...item, entities: state.entities })
+    const dataStr = typeof data === 'object' ? JSON.stringify(data) : `"${data}"`
 
-    return `<button onclick="emit('${item.event}', '${data}')">${text}</button>`
+    return `<button onclick='emit("${item.event}", ${dataStr})'>${text}</button>`
   }).join('')

@@ -16,6 +16,7 @@ module.exports = {
     ARROW_RIGHT: 'ArrowRight',
     ARROW_DOWN: 'ArrowDown',
     A: 'KeyA',
+    B: 'KeyB',
     N: 'KeyN',
     R: 'KeyR',
     T: 'KeyT',
@@ -42,6 +43,7 @@ module.exports = {
       ALLY: 4,
       PLAYER: 5,
       PORT: 6,
+      BOMB: 10
     }
   }
 }

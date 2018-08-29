@@ -1,5 +1,6 @@
 const { playerEntity } = require('../enitity')
 const { filter, map } = require('../helpers')
+const bombReducer = require('./bomb')
 
 module.exports = ({ oldState, state, config }) => {
   const updatedState = {
@@ -7,11 +8,14 @@ module.exports = ({ oldState, state, config }) => {
     ...state,
   }
 
-  const player = playerEntity(updatedState.entities)
+  const entities = updatedState.entities
+
+  const player = playerEntity(entities)
   // todo: npc random movement
   // should other entities heal???
 
-  const ships = filter(updatedState.entities, e => e.hp !== undefined)
+  // Sunk ships reducer
+  const ships = filter(entities, e => e.hp !== undefined)
   const withoutSunkShips = map(ships, e => ({
     ...e,
     visible: !(e.hp <= 0 && oldState.entities[e.id].hp <= 0)
@@ -20,8 +24,9 @@ module.exports = ({ oldState, state, config }) => {
   return {
     ...updatedState,
     entities: {
-      ...updatedState.entities,
+      ...entities,
       ...withoutSunkShips,
+      ...bombReducer(entities),
       [player.id]: {
         ...player,
         hp: healedHp(player, config.hpPerTurn)

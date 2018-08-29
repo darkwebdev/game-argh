@@ -4,8 +4,10 @@ const Intro = require('./views/intro')
 const hotkeys = require('./hotkeys')
 // const animations = require('./animations')
 const { stages } = require('./const')
+const soundController = require('./sound-controller')
 
 const fightReducer = require('./reducers/fight')
+const dropBombReducer = require('./reducers/drop-bomb')
 const sailReducer = require('./reducers/sail')
 const worldReducer = require('./reducers/world')
 const startTurnReducer = require('./reducers/start-turn')
@@ -19,7 +21,7 @@ const upgradeReducer = require('./reducers/upgrade')
 let state = {}
 
 module.exports = ({ config, root, world, sound }) => {
-  const { sounds, play, playSounds } = sound
+  const { sounds, play } = sound
   const rootEl = document.querySelector(root)
 
   document.addEventListener('keydown', event => {
@@ -51,12 +53,17 @@ module.exports = ({ config, root, world, sound }) => {
     emit(events.START_TURN)
   })
 
-  on(events.FIGHT, entityId => {
+  on(events.FIGHT, ({ entityId }) => {
     play(sounds.cannons)
     emit(events.END_TURN, fightReducer(state)(entityId))
   })
 
-  on(events.ENTITY_DESTROYED, entityId => {
+  on(events.BOMB, ({ x, y }) => {
+    play(sounds.dropBomb)
+    emit(events.END_TURN, dropBombReducer(state)(x, y))
+  })
+
+  on(events.ENTITY_DESTROYED, ({ entityId }) => {
     emit(events.UPDATE_STATE, entityDestroyedReducer(state)(entityId))
   })
 
@@ -65,13 +72,13 @@ module.exports = ({ config, root, world, sound }) => {
     emit(events.END_TURN, sailReducer(state)(direction))
   })
 
-  on(events.REPAIR, portId => {
-    // play repair sound
+  on(events.REPAIR, () => {
+    play(sounds.repair)
     emit(events.END_TURN, repairReducer(state))
   })
 
-  on(events.UPGRADE, portId => {
-    // play upgrade sound
+  on(events.UPGRADE, ({ portId }) => {
+    play(sounds.upgrade)
     emit(events.END_TURN, upgradeReducer(state)(portId))
   })
 
@@ -103,19 +110,23 @@ module.exports = ({ config, root, world, sound }) => {
   })
 
   on(events.SET_STATE, newState => {
+    const oldState = state
+
     state = { ...newState }
 
-    emit(events.STATE_CHANGED, state)
+    emit(events.STATE_CHANGED, { state, oldState })
   })
 
   on(events.UPDATE_STATE, newState => {
+    const oldState = state
+
     state = { ...state, ...newState }
 
-    emit(events.STATE_CHANGED, state)
+    emit(events.STATE_CHANGED, { state, oldState })
   })
 
-  on(events.STATE_CHANGED, newState => {
-    console.log('========== STATE', newState)
+  on(events.STATE_CHANGED, ({ state: newState, oldState }) => {
+    console.log('========== STATE CHANGED from', oldState, 'to', newState)
 
     const viewFn = {
       [stages.INTRO]: Intro,
@@ -124,6 +135,6 @@ module.exports = ({ config, root, world, sound }) => {
 
     rootEl.innerHTML = viewFn({ state: newState, config })
 
-    playSounds({ state: newState })
+    soundController({ oldState, state: newState, sound })
   })
 }

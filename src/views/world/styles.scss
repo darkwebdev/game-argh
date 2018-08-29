@@ -69,6 +69,12 @@ w {
   background: $color-port;
 }
 
+.entity-10::after {
+  content: '';
+  background: $color-bomb;
+}
+
+
 @keyframes sink {
   0% {
     transform: translateY(0) rotateZ(0);
