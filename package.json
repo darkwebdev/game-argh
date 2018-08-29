@@ -16,7 +16,7 @@
     "min:styles": "yarn csso build/styles.css build/styles.min.css --stat",
     "min:html": "yarn html-minifier build/index.html -o build/index.html",
     "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html",
-    "zip": "rm -f build/game.zip && zip -9 build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css build/img"
+    "zip": "rm -f build/game.zip && zip -9 -r build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css build/img"
   },
   "dependencies": {},
   "devDependencies": {
