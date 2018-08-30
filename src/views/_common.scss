@@ -13,12 +13,13 @@ $color-danger: $color-red;
 
 $color-water: $color-blue;
 $color-land: $color-brown;
-$color-port: $color-black;
+$color-player: $color-black;
 $color-bomb: $color-danger;
 $color-hp: $color-red;
 $color-armor: $color-white;
 
 $img-ship: 'img/ship.png';
+$img-port: 'img/port.png';
 
 @mixin font {
   font-family: pixel-font, sans-serif;

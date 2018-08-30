@@ -55,9 +55,9 @@ module.exports = ({ config, root, world, sound }) => {
     emit(EVENTS.END_TURN, dropBombReducer(state)(x, y))
   })
 
-  on(EVENTS.ENTITY_DESTROYED, ({ entityId }) => {
-    emit(EVENTS.UPDATE_STATE, entityDestroyedReducer(state)(entityId))
-  })
+  // on(EVENTS.ENTITY_DESTROYED, ({ entityId }) => {
+  //   emit(EVENTS.UPDATE_STATE, entityDestroyedReducer(state)(entityId))
+  // })
 
   on(EVENTS.SAIL, direction => {
     play(sounds.sail)

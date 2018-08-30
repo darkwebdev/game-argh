@@ -71,12 +71,13 @@ w {
 }
 
 .e-5::before {
-  background-color: $color-black;
+  background-color: $color-player;
 }
 
 .e-6::before {
   content: '';
-  background: $color-port;
+  background-color: $color-player;
+  background-image: url($img-port);
 }
 
 bar {
