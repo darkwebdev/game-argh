@@ -1,4 +1,4 @@
-const { TGIDS } = require('../../const')
+const { TGIDS, EGIDS } = require('../../const')
 const { coords } = require('../../world')
 const { entityAt } = require('../../enitity')
 const { filter } = require('../../helpers')
@@ -15,16 +15,18 @@ module.exports = ({ state }) => {
     .map((cell, i) => {
       const el = cells[cell]
       const { x, y } = coords(i) // todo: optimize for performance???
-      const entity = entityAt({ entities: visibleEntities, x, y })
-      const { name, hp, armor, damage, armorUp } = entity || {}
+      const { gid, name, hp, armor, damage, armorUp, timeout } =
+        entityAt({ entities: visibleEntities, x, y }) || {}
       const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
       const props = armorUp ? ` [ upgrade: armor(${armorUp}) ]` : ''
       const title = name ? ` title="${name}${stats}${props}"` : ''
       const isSinking = hp <= 0
+      const isBomb = gid === EGIDS.BOMB
 
       const classes = [
         isSinking && 'sink',
-        entity && `entity-${entity.gid}`
+        gid && `e-${gid}`,
+        isBomb && `t-${timeout}`
       ].filter(Boolean).join(' ')
 
       const classAttr = classes.length ? ` class="${classes}"` : ''

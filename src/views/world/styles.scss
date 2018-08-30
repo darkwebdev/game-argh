@@ -45,33 +45,48 @@ w {
   }
 }
 
-.entity-3::after,
-.entity-4::after,
-.entity-5::after {
+.e-3::after,
+.e-4::after,
+.e-5::after {
   content: '';
   background-image: url($img-ship);
 }
 
-.entity-3::after {
+.e-3::after {
   background-color: $color-danger;
 }
 
-.entity-4::after {
+.e-4::after {
   background-color: $color-ok;
 }
 
-.entity-5::after {
+.e-5::after {
   background-color: $color-black;
 }
 
-.entity-6::after {
+.e-6::after {
   content: '';
   background: $color-port;
 }
 
-.entity-10::after {
-  content: '';
-  background: $color-bomb;
+.e-10{
+  &::before {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    line-height: 1;
+    z-index: 5;
+  }
+  &.t-1::before {
+    content: '2';
+  }
+  &.t-0::before {
+    content: '1';
+  }
+  &::after {
+    content: '';
+    background: $color-bomb;
+  }
 }
 
 
