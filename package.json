@@ -17,9 +17,10 @@
     "img": "cp -R img build",
     "min:js": "yarn uglifyjs build/game.js -o build/game.min.js -c drop_console,ecma=7,keep_fargs=false,passes=2,pure_getters=true,unsafe_arrows=true -m --mangle-props regex=/^[A-Z_]+$/",
     "min:styles": "yarn csso build/styles.css build/styles.min.css --stat",
+    "min:img": "bin/ect -9 -strip --allfilters-b -quiet build/img/*.png",
     "min:html": "yarn html-minifier build/index.html -o build/index.html",
-    "min": "yarn build && yarn min:js && yarn min:styles && yarn min:html",
-    "zip": "rm -f build/game.zip && zip -9 -r build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css build/img"
+    "min": "yarn build && yarn min:js && yarn min:styles && yarn min:img && yarn min:html",
+    "zip": "rm -f build/game.zip && zip -9 -r build/game.zip build/game.min.js build/index.html build/retro-subset.woff2 build/styles.min.css build/img && bin/ect -9 -zip build/game.zip"
   },
   "dependencies": {},
   "devDependencies": {

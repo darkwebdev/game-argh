@@ -1,15 +1,22 @@
 $color-black: #333;
 $color-white: #fff;
+$color-red: #bb3c45;
+$color-blue: #00c0ff;
+$color-brown: #a57902;
+$color-green: #94e3ac;
+$color-orange: #9c7516;
 
 $color-border: $color-black;
-$color-ok: #94e3ac;
-$color-warning: #9c7516;
-$color-danger: #bb3c45;
+$color-ok: $color-green;
+$color-warning: $color-orange;
+$color-danger: $color-red;
 
-$color-water: #00c0ff;
-$color-land: #a57902;
+$color-water: $color-blue;
+$color-land: $color-brown;
 $color-port: $color-black;
 $color-bomb: $color-danger;
+$color-hp: $color-red;
+$color-armor: $color-white;
 
 $img-ship: 'img/ship.png';
 

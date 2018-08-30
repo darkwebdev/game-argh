@@ -1,6 +1,7 @@
 const { EGIDS } = require('../const')
 const { toObj, entitiesNearby } = require('../enitity')
 const { filterValues } = require('../helpers')
+const { hpDamage, armorDamage } = require('../game')
 
 module.exports = entities => {
   const bombs = filterValues(entities, e => e.gid === EGIDS.BOMB && e.visible)
@@ -11,7 +12,8 @@ module.exports = entities => {
       filter: e => e.hp > 0
     }).map(e => ({
       ...e,
-      hp: e.hp - damage
+      hp: hpDamage(e.hp, e.armor, damage),
+      armor: armorDamage(e.armor, damage),
     }))
 
     return {

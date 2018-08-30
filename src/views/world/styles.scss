@@ -24,9 +24,14 @@ l {
 w {
   background: $color-water;
 
-  &.sink::after {
-    animation: 1s sink ease-out;
-    transform: translateY(70px) rotateZ(-45deg);
+  &.sink{
+    bar {
+      display: none;
+    }
+    &::before {
+      animation: 1s sink ease-out;
+      transform: translateY(70px) rotateZ(-45deg);
+    }
   }
 }
 
@@ -34,58 +39,74 @@ l,
 w {
   position: relative;
 
-  &::after {
+  &::before {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: none no-repeat 50% 50%;
-    background-size: contain;
+    background: none no-repeat 50% top;
+    background-size: 100%;
   }
 }
 
-.e-3::after,
-.e-4::after,
-.e-5::after {
-  content: '';
-  background-image: url($img-ship);
+.e-3,
+.e-4,
+.e-5 {
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    bottom: 4px;
+    background-image: url($img-ship);
+  }
 }
 
-.e-3::after {
+.e-3::before {
   background-color: $color-danger;
 }
 
-.e-4::after {
+.e-4::before {
   background-color: $color-ok;
 }
 
-.e-5::after {
+.e-5::before {
   background-color: $color-black;
 }
 
-.e-6::after {
+.e-6::before {
   content: '';
   background: $color-port;
 }
 
+bar {
+  position: absolute;
+  left: 0;
+  height: 2px;
+
+  &.hp {
+    bottom: 2px;
+    background: $color-hp;
+  }
+  &.armor {
+    bottom: 0;
+    background: $color-armor;
+  }
+}
+
 .e-10{
   &::before {
+    content: '';
+    background: $color-bomb;
+  }
+
+  &::after {
+    content: attr(timeout);
     position: absolute;
     bottom: 0;
     right: 0;
     line-height: 1;
     z-index: 5;
-  }
-  &.t-1::before {
-    content: '2';
-  }
-  &.t-0::before {
-    content: '1';
-  }
-  &::after {
-    content: '';
-    background: $color-bomb;
   }
 }
 
