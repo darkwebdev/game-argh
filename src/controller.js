@@ -22,7 +22,7 @@ let state = {}
 
 module.exports = ({ config, root, world, sound }) => {
   const { sounds, play } = sound
-  const rootEl = document.querySelector(root)
+  const rootEl = document.querySelector(root)//app
 
   document.addEventListener('keydown', keyThrottle(keyCode => {
     emit(EVENTS.KEY_PRESSED, keyCode)

@@ -7,7 +7,6 @@ const { world } = require('./world')
 const sound = require('./sound')(window.AudioContext || window.webkitAudioContext /* for chrome <= 57 */)
 
 console.log('Starting game...')
-// sound.play(sound.sounds.sample)
 
 window.emit = emit
 Controller({ config, root: '#app', world, sound })

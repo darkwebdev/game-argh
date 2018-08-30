@@ -16,9 +16,10 @@ module.exports = ({ state }) => {
       const el = cells[cell]
       const { x, y } = coords(i) // todo: optimize for performance???
       const entity = entityAt({ entities: visibleEntities, x, y })
-      const { name, hp, armor, damage } = entity || {}
+      const { name, hp, armor, damage, armorUp } = entity || {}
       const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
-      const title = name ? ` title="${name}${stats}"` : ''
+      const props = armorUp ? ` [ upgrade: armor(${armorUp}) ]` : ''
+      const title = name ? ` title="${name}${stats}${props}"` : ''
       const isSinking = hp <= 0
 
       const classes = [
