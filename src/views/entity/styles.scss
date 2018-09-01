@@ -1,0 +1,78 @@
+@import '../common';
+
+e {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  height: 36px;
+  width: 36px;
+
+  &[sink] {
+    animation: 1s sink ease-out;
+    transform: translateY(70px) rotateZ(-45deg);
+
+    + bar {
+      display: none;
+    }
+  }
+
+  &[gid="#{$gid-ally}"],
+  &[gid="#{$gid-enemy}"],
+  &[gid="#{$gid-player}"] {
+    background-image: url($img-ship);
+  }
+
+  &[gid="#{$gid-enemy}"] {
+    background-color: $color-danger;
+  }
+
+  &[gid="#{$gid-ally}"] {
+    background-color: $color-ok;
+  }
+
+  &[gid="#{$gid-player}"] {
+    background-color: $color-player;
+  }
+
+  &[gid="#{$gid-port}"] {
+    background-color: $color-player;
+    background-image: url($img-port);
+  }
+
+  &[gid="#{$gid-bomb}"] {
+    background: $color-bomb;
+
+    &::after {
+      content: attr(timeout);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      line-height: 1;
+      z-index: 5;
+    }
+  }
+}
+
+@keyframes sink {
+  0% {
+    transform: translateY(0) rotateZ(0);
+  }
+  100% {
+    transform: translateY(70px) rotateZ(-45deg);
+  }
+}
+
+bar {
+  position: absolute;
+  left: 0;
+  height: 2px;
+
+  &.hp {
+    bottom: 0;
+    background: $color-hp;
+  }
+  &.armor {
+    bottom: -2px;
+    background: $color-armor;
+  }
+}

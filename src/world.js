@@ -1,4 +1,5 @@
-const { layers = [], width } = require('../resources/map.json')
+// const { layers = [], width } = require('../resources/map.json')
+const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2.json')
 const { DIRECTIONS } = require('./const')
 
 const mapYoffset = 1 //weird Tiled stuff
@@ -16,7 +17,8 @@ module.exports = {
   world: {
     width,
     terrain: terrain.data,
-    entities: entitiesObject(entities.layers)
+    entities: entitiesFromObjects(entities.objects),
+    // entities: entitiesFromLayers(entities.layers),
   },
 
   coords(pos) {
@@ -49,15 +51,19 @@ function withFixedOffset(entity) {
 
 function flatten({ id, gid, name, visible, x, y, properties = undefined }) {
   return {
-    id, gid, name, visible, x, y,
+    id, gid, name, visible, x: x / tilewidth, y: y / tileheight,
     ...(properties ? properties : {})
   }
 }
 
-function entitiesObject(layers) {
-  const entities = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
+function entitiesFromLayers(layers = []) {
+  const objects = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
 
-  return entities.reduce((obj, entity) => ({
+  return entitiesFromObjects(objects)
+}
+
+function entitiesFromObjects(objects = []) {
+  return objects.reduce((obj, entity) => ({
     ...obj,
     [entity.id]: withFixedOffset(flatten(entity))
   }), {})

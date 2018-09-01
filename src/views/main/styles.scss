@@ -19,7 +19,7 @@ body {
 #app {
   @include font;
 
-  overflow: hidden;
+  //overflow: hidden;
   position: relative;
   box-sizing: border-box;
   padding: 2rem;

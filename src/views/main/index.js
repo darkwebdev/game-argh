@@ -18,12 +18,14 @@ module.exports = ({ state, config }) => {
       <menu>${Menu({ state })}</menu>
     </aside>
     
-    <aside class="stats" ${state.gameOver ? 'game-over' : ''}>
-      ${Stats({ state })}
-    </aside>
+    
   
     <world ${state.gameOver ? 'game-over' : ''}>${World({ state })}</world>
     
     <debug>version: ${config.version}, coords: [${x}, ${y}]</debug>
   `
 }
+
+//<aside class="stats" ${state.gameOver ? 'game-over' : ''}>
+//       ${Stats({ state })}
+//     </aside>

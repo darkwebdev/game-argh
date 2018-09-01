@@ -14,14 +14,14 @@ module.exports = {
   },
 
   TGIDS: {
-    WATER: 1,
-    LAND: 2,
+    WATER: 0,
+    // LAND: 2,
   },
 
   EGIDS: {
     ENEMY: 3,
     ALLY: 4,
-    PLAYER: 5,
+    PLAYER: 18,
     PORT: 6,
     BOMB: 10
   },

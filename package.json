@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "yarn tslint --project tsconfig.json --format verbose",
     "test": "yarn mocha",
-    "dev": "yarn watch 'yarn build' src lib img fonts",
+    "dev": "yarn watch 'yarn build' src lib img fonts resources",
     "build": "yarn styles && yarn js && yarn img && yarn fonts",
     "styles": "yarn node-sass src/views -o build/styles && cat build/styles/**/styles.css > build/styles.css",
     "js": "yarn browserify -p common-shakeify -p browser-pack-flat src -o build/game.js",

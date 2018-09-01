@@ -1,122 +1,64 @@
 @import '../common';
 
 world {
-  overflow: hidden;
+  overflow: scroll;
   position: absolute;
-  right: 0;
   top: 0;
-  bottom: 0;
-  max-width: 65vw;
-  width: 100vh;
-  max-height: 65vw;
-
-  > * {
-    display: inline-block;
-    padding-top: 5%;
-    width: 5%;
-  }
-}
-
-l {
-  background: $color-land;
-}
-
-w {
+  left: 0;
+  width: #{$tile-width * $world-width};
   background: $color-water;
-
-  &.sink{
-    bar {
-      display: none;
-    }
-    &::before {
-      animation: 1s sink ease-out;
-      transform: translateY(70px) rotateZ(-45deg);
-    }
-  }
 }
+
 
 l,
 w {
   position: relative;
+  //box-sizing: border-box;
+  display: inline-block;
+  height: $tile-height;
+  width: $tile-width;
+}
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: none no-repeat 50% top;
-    background-size: 100%;
+l {
+  background: url($img-land) no-repeat;
+
+  &[gid="2"] {
+    background-position: 0 0;
   }
-}
-
-.e-3,
-.e-4,
-.e-5 {
-  box-sizing: border-box;
-
-  &::before {
-    content: '';
-    bottom: 4px;
-    background-image: url($img-ship);
+  &[gid="3"] {
+    background-position: -64px 0;
   }
-}
-
-.e-3::before {
-  background-color: $color-danger;
-}
-
-.e-4::before {
-  background-color: $color-ok;
-}
-
-.e-5::before {
-  background-color: $color-player;
-}
-
-.e-6::before {
-  content: '';
-  background-color: $color-player;
-  background-image: url($img-port);
-}
-
-bar {
-  position: absolute;
-  left: 0;
-  height: 2px;
-
-  &.hp {
-    bottom: 2px;
-    background: $color-hp;
+  &[gid="4"] {
+    background-position: -128px 0;
   }
-  &.armor {
-    bottom: 0;
-    background: $color-armor;
+  &[gid="5"] {
+    background-position: -192px 0;
   }
-}
-
-.e-10{
-  &::before {
-    content: '';
-    background: $color-bomb;
+  &[gid="6"] {
+    background-position: -256px 0;
   }
-
-  &::after {
-    content: attr(timeout);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    line-height: 1;
-    z-index: 5;
+  &[gid="7"] {
+    background-position: 0 -64px;
   }
-}
-
-
-@keyframes sink {
-  0% {
-    transform: translateY(0) rotateZ(0);
+  &[gid="8"] {
+    background-position: -64px -64px;
   }
-  100% {
-    transform: translateY(70px) rotateZ(-45deg);
+  &[gid="9"] {
+    background-position: -128px -64px;
+  }
+  &[gid="10"] {
+    background: $color-land;
+  }
+  &[gid="11"] {
+    background-position: -256px -64px;
+  }
+  &[gid="14"] {
+    background-position: -128px -128px;
+  }
+  &[gid="15"] {
+    background-position: -192px -128px;
+  }
+  &[gid="16"] {
+    background-position: -256px -128px;
   }
 }
