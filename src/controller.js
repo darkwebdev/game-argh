@@ -14,7 +14,7 @@ const startTurnReducer = require('./reducers/start-turn')
 const gameOverReducer = require('./reducers/game-over')
 const newGameReducer = require('./reducers/new-game')
 const introReducer = require('./reducers/intro')
-const entityDestroyedReducer = require('./reducers/entity-destroyed')
+// const entityDestroyedReducer = require('./reducers/entity-destroyed')
 const repairReducer = require('./reducers/repair')
 const upgradeReducer = require('./reducers/upgrade')
 

@@ -3,5 +3,6 @@
   "hpPerTurn": 10,
   "throttleKeysMs": 100,
   "flagFragmentWidthPx": 25,
-  "flagFragments": 20
+  "flagFragments": 20,
+  "damageLevels": [ 0, 75, 150, 250, 99999 ]
 }

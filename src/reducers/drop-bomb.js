@@ -15,7 +15,7 @@ module.exports = state => (x, y) => {
         x,
         y,
         timeout: 3,
-        damage: 100,
+        damage: 90,
       }
     }
   }

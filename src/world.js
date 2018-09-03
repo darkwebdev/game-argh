@@ -2,7 +2,9 @@
 const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2')
 const templates = {
   'template-player.json': require('../resources/template-player'),
-  'template-enemy-weak.json': require('../resources/template-enemy-weak'),
+  'template-enemy-0.json': require('../resources/template-enemy-0'),
+  'template-enemy-1.json': require('../resources/template-enemy-1'),
+  'template-enemy-2.json': require('../resources/template-enemy-2'),
 }
 
 const { DIRECTIONS } = require('./const')

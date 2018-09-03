@@ -9,7 +9,7 @@ const cells = {
   [TGIDS.LAND]: 'l',
 }
 
-module.exports = ({ state }) => {
+module.exports = ({ state, config }) => {
   const visibleEntities = filter(state.entities, e => e.visible);
 
   return (state.world.terrain || [])
@@ -19,7 +19,7 @@ module.exports = ({ state }) => {
 
       const { x, y } = coords(i) // todo: optimize for performance???
       const entityInside = entityAt({ entities: visibleEntities, x, y }) || {}
-      const entity = entityInside.gid ? Entity(entityInside) : ''
+      const entity = entityInside.gid ? Entity({ props: entityInside, config }) : ''
 
       return `<${terrain}${terrainAttr}>${entity}</${terrain}>`
     })

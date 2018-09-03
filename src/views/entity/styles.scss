@@ -18,6 +18,15 @@ e {
   &[gid="#{$gid-enemy}"],
   &[gid="#{$gid-player}"] {
     background-image: url($img-ship);
+
+    &::after {
+      content: attr(level);
+      position: absolute;
+      top: 0;
+      right: 0;
+      line-height: 1;
+      font-size: 10px;
+    }
   }
 
   &[gid="#{$gid-enemy}"] {
@@ -42,11 +51,9 @@ e {
 
     &::after {
       content: attr(timeout);
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      line-height: 1;
-      z-index: 5;
+      display: block;
+      text-align: center;
+      font-size: 26px;
     }
   }
 }

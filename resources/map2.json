@@ -25,20 +25,19 @@
                 },
                 {
                  "id":10,
-                 "template":"template-enemy-weak.json",
-                 "visible":true,
+                 "template":"template-enemy-0.json",
                  "x":192,
                  "y":1152
                 },
                 {
                  "id":12,
-                 "template":"template-enemy-weak.json",
+                 "template":"template-enemy-0.json",
                  "x":320,
                  "y":960
                 },
                 {
                  "id":13,
-                 "template":"template-enemy-weak.json",
+                 "template":"template-enemy-0.json",
                  "x":64,
                  "y":832
                 }],
