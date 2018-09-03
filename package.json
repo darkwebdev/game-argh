@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "yarn tslint --project tsconfig.json --format verbose",
-    "test": "yarn mocha",
+    "test": "yarn mocha --recursive",
     "dev": "yarn watch 'yarn build' src lib img fonts resources",
     "build": "yarn styles && yarn js && yarn img && yarn fonts",
     "styles": "yarn node-sass src/views -o build/styles && cat build/styles/**/styles.css > build/styles.css",

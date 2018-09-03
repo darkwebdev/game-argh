@@ -54,12 +54,14 @@ describe('bombReducer()', () => {
         id: 1,
         x: 1, y: 0,
         hp: 20,
+        armor: 20,
         visible: true,
       },
       2: {
         id: 2,
         x: 0, y: 1,
         hp: 10,
+        armor: 0,
         visible: true,
       },
     }
@@ -75,13 +77,15 @@ describe('bombReducer()', () => {
       1: {
         id: 1,
         x: 1, y: 0,
-        hp: 10,
+        hp: 20,
+        armor: 10,
         visible: true,
       },
       2: {
         id: 2,
         x: 0, y: 1,
         hp: 0,
+        armor: 0,
         visible: true,
       },
     }
