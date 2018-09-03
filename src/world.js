@@ -15,6 +15,32 @@ const minY = 0;
 const terrain = layers.find(l => l.name === "Terrain") || {}
 const entities = layers.find(l => l.name === "Entities") || {}
 
+
+const withFixedOffset = entity => ({
+  ...entity,
+  y: entity.y - mapYoffset
+})
+
+const flatten = ({ id, gid, name, visible, x, y, properties = undefined }) => ({
+  id, gid, name, visible, x: x / tilewidth, y: y / tileheight,
+  ...(properties ? properties : {})
+})
+
+const entitiesFromLayers = (layers = []) => {
+  const objects = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
+
+  return entitiesFromObjects(objects)
+}
+
+const entitiesFromObjects = (objects = []) =>
+  objects.reduce((obj, entity) => ({
+    ...obj,
+    [entity.id]: withFixedOffset(flatten({
+      ...entity,
+      ...templates[entity.template].object,
+    })),
+  }), {})
+
 module.exports = {
   minX,
   minY,
@@ -49,32 +75,3 @@ module.exports = {
   }
 }
 
-function withFixedOffset(entity) {
-  return {
-    ...entity,
-    y: entity.y - mapYoffset
-  }
-}
-
-function flatten({ id, gid, name, visible, x, y, properties = undefined }) {
-  return {
-    id, gid, name, visible, x: x / tilewidth, y: y / tileheight,
-    ...(properties ? properties : {})
-  }
-}
-
-function entitiesFromLayers(layers = []) {
-  const objects = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
-
-  return entitiesFromObjects(objects)
-}
-
-function entitiesFromObjects(objects = []) {
-  return objects.reduce((obj, entity) => ({
-    ...obj,
-    [entity.id]: withFixedOffset(flatten({
-      ...entity,
-      ...templates[entity.template].object,
-    })),
-  }), {})
-}

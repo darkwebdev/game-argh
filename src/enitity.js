@@ -2,6 +2,33 @@ const { find, reduce } = require('./helpers')
 const { directionCoords } = require('./world')
 const { EGIDS, DIRECTIONS } = require('./const')
 
+const entityAt = ({ entities, x, y, filter = () => true }) =>
+  find(entities, e => e.x === x && e.y === y && filter(e))
+
+const entitiesNearby = ({ entities, x, y, filter = () => true }) => {
+  const entityTo = direction => {
+    const { x: dx, y: dy } = directionCoords({ direction, x, y })
+    const entity = entityAt({ entities, x: dx, y: dy, filter: notSunk })
+
+    return (entity && filter(entity)) ? [ entity ] : []
+  }
+
+  return reduce(DIRECTIONS, (arr, d) => [
+    ...arr,
+    ...entityTo(d)
+  ], [])
+}
+
+const notSunk = entity => entity.hp === undefined || entity.hp > 0
+
+const isAlly = entity => entity.gid === EGIDS.ALLY
+
+const isEnemy = entity => entity.gid === EGIDS.ENEMY
+
+const isPlayer = entity => entity.gid === EGIDS.PLAYER
+
+const isPort = entity => entity.gid === EGIDS.PORT
+
 module.exports = {
   toObj(entities) {
     return entities.reduce((es, e) => ({ ...es, [e.id]: e }), {})
@@ -32,43 +59,4 @@ module.exports = {
 
     return maxId + 1
   }
-}
-
-function entityAt({ entities, x, y, filter = () => true }) {
-  return find(entities, e => e.x === x && e.y === y && filter(e))
-}
-
-
-function entitiesNearby({ entities, x, y, filter = () => true }) {
-  const entityTo = direction => {
-    const { x: dx, y: dy } = directionCoords({ direction, x, y })
-    const entity = entityAt({ entities, x: dx, y: dy, filter: notSunk })
-
-    return (entity && filter(entity)) ? [ entity ] : []
-  }
-
-  return reduce(DIRECTIONS, (arr, d) => [
-    ...arr,
-    ...entityTo(d)
-  ], [])
-}
-
-function notSunk(entity) {
-  return entity.hp === undefined || entity.hp > 0
-}
-
-function isAlly(entity) {
-  return entity.gid === EGIDS.ALLY
-}
-
-function isEnemy(entity) {
-  return entity.gid === EGIDS.ENEMY
-}
-
-function isPlayer(entity) {
-  return entity.gid === EGIDS.PLAYER
-}
-
-function isPort(entity) {
-  return entity.gid === EGIDS.PORT
 }

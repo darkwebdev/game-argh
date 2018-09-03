@@ -1,9 +1,7 @@
 const { position } = require('./world')
 
+const terrainAt = ({ terrain, x, y }) => terrain[position(x, y)]
+
 module.exports = {
   terrainAt
-}
-
-function terrainAt({ terrain, x, y }) {
-  return terrain[position(x, y)];
 }

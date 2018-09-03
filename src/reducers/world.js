@@ -2,6 +2,8 @@ const { playerEntity } = require('../enitity')
 const { filter, map } = require('../helpers')
 const bombReducer = require('./bomb')
 
+const healedHp = ({ hp, maxHp }, hpPerTurn) => hp < maxHp ? Math.min(hp + hpPerTurn, maxHp) : hp
+
 module.exports = ({ oldState, state, config }) => {
   const updatedState = {
     ...oldState,
@@ -12,7 +14,6 @@ module.exports = ({ oldState, state, config }) => {
 
   const player = playerEntity(entities)
   // todo: npc random movement
-  // should other entities heal???
 
   // Sunk ships reducer
   const ships = filter(entities, e => e.hp !== undefined)
@@ -33,8 +34,4 @@ module.exports = ({ oldState, state, config }) => {
       }
     }
   }
-}
-
-function healedHp({ hp, maxHp }, hpPerTurn) {
-  return hp < maxHp ? Math.min(hp + hpPerTurn, maxHp) : hp
 }
