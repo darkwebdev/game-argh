@@ -10,10 +10,8 @@ e {
   &[sink] {
     animation: 1s sink ease-out;
     transform: translateY(70px) rotateZ(-45deg);
-
-    + bar {
-      display: none;
-    }
+    box-shadow: 0 0 1px transparent; // anti-glitch hack
+    backface-visibility: hidden; // anti-glitch hack
   }
 
   &[gid="#{$gid-ally}"],
