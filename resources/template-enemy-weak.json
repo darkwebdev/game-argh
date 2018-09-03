@@ -1,0 +1,33 @@
+{ "object":
+    {
+     "gid":3,
+     "height":64,
+     "name":"Weak Enemy",
+     "properties":
+        {
+         "armor":50,
+         "damage":35,
+         "hp":50,
+         "maxArmor":50,
+         "maxHp":50
+        },
+     "propertytypes":
+        {
+         "armor":"int",
+         "damage":"int",
+         "hp":"int",
+         "maxArmor":"int",
+         "maxHp":"int"
+        },
+     "rotation":0,
+     "type":"",
+     "visible":true,
+     "width":64
+    },
+ "tileset":
+    {
+     "firstgid":1,
+     "source":"brig-red.json"
+    },
+ "type":"template"
+}

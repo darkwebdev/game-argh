@@ -14,7 +14,7 @@ module.exports = ({ state }) => {
 
   return (state.world.terrain || [])
     .map((cell, i) => {
-      const terrain = cells[cell] || cells[TGIDS.LAND]
+      const terrain = cells[cell] || cells[TGIDS.WATER]
       const terrainAttr = cell === TGIDS.WATER ? '' : ` gid=${cell}`
 
       const { x, y } = coords(i) // todo: optimize for performance???

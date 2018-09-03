@@ -1,5 +1,10 @@
 // const { layers = [], width } = require('../resources/map.json')
-const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2.json')
+const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2')
+const templates = {
+  'template-player.json': require('../resources/template-player'),
+  'template-enemy-weak.json': require('../resources/template-enemy-weak'),
+}
+
 const { DIRECTIONS } = require('./const')
 
 const mapYoffset = 1 //weird Tiled stuff
@@ -65,6 +70,9 @@ function entitiesFromLayers(layers = []) {
 function entitiesFromObjects(objects = []) {
   return objects.reduce((obj, entity) => ({
     ...obj,
-    [entity.id]: withFixedOffset(flatten(entity))
+    [entity.id]: withFixedOffset(flatten({
+      ...entity,
+      ...templates[entity.template].object,
+    })),
   }), {})
 }

@@ -12,16 +12,22 @@ world {
 
 l,
 w {
+  overflow: hidden;
   position: relative;
-  //box-sizing: border-box;
   display: inline-block;
   height: $tile-height;
   width: $tile-width;
+  background: url($img-land) no-repeat;
 }
 
 l {
-  background: url($img-land) no-repeat;
+  background: $color-land;
+}
 
+w {
+  &[gid="0"] {
+    background: none;
+  }
   &[gid="2"] {
     background-position: 0 0;
   }
@@ -45,9 +51,6 @@ l {
   }
   &[gid="9"] {
     background-position: -128px -64px;
-  }
-  &[gid="10"] {
-    background: $color-land;
   }
   &[gid="11"] {
     background-position: -256px -64px;

@@ -14,8 +14,8 @@ module.exports = {
   },
 
   TGIDS: {
-    WATER: 0,
-    // LAND: 2,
+    // WATER: 0,
+    LAND: 10,
   },
 
   EGIDS: {
