@@ -74,7 +74,7 @@ module.exports = ({ config, root, world, sound }) => {
     emit(EVENTS.END_TURN, upgradeReducer(state)(portId))
   })
 
-  on(EVENTS.END_TURN, newState => {
+  on(EVENTS.END_TURN, (newState = {}) => {
     if (newState.gameOver) {
       console.log('!!!!!!!!! GAME OVER !!!!!!!!')
       play(sounds.gameOver)

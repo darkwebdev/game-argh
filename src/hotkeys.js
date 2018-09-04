@@ -26,8 +26,9 @@ module.exports = {
   ArrowRight: trySail(DIRECTIONS.EAST),
   KeyA: tryAction(EVENTS.FIGHT),
   KeyB: tryAction(EVENTS.BOMB),
-  KeyN: tryAction(EVENTS.NEW_GAME),
+  KeyN: () => emit(EVENTS.NEW_GAME),
   KeyT: tryAction(EVENTS.TRADE),
   KeyR: tryAction(EVENTS.REPAIR),
   KeyU: tryAction(EVENTS.UPGRADE),
+  Space: () => emit(EVENTS.END_TURN)
 }
