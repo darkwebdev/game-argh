@@ -7,7 +7,17 @@ const player = {
     id: 0,
     gid: EGIDS.PLAYER,
     hp: 10,
-    maxHp: 20
+    maxHp: 20,
+    visible: true,
+  }
+}
+const deadPlayer = {
+  0: {
+    id: 0,
+    gid: EGIDS.PLAYER,
+    hp: 0,
+    maxHp: 20,
+    visible: false,
   }
 }
 const healedPlayer = {
@@ -15,7 +25,8 @@ const healedPlayer = {
     id: 0,
     gid: EGIDS.PLAYER,
     hp: 11,
-    maxHp: 20
+    maxHp: 20,
+    visible: true,
   }
 }
 const ships = {
@@ -41,6 +52,21 @@ describe('reducers/world', () => {
     const expectedState = {
       entities: {
         ...healedPlayer
+      }
+    }
+
+    expect(reducer({ oldState, state: {}, config })).to.deep.equal(expectedState)
+  })
+
+  it('should NOT heal a DEAD player', () => {
+    const oldState = {
+      entities: {
+        ...deadPlayer
+      }
+    }
+    const expectedState = {
+      entities: {
+        ...deadPlayer
       }
     }
 
