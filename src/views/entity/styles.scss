@@ -8,10 +8,17 @@ e {
   width: 36px;
 
   &[sink] {
+    box-sizing: border-box;
+    background-clip: content-box;
     animation: 1s sink ease-out;
-    transform: translateY(70px) rotateZ(-45deg);
-    box-shadow: 0 0 1px transparent; // anti-glitch hack
-    backface-visibility: hidden; // anti-glitch hack
+    transform: translateY(70px);
+    padding-bottom: 70px;
+    //box-shadow: 0 0 1px transparent; // anti-glitch rotate hack
+    //backface-visibility: hidden; // anti-glitch rotate hack
+
+    &::after {
+      display: none;
+    }
   }
 
   &[gid="#{$gid-ally}"],
@@ -60,10 +67,12 @@ e {
 
 @keyframes sink {
   0% {
-    transform: translateY(0) rotateZ(0);
+    padding-bottom: 0;
+    transform: translateY(0);
   }
   100% {
-    transform: translateY(70px) rotateZ(-45deg);
+    padding-bottom: 70px;
+    transform: translateY(70px);
   }
 }
 
