@@ -1,8 +1,8 @@
 const { playerEntity } = require('../enitity')
-const { filter, map } = require('../helpers')
 const bombReducer = require('./bomb')
-
-const healedHp = ({ hp, maxHp }, hpPerTurn) => hp < maxHp ? Math.min(hp + hpPerTurn, maxHp) : hp
+const portReducer = require('./port')
+const sinkReducer = require('./sink')
+const healReducer = require('./heal')
 
 module.exports = ({ oldState, state, config }) => {
   const updatedState = {
@@ -12,26 +12,29 @@ module.exports = ({ oldState, state, config }) => {
 
   const entities = updatedState.entities
 
-  const player = playerEntity(entities)
-  // todo: npc random movement
+  const entitiesWithoutSunkShips = {
+    ...entities,
+    ...sinkReducer({ entities, oldEntities: oldState.entities }),
+  }
 
-  // Sunk ships reducer
-  const ships = filter(entities, e => e.hp !== undefined)
-  const withoutSunkShips = map(ships, e => ({
-    ...e,
-    visible: !(e.hp <= 0 && oldState.entities[e.id].hp <= 0)
-  }))
+  const entitiesWithShotByPorts = {
+    ...entitiesWithoutSunkShips,
+    ...portReducer(entitiesWithoutSunkShips),
+  }
+
+  const entitiesWithExplodedByBombs = {
+    ...entitiesWithShotByPorts,
+    ...bombReducer(entitiesWithShotByPorts),
+  }
+
+  const player = playerEntity(entitiesWithExplodedByBombs)
+  const entitiesWithHealedPlayer = {
+    ...entitiesWithExplodedByBombs,
+    ...healReducer({ player, config })
+  }
 
   return {
     ...updatedState,
-    entities: {
-      ...entities,
-      ...withoutSunkShips,
-      ...bombReducer(entities),
-      [player.id]: {
-        ...player,
-        hp: healedHp(player, config.hpPerTurn)
-      }
-    }
+    entities: entitiesWithHealedPlayer,
   }
 }

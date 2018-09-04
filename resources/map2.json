@@ -24,6 +24,18 @@
                  "y":1216
                 },
                 {
+                  "id":100,
+                  "template":"template-port-0.json",
+                  "x":64,
+                  "y":1280
+                },
+                {
+                  "id":101,
+                  "template":"template-port-1.json",
+                  "x":320,
+                  "y":640
+                },
+                {
                  "id":10,
                  "template":"template-enemy-0.json",
                  "x":192,

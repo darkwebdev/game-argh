@@ -5,6 +5,10 @@ module.exports = {
       .reduce((acc, item) => ({ ...acc, ...item }), {})
   },
 
+  flatMap(arr, cb) {
+    return arr.reduce((x, y) => [...x, ...cb(y)], [])
+  },
+
   find(obj = {}, cb = () => false) {
     return obj[Object.keys(obj).find(key => cb(obj[key], key))]
   },

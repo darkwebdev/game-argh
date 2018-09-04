@@ -13,8 +13,6 @@ e {
     animation: 1s sink ease-out;
     transform: translateY(70px);
     padding-bottom: 70px;
-    //box-shadow: 0 0 1px transparent; // anti-glitch rotate hack
-    //backface-visibility: hidden; // anti-glitch rotate hack
 
     &::after {
       display: none;
@@ -48,7 +46,8 @@ e {
     background-color: $color-player;
   }
 
-  &[gid="#{$gid-port}"] {
+  &[gid="#{$gid-ally-port}"],
+  &[gid="#{$gid-enemy-port}"] {
     background-color: $color-player;
     background-image: url($img-port);
   }

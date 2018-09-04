@@ -39,15 +39,6 @@ describe('game', () => {
       expect(damageToLevel(15, damageLevels)).to.equal(8)
       expect(damageToLevel(23, damageLevels)).to.equal(17)
     })
-
-    it('should calculate percents to level up', () => {
-      const damageLevels = [ 10, 20, 30 ]
-
-      expect(percentToLevel(0, damageLevels)).to.equal(100)
-      expect(percentToLevel(1, damageLevels)).to.equal(90)
-      expect(percentToLevel(15, damageLevels)).to.equal(50)
-      expect(percentToLevel(20, damageLevels)).to.equal(100)
-    })
   })
 
   describe('percentOfLevel()', () => {

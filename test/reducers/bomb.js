@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const { EGIDS } = require('../../src/const')
 const reducer = require('../../src/reducers/bomb')
 
-describe('bombReducer()', () => {
+describe('reducers/bomb', () => {
   it('should return empty object given no bombs', () => {
     expect(reducer({})).to.deep.equal({})
   })

@@ -137,7 +137,7 @@ module.exports = {
     const terrain = state.world.terrain
     const { x, y, armor, maxArmor } = playerEntity(entities)
 
-    return [
+    return [// use flatmap here?
       ...sailEvents({ terrain, entities, x, y }),
       ...tradeEvents({ entities, x, y }),
       ...fightEvents({ entities, x, y }),

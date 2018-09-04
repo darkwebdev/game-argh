@@ -31,7 +31,7 @@ const ships = {
   }
 }
 
-describe('worldReducer()', () => {
+describe('reducers/world', () => {
   it('should heal a player', () => {
     const oldState = {
       entities: {
