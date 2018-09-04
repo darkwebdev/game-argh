@@ -86,6 +86,29 @@ const hpDamage = (hp, armor, damage) => {
   return Math.min(newHp, hp)
 }
 
+const damageLevel = (dmg, damageLevels = []) =>
+  damageLevels.findIndex(damageLevel => dmg < damageLevel)
+
+const damageToLevel = (dmg, damageLevels = []) =>
+  damageLevels[damageLevel(dmg, damageLevels)] - dmg
+
+const percentToLevel = (dmg, damageLevels = []) => {
+  const level = damageLevel(dmg, damageLevels)
+  const toLevel = damageLevels[level] - dmg
+  const betweenLevels = damageLevels[level] - (damageLevels[level - 1] || 0)
+
+  return toLevel * 100 / betweenLevels
+}
+
+const percentOfLevel = (dmg, damageLevels = []) => {
+  const level = damageLevel(dmg, damageLevels)
+  const lastLevelDmg = damageLevels[level - 1] || 0
+  const ofLevel = dmg - lastLevelDmg
+  const betweenLevels = damageLevels[level] - lastLevelDmg
+
+  return ofLevel * 100 / betweenLevels
+}
+
 module.exports = {
   roundOutcome(entity1, entity2) {
     const { hp: hp1, damage: dmg1, armor: arm1 } = entity1
@@ -124,7 +147,7 @@ module.exports = {
 
   hpDamage,
   armorDamage,
-  damageLevel(dmg, damageLevels = []) {
-    return damageLevels.findIndex(damageLevel => dmg < damageLevel)
-  }
+  damageLevel,
+  damageToLevel,
+  percentOfLevel,
 }

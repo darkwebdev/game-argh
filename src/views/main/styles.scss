@@ -19,10 +19,7 @@ body {
 #app {
   @include font;
 
-  //overflow: hidden;
   position: relative;
-  box-sizing: border-box;
-  padding: 2rem;
   height: 100%;
   color: $color-white;
   background: $color-black;
@@ -41,6 +38,14 @@ debug {
 
 aside {
   width: 29vw;
+}
+
+bar.dmg {
+  position: fixed;
+  top: 0;
+  height: 5px;
+  background: $color-yellow;
+  z-index: 5;
 }
 
 game-over {

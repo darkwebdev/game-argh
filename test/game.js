@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { armorDamage, hpDamage } = require('../src/game')
+const { armorDamage, hpDamage, damageToLevel, percentToLevel, percentOfLevel } = require('../src/game')
 
 describe('game', () => {
   describe('armorDamage()', () => {
@@ -27,6 +27,37 @@ describe('game', () => {
     it('should return reduced hp given armor < damage', () => {
       expect(hpDamage(10, 20, 30)).to.equal(0)
       expect(hpDamage(10, 20, 25)).to.equal(5)
+    })
+  })
+
+  describe('damageToLevel()', () => {
+    it('should calculate damage to level up', () => {
+      const damageLevels = [ 10, 23, 40 ]
+
+      expect(damageToLevel(0, damageLevels)).to.equal(10)
+      expect(damageToLevel(1, damageLevels)).to.equal(9)
+      expect(damageToLevel(15, damageLevels)).to.equal(8)
+      expect(damageToLevel(23, damageLevels)).to.equal(17)
+    })
+
+    it('should calculate percents to level up', () => {
+      const damageLevels = [ 10, 20, 30 ]
+
+      expect(percentToLevel(0, damageLevels)).to.equal(100)
+      expect(percentToLevel(1, damageLevels)).to.equal(90)
+      expect(percentToLevel(15, damageLevels)).to.equal(50)
+      expect(percentToLevel(20, damageLevels)).to.equal(100)
+    })
+  })
+
+  describe('percentOfLevel()', () => {
+    it('should calculate damage level percent', () => {
+      const damageLevels = [10, 20, 30]
+
+      expect(percentOfLevel(0, damageLevels)).to.equal(0)
+      expect(percentOfLevel(1, damageLevels)).to.equal(10)
+      expect(percentOfLevel(15, damageLevels)).to.equal(50)
+      expect(percentOfLevel(20, damageLevels)).to.equal(0)
     })
   })
 })
