@@ -1,6 +1,6 @@
 const bombReducer = require('./bomb')
 const portReducer = require('./port')
-const sinkReducer = require('./sink')
+const cleanUpReducer = require('./clean')
 const followReducer = require('./follow')
 const sailReducer = require('./sail-npc')
 const fightReducer = require('./fight-npc')
@@ -16,7 +16,7 @@ module.exports = ({ oldState, state, config }) =>
       ...state
     },
     [
-      s => sinkReducer({ state: s, oldState }),
+      s => cleanUpReducer({ state: s, oldState }),
       portReducer,
       bombReducer,
       s => followReducer({ state: s, oldState }),

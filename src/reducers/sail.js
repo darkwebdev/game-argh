@@ -22,7 +22,6 @@ module.exports = state => direction => {
   }
 
   return {
-    // enemyId: undefined,
     entities: {
       ...state.entities,
       [player.id]: {

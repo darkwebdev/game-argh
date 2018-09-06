@@ -2,7 +2,8 @@ const { playerEntity } = require('../enitity')
 
 module.exports = state => portId => {
   const player = playerEntity(state.entities)
-  const betterArmor = state.entities[portId].armorUp || player.maxArmor
+  const port = state.entities[portId]
+  const betterArmor = port.armorUp || player.maxArmor
 
   return {
     ...state,
@@ -13,6 +14,10 @@ module.exports = state => portId => {
         hp: player.maxHp,
         armor: betterArmor,
         maxArmor: betterArmor,
+      },
+      [port.id]: {
+        ...port,
+        armorUp: undefined,
       }
     }
   }
