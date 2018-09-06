@@ -1,17 +1,15 @@
 const { EGIDS } = require('../../src/const')
 
 module.exports = {
-  1: {
-    id: 1,
-    name: 'Ally',
-    gid: EGIDS.ALLY,
+  0: {
+    id: 0,
+    name: 'Player',
+    gid: EGIDS.PLAYER,
     x: 0,
     y: 0,
     hp: 20,
-    armor: 0,
+    armor: 10,
     damage: 10,
-    destX: undefined,
-    destY: undefined,
     enemyId: 2,
   },
 }

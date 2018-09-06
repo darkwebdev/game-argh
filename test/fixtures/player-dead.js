@@ -12,5 +12,6 @@ module.exports = {
     damage: 10,
     destX: undefined,
     destY: undefined,
+    enemyId: 2,
   },
 }

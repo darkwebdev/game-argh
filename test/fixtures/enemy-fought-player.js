@@ -13,6 +13,6 @@ module.exports = {
     aggressive: true,
     destX: undefined,
     destY: undefined,
-    enemyId: 1,
+    enemyId: 0,
   },
 }

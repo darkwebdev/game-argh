@@ -1,6 +1,7 @@
 const bombReducer = require('./bomb')
 const portReducer = require('./port')
 const sinkReducer = require('./sink')
+const followReducer = require('./follow')
 const sailReducer = require('./sail-npc')
 const fightReducer = require('./fight-npc')
 const healReducer = require('./heal')
@@ -18,6 +19,7 @@ module.exports = ({ oldState, state, config }) =>
       s => sinkReducer({ state: s, oldState }),
       portReducer,
       bombReducer,
+      s => followReducer({ state: s, oldState }),
       fightReducer,
       sailReducer,
       s => healReducer({ state: s, config }),

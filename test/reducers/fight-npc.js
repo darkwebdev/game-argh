@@ -5,6 +5,7 @@ const ally = require('../fixtures/ally')
 const allyFought = require('../fixtures/ally-fought')
 const enemy = require('../fixtures/enemy')
 const enemyFought = require('../fixtures/enemy-fought')
+const enemyFoughtPlayer = require('../fixtures/enemy-fought-player')
 const enemyAggressive = require('../fixtures/enemy-aggressive')
 const enemyAggressiveDead = require('../fixtures/enemy-aggressive-dead')
 const player = require('../fixtures/player-weak')
@@ -69,7 +70,7 @@ describe('reducers/fight-npc', () => {
       gameOver: true,
       entities: {
         ...playerDead,
-        ...enemyFought,
+        ...enemyFoughtPlayer,
       },
     }
     expect(reducer(state)).to.deep.equal(expectedState)

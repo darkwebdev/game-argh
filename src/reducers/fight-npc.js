@@ -9,6 +9,7 @@ module.exports = (startState = {}) => {
   const foughtEntity = ({ state, entity }) => {
     const entities = state.entities || {}
     const { id, name, x, y } = entity
+    // todo: skip already fought aggressive enemies
     const enemies = entitiesNearby({ entities, x, y, filter: e => areOpposed(e, entity) })
 
     if (!enemies.length) return state
@@ -16,8 +17,8 @@ module.exports = (startState = {}) => {
     const enemy = enemies[0]
     const { hp1, armor1, hp2, armor2 } = roundOutcome(entity, enemy)
 
-    console.log('NPC fights', name, id, x, y, hp1, armor1, entity.damage)
-    console.log('Enemy fought', enemy.name, enemy.id, enemy.x, enemy.y, hp2, armor2, enemy.damage)
+    console.log('NPC', name, id, '@', x, y, '/', hp1, armor1, entity.damage, 'fights',
+      enemy.name, enemy.id, '@', enemy.x, enemy.y, '/', hp2, armor2, enemy.damage)
 
     return {
       ...state,
@@ -30,6 +31,7 @@ module.exports = (startState = {}) => {
           armor: armor1,
           destX: undefined,
           destY: undefined,
+          enemyId: enemy.hp > 0 ? enemy.id : undefined,
         },
         [enemy.id]: {
           ...enemy,
@@ -37,6 +39,7 @@ module.exports = (startState = {}) => {
           armor: armor2,
           destX: undefined,
           destY: undefined,
+          enemyId: entity.hp > 0 ? entity.id : undefined,
         },
       }
     }

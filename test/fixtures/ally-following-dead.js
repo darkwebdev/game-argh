@@ -7,11 +7,9 @@ module.exports = {
     gid: EGIDS.ALLY,
     x: 0,
     y: 0,
-    hp: 20,
+    hp: 0,
     armor: 0,
     damage: 10,
-    destX: undefined,
-    destY: undefined,
     enemyId: 2,
   },
 }

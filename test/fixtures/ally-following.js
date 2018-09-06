@@ -8,10 +8,8 @@ module.exports = {
     x: 0,
     y: 0,
     hp: 20,
-    armor: 0,
+    armor: 10,
     damage: 10,
-    destX: undefined,
-    destY: undefined,
     enemyId: 2,
   },
 }

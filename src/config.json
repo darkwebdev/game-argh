@@ -1,5 +1,4 @@
 {
-  "version": "0.1",
   "hpPerTurn": 10,
   "throttleKeysMs": 100,
   "flagFragmentWidthPx": 25,

@@ -10,5 +10,6 @@ module.exports = {
     hp: 20,
     armor: 10,
     damage: 10,
+    enemyId: undefined,
   },
 }
