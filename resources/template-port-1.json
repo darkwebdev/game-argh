@@ -9,11 +9,13 @@
     "width": 64,
     "properties":
     {
-      "armorUp":200
+      "armorUp":200,
+      "damage":100
     },
     "propertytypes":
     {
-      "armorUp":"int"
+      "armorUp":"int",
+      "damage":"int"
     }
   },
   "tileset": {

@@ -10,6 +10,8 @@ module.exports = state => {
     const filter = e => areOpposed(p, e)
     const portEnemies = entitiesNearby({ entities, x, y, filter })
 
+    portEnemies.length && console.log('PORT', p.name, p.id, 'attacks', portEnemies)
+
     return portEnemies.map(e => ({
       ...e,
       hp: hpDamage(e.hp, e.armor, damage),
