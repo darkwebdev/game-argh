@@ -7,10 +7,12 @@ const Bar = ({ className, valuePercent }) =>
   `<bar class="${className}" style="width: ${valuePercent}%"></bar>`
 
 module.exports = ({ props = {}, config = {}}) => {
-  const { hp, maxHp, armor, maxArmor, gid, name, timeout, damage, armorUp } = props
+  const { hp, maxHp, armor, maxArmor, gid, name, timeout, damage, armorUp, enemyId } = props
 
   const level = damageLevel(damage, config.damageLevels)
   const levelAttr = level === -1 ? '' : ` level=${level}`
+
+  const enemyAttr = enemyId === undefined ? '' : ` enemy=${enemyId}`
 
   const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
   const upgrades = armorUp ? ` [ upgrade: armor(${armorUp}) ]` : ''
@@ -26,5 +28,5 @@ module.exports = ({ props = {}, config = {}}) => {
   const hpBar = hp === undefined ? '' : Bar({ className: 'hp', valuePercent: hpPercent })
   const armorBar = armor === undefined ? '' : Bar({ className: 'armor', valuePercent: armorPercent })
 
-  return `<e gid=${gid}${levelAttr}${sinkAttr}${title}${timeoutAttr}>${hpBar}${armorBar}</e>`
+  return `<e gid=${gid}${levelAttr}${enemyAttr}${sinkAttr}${title}${timeoutAttr}>${hpBar}${armorBar}</e>`
 }
