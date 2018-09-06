@@ -1,0 +1,33 @@
+{ "object":
+    {
+     "gid":4,
+     "height":64,
+     "name":"Strong Ally",
+     "properties":
+        {
+         "armor":150,
+         "damage":100,
+         "hp":110,
+         "maxArmor":150,
+         "maxHp":110
+        },
+     "propertytypes":
+        {
+         "armor":"int",
+         "damage":"int",
+         "hp":"int",
+         "maxArmor":"int",
+         "maxHp":"int"
+        },
+     "rotation":0,
+     "type":"",
+     "visible":true,
+     "width":64
+    },
+ "tileset":
+    {
+     "firstgid":1,
+     "source":"brig-green.json"
+    },
+ "type":"template"
+}

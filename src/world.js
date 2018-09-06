@@ -1,9 +1,11 @@
-// const { layers = [], width } = require('../resources/map.json')
 const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2')
 const templates = {
   'template-player.json': require('../resources/template-player'),
   'template-port-0.json': require('../resources/template-port-0'),
   'template-port-1.json': require('../resources/template-port-1'),
+  'template-ally-0.json': require('../resources/template-ally-0'),
+  'template-ally-1.json': require('../resources/template-ally-1'),
+  'template-ally-2.json': require('../resources/template-ally-2'),
   'template-enemy-0.json': require('../resources/template-enemy-0'),
   'template-enemy-1.json': require('../resources/template-enemy-1'),
   'template-enemy-2.json': require('../resources/template-enemy-2'),

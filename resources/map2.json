@@ -36,6 +36,18 @@
                   "y":640
                 },
                 {
+                  "id":50,
+                  "template":"template-ally-0.json",
+                  "x":192,
+                  "y":1216
+                },
+                {
+                  "id":51,
+                  "template":"template-ally-1.json",
+                  "x":192,
+                  "y":960
+                },
+                {
                  "id":10,
                  "template":"template-enemy-0.json",
                  "x":192,
