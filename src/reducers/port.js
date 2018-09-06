@@ -2,7 +2,8 @@ const { toObj, entitiesNearby, isPort, areOpposed } = require('../enitity')
 const { filterValues, flatMap } = require('../helpers')
 const { hpDamage, armorDamage } = require('../game')
 
-module.exports = entities => {
+module.exports = state => {
+  const entities = state.entities
   const ports = filterValues(entities, isPort)
   const entitiesShotByPorts = flatMap(ports, p => {
     const { x, y, damage } = p
@@ -17,6 +18,10 @@ module.exports = entities => {
   })
 
   return {
-    ...toObj(entitiesShotByPorts)
+    ...state,
+    entities: {
+      ...entities,
+      ...toObj(entitiesShotByPorts),
+    }
   }
 }

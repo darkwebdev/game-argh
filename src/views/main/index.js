@@ -1,6 +1,6 @@
-const Menu = require('../menu')
+// const Menu = require('../menu')
 const World = require('../world')
-const Stats = require('../stats')
+// const Stats = require('../stats')
 const { playerEntity } = require('../../enitity')
 const { GAME_NAME } = require('../../const')
 const { percentOfLevel } = require('../../game')

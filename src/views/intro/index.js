@@ -26,8 +26,6 @@ module.exports = ({ state, config }) => {
       <h1>${GAME_NAME}</h1>
       
       <menu>${Menu({ state })}</menu>    
-      
-      <div class="debug">version: ${config.version}</div>
     </intro>
   `
 }

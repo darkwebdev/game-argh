@@ -1,6 +1,8 @@
 const { filter, map } = require('../helpers')
 
-module.exports = ({ entities, oldEntities }) => {
+module.exports = ({ state = {}, oldState = {} }) => {
+  const entities = state.entities || {}
+  const oldEntities = oldState.entities || {}
   const ships = filter(entities, e => e.hp !== undefined)
   const withoutSunkShips = map(ships, e => ({
     ...e,
@@ -8,7 +10,10 @@ module.exports = ({ entities, oldEntities }) => {
   }))
 
   return {
-    ...entities,
-    ...withoutSunkShips,
+    ...state,
+    entities: {
+      ...entities,
+      ...withoutSunkShips,
+    }
   }
 }

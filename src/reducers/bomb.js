@@ -3,7 +3,8 @@ const { toObj, entitiesNearby } = require('../enitity')
 const { filterValues } = require('../helpers')
 const { hpDamage, armorDamage } = require('../game')
 
-module.exports = entities => {
+module.exports = state => {
+  const entities = state.entities
   const bombs = filterValues(entities, e => e.gid === EGIDS.BOMB && e.visible)
   const explodedEntities = bomb => {
     const { id, x, y, damage } = bomb
@@ -32,11 +33,16 @@ module.exports = entities => {
     }
   })
 
-  const reduceBombs = bombs =>
-    bombs.reduce((all, bomb) => ({
-      ...all,
-      ...(bomb.timeout ? reducedTimeout(bomb) : explodedEntities(bomb)),
-    }), {})
+  const reduceBombs = bombs => ({
+    ...state,
+    entities: {
+      ...entities,
+      ...bombs.reduce((all, bomb) => ({
+        ...all,
+        ...(bomb.timeout ? reducedTimeout(bomb) : explodedEntities(bomb)),
+      }), {}),
+    }
+  })
 
   return bombs.length ? reduceBombs(bombs) : {}
 }

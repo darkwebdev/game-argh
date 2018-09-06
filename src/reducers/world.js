@@ -1,40 +1,27 @@
-const { playerEntity } = require('../enitity')
 const bombReducer = require('./bomb')
 const portReducer = require('./port')
 const sinkReducer = require('./sink')
+const sailReducer = require('./sail-npc')
+const fightReducer = require('./fight-npc')
 const healReducer = require('./heal')
 
-module.exports = ({ oldState, state, config }) => {
-  const updatedState = {
-    ...oldState,
-    ...state,
-  }
+const combinedReducers = (obj = {}, cbs = []) =>
+  cbs.reduce((res, cb) => ({ ...res, ...cb(res) }), obj)
 
-  const entities = updatedState.entities
+module.exports = ({ oldState, state, config }) =>
+  combinedReducers(
+    {
+      ...oldState,
+      ...state
+    },
+    [
+      s => sinkReducer({ state: s, oldState }),
+      portReducer,
+      bombReducer,
+      fightReducer,
+      sailReducer,
+      s => healReducer({ state: s, config }),
+    ],
+  )
 
-  const entitiesWithoutSunkShips = {
-    ...entities,
-    ...sinkReducer({ entities, oldEntities: oldState.entities }),
-  }
-
-  const entitiesWithShotByPorts = {
-    ...entitiesWithoutSunkShips,
-    ...portReducer(entitiesWithoutSunkShips),
-  }
-
-  const entitiesWithExplodedByBombs = {
-    ...entitiesWithShotByPorts,
-    ...bombReducer(entitiesWithShotByPorts),
-  }
-
-  const player = playerEntity(entitiesWithExplodedByBombs)
-  const entitiesWithHealedPlayer = {
-    ...entitiesWithExplodedByBombs,
-    ...healReducer({ player, config })
-  }
-
-  return {
-    ...updatedState,
-    entities: entitiesWithHealedPlayer,
-  }
-}
+module.exports.combinedReducers = combinedReducers

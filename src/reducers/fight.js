@@ -18,7 +18,7 @@ module.exports = (state) => entityId => {
   console.log('battle round results', hp1, armor1, hp2, armor2)
 
   return {
-    enemyId: entityId,
+    // enemyId: entityId,
     gameOver: hp1 <= 0,
     entities: {
       ...state.entities,
