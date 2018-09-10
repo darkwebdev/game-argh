@@ -15,9 +15,9 @@ module.exports = (startState = {}) => {
     if (!enemies.length) return state
 
     const enemy = enemies[0]
-    const { hp1, armor1, hp2, armor2 } = roundOutcome(entity, enemy)
+    const { hp1, armor1, damage1, hp2, armor2, damage2 } = roundOutcome(entity, enemy)
 
-    console.log('NPC', name, id, '@', x, y, '/', hp1, armor1, entity.damage, 'fights',
+    console.log('FIGHT', name, id, '@', x, y, '/', hp1, armor1, entity.damage, 'vs',
       enemy.name, enemy.id, '@', enemy.x, enemy.y, '/', hp2, armor2, enemy.damage)
 
     return {
@@ -29,6 +29,7 @@ module.exports = (startState = {}) => {
           ...entity,
           hp: hp1,
           armor: armor1,
+          damage: damage1,
           destX: undefined,
           destY: undefined,
           enemyId: enemy.hp > 0 ? enemy.id : undefined,
@@ -37,6 +38,7 @@ module.exports = (startState = {}) => {
           ...enemy,
           hp: hp2,
           armor: armor2,
+          damage: damage2,
           destX: undefined,
           destY: undefined,
           enemyId: entity.hp > 0 ? entity.id : undefined,

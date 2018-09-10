@@ -109,16 +109,26 @@ const percentOfLevel = (dmg, damageLevels = []) => {
   return ofLevel * 100 / betweenLevels
 }
 
+const loot = (enemyHp, enemyDmg) => enemyHp <= 0 ? Math.floor(enemyDmg / 10) : 0
+
 module.exports = {
   roundOutcome(entity1, entity2) {
-    const { hp: hp1, damage: dmg1, armor: arm1 } = entity1
-    const { hp: hp2, damage: dmg2, armor: arm2 } = entity2
+    const { hp: oldHp1, damage: dmg1, armor: arm1 } = entity1
+    const { hp: oldHp2, damage: dmg2, armor: arm2 } = entity2
+
+    const hp1 = hpDamage(oldHp1, arm1, dmg2)
+    const hp2 = hpDamage(oldHp2, arm2, dmg1)
+
+    console.log('LOOT', loot(hp2, dmg2) || loot(hp1, dmg1))
 
     return {
-      hp1: hpDamage(hp1, arm1, dmg2),
-      hp2: hpDamage(hp2, arm2, dmg1),
+      hp1,
+      hp2,
+      damage1: dmg1 + loot(hp2, dmg2),
+
       armor1: armorDamage(arm1, dmg2),
-      armor2: armorDamage(arm2, dmg1)
+      armor2: armorDamage(arm2, dmg1),
+      damage2: dmg2 + loot(hp1, dmg1),
     }
   },
 
@@ -139,8 +149,8 @@ module.exports = {
 
     return [// use flatmap here?
       ...sailEvents({ terrain, entities, x, y }),
-      ...tradeEvents({ entities, x, y }),
-      ...fightEvents({ entities, x, y }),
+      // ...tradeEvents({ entities, x, y }),
+      // ...fightEvents({ entities, x, y }),
       ...portEvents({ entities, x, y, armor, maxArmor }),
     ]
   },

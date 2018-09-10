@@ -6,7 +6,7 @@ const { STAGES } = require('./const')
 const { keyThrottle } = require('./helpers')
 const soundController = require('./sound-controller')
 
-const fightReducer = require('./reducers/fight')
+// const fightReducer = require('./reducers/fight')
 const dropBombReducer = require('./reducers/drop-bomb')
 const sailReducer = require('./reducers/sail')
 const worldReducer = require('./reducers/world')
@@ -14,7 +14,6 @@ const startTurnReducer = require('./reducers/start-turn')
 const gameOverReducer = require('./reducers/game-over')
 const newGameReducer = require('./reducers/new-game')
 const introReducer = require('./reducers/intro')
-// const entityDestroyedReducer = require('./reducers/entity-destroyed')
 const repairReducer = require('./reducers/repair')
 const upgradeReducer = require('./reducers/upgrade')
 
@@ -45,19 +44,15 @@ module.exports = ({ config, root, world, sound }) => {
     emit(EVENTS.START_TURN)
   })
 
-  on(EVENTS.FIGHT, ({ entityId }) => {
-    play(sounds.cannons)
-    emit(EVENTS.END_TURN, fightReducer(state)(entityId))
-  })
+  // on(EVENTS.FIGHT, ({ entityId }) => {
+  //   play(sounds.cannons)
+  //   emit(EVENTS.END_TURN, fightReducer(state)(entityId))
+  // })
 
   on(EVENTS.BOMB, ({ x, y }) => {
     play(sounds.dropBomb)
     emit(EVENTS.END_TURN, dropBombReducer(state)(x, y))
   })
-
-  // on(EVENTS.ENTITY_DESTROYED, ({ entityId }) => {
-  //   emit(EVENTS.UPDATE_STATE, entityDestroyedReducer(state)(entityId))
-  // })
 
   on(EVENTS.SAIL, direction => {
     play(sounds.sail)
@@ -82,13 +77,11 @@ module.exports = ({ config, root, world, sound }) => {
     } else {
       console.log('+++++++++ TURN END +++++++++')
 
-      // emit(events.NPC_TURN, newState)
       emit(EVENTS.WORLD_TURN, newState)
     }
   })
 
   on(EVENTS.WORLD_TURN, newState => {
-    // emit(events.UPDATE_STATE, newState)
 
     console.log('-------- WORLD TURN -------')
     emit(EVENTS.UPDATE_STATE, worldReducer({ oldState: state, state: newState, config }))
