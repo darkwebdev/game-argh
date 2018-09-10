@@ -13,16 +13,13 @@
 }
 
 body {
-  margin: 0
+  margin: 0;
+  color: $color-white;
+  background: $color-black;
 }
 
 #app {
   @include font;
-
-  position: relative;
-  height: 100%;
-  color: $color-white;
-  background: $color-black;
 }
 
 h1 {
@@ -49,7 +46,7 @@ bar.dmg {
 }
 
 game-over {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 40%;
   text-align: center;

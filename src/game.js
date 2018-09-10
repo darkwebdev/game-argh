@@ -41,10 +41,10 @@ const tradeEvents = ({ entities, x, y }) =>
   }))
 
 const fightEvents = ({ entities, x, y }) => {
-  const enemyFightEvents = enemiesNearby({ entities, x, y }).map(e => ({
-    event: EVENTS.FIGHT,
-    entityId: e.id
-  }))
+  // const enemyFightEvents = enemiesNearby({ entities, x, y }).map(e => ({
+  //   event: EVENTS.FIGHT,
+  //   entityId: e.id
+  // }))
 
   const bombEvent = {
     event: EVENTS.BOMB,
@@ -53,7 +53,7 @@ const fightEvents = ({ entities, x, y }) => {
   }
 
   return [
-    ...enemyFightEvents,
+    // ...enemyFightEvents,
     bombEvent,
   ]
 }
@@ -150,7 +150,7 @@ module.exports = {
     return [// use flatmap here?
       ...sailEvents({ terrain, entities, x, y }),
       // ...tradeEvents({ entities, x, y }),
-      // ...fightEvents({ entities, x, y }),
+      ...fightEvents({ entities, x, y }),
       ...portEvents({ entities, x, y, armor, maxArmor }),
     ]
   },
