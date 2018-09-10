@@ -1,9 +1,9 @@
 $color-black: #333;
 $color-white: #fff;
-$color-red: #bb3c45;
+$color-red: #d62527;
 $color-blue: #00c0ff;
 $color-brown: #8f673f;
-$color-green: #94e3ac;
+$color-green: #369b00;
 $color-orange: #9c7516;
 $color-yellow: #ff0;
 
@@ -13,15 +13,25 @@ $color-warning: $color-orange;
 $color-danger: $color-red;
 
 $color-water: $color-blue;
-$color-land: $color-brown;
+$color-land: #b4d47e;
 $color-player: $color-black;
+$color-ally: $color-green;
+$color-enemy: $color-red;
 $color-bomb: $color-danger;
 $color-hp: $color-red;
 $color-armor: $color-white;
 
-$img-ship: 'img/brig.png';
-$img-port: 'img/port.png';
-$img-land: 'img/terrain.png';
+$img-skull: 'img/skull.png';
+$img-sprite: 'img/sprite.png';
+$img-sprite-offset: -144px;
+//$img-sprite-offset2: -144px;
+$img-sprite-offsetX: 128px;
+$img-sprite-offsetY: $img-sprite-offset - 128px;
+//$img-shore: 'img/terrain.png';
+//$img-land: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAE0lEQVR42mOgDVh2KO//EDAWAQDsFwWrXqOkAgAAAABJRU5ErkJggg==';
+//$img-land: 'data:image/svg+xml;utf8,<svg width="8" height="8"><g><path fill="#a7c172" d="M2 5h1v1H2zM5 2h1v1H5z"/></g></svg>';
+//$img-land: "data:image/svg+xml;charset=UTF-8,%3csvg width='8' height='8'%3e%3cg%3e%3cpath fill='%23a7c172' d='M2 5h1v1H2zM5 2h1v1H5z'/%3e%3c/g%3e%3c/svg%3e";
+
 
 $gid-player: 18;
 $gid-ally: 4;

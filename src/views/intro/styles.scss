@@ -36,7 +36,7 @@ flag {
     @include pixelated;
 
     animation: wave 2s ease-in-out infinite alternate;
-    background: $color-black no-repeat url('img/skull.png') 50%;
+    background: $color-black no-repeat url($img-skull) 50%;
     background-size: 200px 60%;
     height: 100%;
     display: inline-block;

@@ -9,7 +9,6 @@ world {
   background: $color-water;
 }
 
-
 l,
 w {
   overflow: hidden;
@@ -17,11 +16,11 @@ w {
   display: inline-block;
   height: $tile-height;
   width: $tile-width;
-  background: url($img-land) no-repeat;
+  background: url($img-sprite) no-repeat;
 }
 
 l {
-  background: $color-land;
+  background: $color-land/* url($img-land)*/;
 }
 
 w {
@@ -29,39 +28,39 @@ w {
     background: none;
   }
   &[gid="2"] {
-    background-position: 0 0;
+    background-position: 0 0+$img-sprite-offset;
   }
   &[gid="3"] {
-    background-position: -64px 0;
+    background-position: -64px 0+$img-sprite-offset;
   }
   &[gid="4"] {
-    background-position: -128px 0;
+    background-position: #{-128px+$img-sprite-offsetX} 0+$img-sprite-offsetY;
   }
   &[gid="5"] {
-    background-position: -192px 0;
+    background-position: #{-192px+$img-sprite-offsetX} 0+$img-sprite-offsetY;
   }
   &[gid="6"] {
-    background-position: -256px 0;
+    background-position: #{-256px+$img-sprite-offsetX} 0+$img-sprite-offsetY;
   }
   &[gid="7"] {
-    background-position: 0 -64px;
+    background-position: 0 -64px+$img-sprite-offset;
   }
   &[gid="8"] {
-    background-position: -64px -64px;
+    background-position: -64px -64px+$img-sprite-offset;
   }
   &[gid="9"] {
-    background-position: -128px -64px;
+    background-position: #{-128px+$img-sprite-offsetX} -64px+$img-sprite-offsetY;
   }
   &[gid="11"] {
-    background-position: -256px -64px;
+    background-position: #{-256px+$img-sprite-offsetX} -64px+$img-sprite-offsetY;
   }
   &[gid="14"] {
-    background-position: -128px -128px;
+    background-position: #{-128px+$img-sprite-offsetX} -128px+$img-sprite-offsetY;
   }
   &[gid="15"] {
-    background-position: -192px -128px;
+    background-position: #{-192px+$img-sprite-offsetX} -128px+$img-sprite-offsetY;
   }
   &[gid="16"] {
-    background-position: -256px -128px;
+    background-position: #{-256px+$img-sprite-offsetX} -128px+$img-sprite-offsetY;
   }
 }
