@@ -21,7 +21,7 @@ module.exports = {
   EGIDS: {
     ENEMY: 3,
     ALLY: 4,
-    PLAYER: 18,
+    PLAYER: 5,
     ALLY_PORT: 6,
     ENEMY_PORT: 7,
     BOMB: 10

@@ -1,10 +1,12 @@
 { "object":
     {
-     "gid":3,
+     "gid":4,
      "height":64,
-     "name":"Medium Enemy",
+     "id":1,
+     "name":"Medium Ally",
      "properties":
         {
+         "aggressive":true,
          "armor":66,
          "damage":77,
          "hp":77,
@@ -13,6 +15,7 @@
         },
      "propertytypes":
         {
+          "aggressive":"bool",
          "armor":"int",
          "damage":"int",
          "hp":"int",
@@ -22,12 +25,14 @@
      "rotation":0,
      "type":"",
      "visible":true,
-     "width":64
+     "width":64,
+     "x":-32,
+     "y":32
     },
  "tileset":
     {
      "firstgid":1,
-     "source":"brig-red.json"
+     "source":"ships.json"
     },
  "type":"template"
 }

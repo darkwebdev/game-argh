@@ -1,35 +1,38 @@
 { "object":
     {
-     "gid":3,
+     "gid":4,
      "height":64,
-     "name":"Weak Enemy",
+     "id":1,
+     "name":"Strong Ally",
      "properties":
         {
-         "armor":50,
-         "damage":35,
-         "hp":50,
-         "maxArmor":50,
-         "maxHp":50,
-         "aggressive":true
+         "aggressive":true,
+         "armor":150,
+         "damage":100,
+         "hp":110,
+         "maxArmor":150,
+         "maxHp":110
         },
      "propertytypes":
         {
+          "aggressive":"bool",
          "armor":"int",
          "damage":"int",
          "hp":"int",
          "maxArmor":"int",
-         "maxHp":"int",
-         "aggressive":"bool"
+         "maxHp":"int"
         },
      "rotation":0,
      "type":"",
      "visible":true,
-     "width":64
+     "width":64,
+     "x":415,
+     "y":-240
     },
  "tileset":
     {
      "firstgid":1,
-     "source":"brig-red.json"
+     "source":"ships.json"
     },
  "type":"template"
 }

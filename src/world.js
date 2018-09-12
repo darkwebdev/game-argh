@@ -1,14 +1,23 @@
-const { layers = [], width, height, tilewidth, tileheight } = require('../resources/map2')
+const { layers = [], width, height, tilewidth, tileheight } = require('../map/map')
 const templates = {
-  'template-player.json': require('../resources/template-player'),
-  'template-port-0.json': require('../resources/template-port-0'),
-  'template-port-1.json': require('../resources/template-port-1'),
-  'template-ally-0.json': require('../resources/template-ally-0'),
-  'template-ally-1.json': require('../resources/template-ally-1'),
-  'template-ally-2.json': require('../resources/template-ally-2'),
-  'template-enemy-0.json': require('../resources/template-enemy-0'),
-  'template-enemy-1.json': require('../resources/template-enemy-1'),
-  'template-enemy-2.json': require('../resources/template-enemy-2'),
+  //player
+  'tp.json': require('../map/tp'),
+  // allied ports
+  'tap0.json': require('../map/tap0'),
+  'tap1.json': require('../map/tap1'),
+  'tap2.json': require('../map/tap2'),
+  // enemy ports
+  'tep0.json': require('../map/tep0'),
+  'tep1.json': require('../map/tep1'),
+  'tep2.json': require('../map/tep2'),
+  // allies
+  'ta0.json': require('../map/ta0'),
+  'ta1.json': require('../map/ta1'),
+  'ta2.json': require('../map/ta2'),
+  //enemies
+  'te0.json': require('../map/te0'),
+  'te1.json': require('../map/te1'),
+  'te2.json': require('../map/te2'),
 }
 
 const { DIRECTIONS } = require('./const')
@@ -36,14 +45,23 @@ const entitiesFromLayers = (layers = []) => {
   return entitiesFromObjects(objects)
 }
 
+const fromTemplate = ({ gid, name, visible, properties }) => ({ gid, name, visible, properties })
+
 const entitiesFromObjects = (objects = []) =>
-  objects.reduce((obj, entity) => ({
-    ...obj,
-    [entity.id]: withFixedOffset(flatten({
+  objects.reduce((obj, entity) => {
+    console.log('GOT ENTITY', entity, entity.template, flatten({
       ...entity,
-      ...templates[entity.template].object,
-    })),
-  }), {})
+      ...fromTemplate(templates[entity.template].object),
+    }))
+
+    return ({
+      ...obj,
+      [entity.id]: withFixedOffset(flatten({
+        ...entity,
+        ...fromTemplate(templates[entity.template].object),
+      })),
+    })
+  }, {})
 
 module.exports = {
   minX,

@@ -1,0 +1,32 @@
+{ "object":
+    {
+     "gid":7,
+     "height":64,
+     "id":1,
+     "name":"Medium Enemy Port",
+     "properties":
+        {
+          "aggressive":true,
+         "armorUp":200,
+         "damage":100
+        },
+     "propertytypes":
+        {
+          "aggressive":"bool",
+         "armorUp":"int",
+         "damage":"int"
+        },
+     "rotation":0,
+     "type":"port",
+     "visible":true,
+     "width":64,
+     "x":-32,
+     "y":32
+    },
+ "tileset":
+    {
+     "firstgid":1,
+     "source":"tileset.json"
+    },
+ "type":"template"
+}

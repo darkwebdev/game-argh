@@ -1,19 +1,21 @@
 { "object":
     {
-     "gid":18,
+     "gid":4,
      "height":64,
-     "name":"player",
+     "id":1,
+     "name":"Weak Ally",
      "properties":
         {
-         "armor":100,
-         "damage":70,
-         "hp":110,
-         "maxArmor":100,
-         "maxHp":110
+         "aggressive":true,
+         "armor":50,
+         "damage":35,
+         "hp":50,
+         "maxArmor":50,
+         "maxHp":50
         },
      "propertytypes":
         {
-         "level":"int",
+         "aggressive":"bool",
          "armor":"int",
          "damage":"int",
          "hp":"int",
@@ -23,12 +25,14 @@
      "rotation":0,
      "type":"",
      "visible":true,
-     "width":64
+     "width":64,
+     "x":-32,
+     "y":32
     },
  "tileset":
     {
      "firstgid":1,
-     "source":"brig64.json"
+     "source":"ships.json"
     },
  "type":"template"
 }

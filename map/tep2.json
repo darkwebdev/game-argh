@@ -1,0 +1,30 @@
+{ "object":
+    {
+     "gid":7,
+     "height":64,
+     "id":1,
+     "name":"Big Enemy Port",
+     "properties":
+        {
+         "aggressive":true,
+         "damage":150
+        },
+     "propertytypes":
+        {
+          "aggressive":"bool",
+         "damage":"int"
+        },
+     "rotation":0,
+     "type":"port",
+     "visible":true,
+     "width":64,
+     "x":-32,
+     "y":32
+    },
+ "tileset":
+    {
+     "firstgid":1,
+     "source":"tileset.json"
+    },
+ "type":"template"
+}

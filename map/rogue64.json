@@ -1,0 +1,72 @@
+{ "columns":5,
+ "image":"img\/rogue64.png",
+ "imageheight":192,
+ "imagewidth":320,
+ "margin":0,
+ "name":"rogue64",
+ "spacing":0,
+ "terrains":[
+        {
+         "name":"Land",
+         "tile":8
+        }],
+ "tilecount":16,
+ "tileheight":64,
+ "tiles":
+    {
+     "0":
+        {
+         "terrain":[0, 0, 0, -1]
+        },
+     "1":
+        {
+         "terrain":[0, 0, -1, 0]
+        },
+     "12":
+        {
+         "terrain":[-1, 0, -1, -1]
+        },
+     "13":
+        {
+         "terrain":[0, 0, -1, -1]
+        },
+     "14":
+        {
+         "terrain":[0, -1, -1, -1]
+        },
+     "2":
+        {
+         "terrain":[-1, -1, -1, 0]
+        },
+     "3":
+        {
+         "terrain":[-1, -1, 0, 0]
+        },
+     "4":
+        {
+         "terrain":[-1, -1, 0, -1]
+        },
+     "5":
+        {
+         "terrain":[0, -1, 0, 0]
+        },
+     "6":
+        {
+         "terrain":[-1, 0, 0, 0]
+        },
+     "7":
+        {
+         "terrain":[-1, 0, -1, 0]
+        },
+     "8":
+        {
+         "terrain":[0, 0, 0, 0]
+        },
+     "9":
+        {
+         "terrain":[0, -1, 0, -1]
+        }
+    },
+ "tilewidth":64,
+ "type":"tileset"
+}
