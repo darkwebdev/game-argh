@@ -1,6 +1,6 @@
 const { filterValues } = require('../helpers')
 const { roundOutcome } = require('../game')
-const { entitiesNearby, areOpposed, isPlayer } = require('../entity')
+const { entitiesNearby, areOpposed, isPlayer, isBoss } = require('../entity')
 
 module.exports = ({ state: startState = {}, sound }) => {
   const entities = startState.entities || {}
@@ -24,6 +24,7 @@ module.exports = ({ state: startState = {}, sound }) => {
     return {
       ...state,
       gameOver: state.gameOver || isPlayer(enemy) && hp2 <= 0,
+      victory: state.victory || (isBoss(entity) && hp1 <= 0) || (isBoss(enemy) && hp2 <= 0),
       entities: {
         ...entities,
         [entity.id]: {

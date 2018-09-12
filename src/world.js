@@ -2,6 +2,8 @@ const { layers = [], width, height, tilewidth, tileheight } = require('../map/ma
 const templates = {
   //player
   'tp.json': require('../map/tp'),
+  //boss
+  'tb.json': require('../map/tb'),
   // allied ports
   'tap0.json': require('../map/tap0'),
   'tap1.json': require('../map/tap1'),

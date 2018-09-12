@@ -2,7 +2,7 @@
 
 e {
   position: absolute;
-  top: 10px;
+  top: 14px;
   left: 16px;
   height: $icon-ship-height;
   width: $icon-ship-width;
@@ -28,6 +28,7 @@ e {
     font-size: 10px;
   }
 
+  &[gid="#{$gid-boss}"],
   &[gid="#{$gid-enemy}"],
   &[gid="#{$gid-ally}"] {
     &[enemy]::after {
@@ -48,10 +49,12 @@ e {
     background-color: $color-ally;
   }
 
+  &[gid="#{$gid-boss}"],
   &[gid="#{$gid-player}"] {
     background-color: $color-player;
   }
 
+  &[gid="#{$gid-boss}"],
   &[gid="#{$gid-enemy}"],
   &[gid="#{$gid-ally}"],
   &[gid="#{$gid-player}"] {

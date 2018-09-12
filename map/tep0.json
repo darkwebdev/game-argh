@@ -7,6 +7,7 @@
       "properties":
       {
         "aggressive":true,
+        "armorUp":100,
         "damage":45,
         "hp": 100,
         "armor": 100,
@@ -16,6 +17,7 @@
       "propertytypes":
       {
         "aggressive":"bool",
+        "armorUp":"int",
         "damage":"int",
         "hp":"int",
         "armor":"int",
@@ -23,7 +25,6 @@
         "maxHp":"int"
       },
       "rotation":0,
-     "type":"",
      "visible":true,
      "width":64,
      "x":-32,

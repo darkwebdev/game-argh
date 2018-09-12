@@ -19,6 +19,7 @@ module.exports = {
   },
 
   EGIDS: {
+    BOSS: 2,
     ENEMY: 3,
     ALLY: 4,
     PLAYER: 5,

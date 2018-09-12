@@ -1,33 +1,31 @@
 { "object":
     {
-     "gid":6,
+     "gid":2,
      "height":64,
-     "id":1,
-     "name":"Big Ally Port",
+     "name":"boss",
+     "rotation":0,
+     "visible":true,
+     "width":64,
+     "x":-32,
+     "y":32,
       "properties":
       {
         "aggressive":true,
-        "armorUp":300,
+        "armor":200,
         "damage":150,
-        "hp": 200,
-        "armor": 200,
+        "hp":150,
         "maxArmor":200,
-        "maxHp":200
+        "maxHp":150
       },
       "propertytypes":
       {
         "aggressive":"bool",
-        "armorUp":"int",
-        "damage":"int",
         "armor":"int",
+        "damage":"int",
+        "hp":"int",
         "maxArmor":"int",
         "maxHp":"int"
-      },
-      "rotation":0,
-     "visible":true,
-     "width":64,
-     "x":-32,
-     "y":32
+      }
     },
  "tileset":
     {

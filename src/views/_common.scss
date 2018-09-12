@@ -24,18 +24,14 @@ $color-armor: $color-white;
 $img-skull: 'img/skull.png';
 $img-sprite: 'img/sprite.png';
 $img-sprite-offset: -87px;
-//$img-sprite-offset2: -144px;
 $img-sprite-offsetX: 128px;
 $img-sprite-offsetY: $img-sprite-offset - 128px;
-//$img-shore: 'img/terrain.png';
-//$img-land: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAE0lEQVR42mOgDVh2KO//EDAWAQDsFwWrXqOkAgAAAABJRU5ErkJggg==';
-//$img-land: 'data:image/svg+xml;utf8,<svg width="8" height="8"><g><path fill="#a7c172" d="M2 5h1v1H2zM5 2h1v1H5z"/></g></svg>';
-//$img-land: "data:image/svg+xml;charset=UTF-8,%3csvg width='8' height='8'%3e%3cg%3e%3cpath fill='%23a7c172' d='M2 5h1v1H2zM5 2h1v1H5z'/%3e%3c/g%3e%3c/svg%3e";
 $icon-ship-width: 36px;
 $icon-ship-height: 36px;
 $icon-port-width: 41px;
 $icon-port-height: 51px;
 
+$gid-boss: 2;
 $gid-player: 5;
 $gid-ally: 4;
 $gid-enemy: 3;
@@ -56,4 +52,21 @@ $world-height: 20;
 @mixin pixelated {
   image-rendering: -moz-crisp-edges;
   image-rendering: pixelated; //chrome
+}
+
+@mixin result {
+  position: fixed;
+  width: 100%;
+  top: 40%;
+  text-align: center;
+  font-size: 40px;
+  color: $color-danger;
+  text-shadow: 2px 2px $color-white;
+  z-index: 10;
+  transform: scale(2);
+  animation: grow 1s ease-out;
+}
+
+@keyframes grow {
+  0% { transform: scale(1) }
 }

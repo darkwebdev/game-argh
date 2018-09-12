@@ -14,6 +14,8 @@ module.exports = state => {
     armor: p.maxArmor,
   }))
 
+  convertedPorts.length && console.log('PORT CONVERTED', convertedPorts)
+
   return {
     ...state,
     entities: {

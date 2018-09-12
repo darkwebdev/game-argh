@@ -24,7 +24,6 @@
         "maxHp":"int"
       },
      "rotation":0,
-     "type":"port",
      "visible":true,
      "width":64,
      "x":-32,

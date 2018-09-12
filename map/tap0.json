@@ -8,8 +8,8 @@
         {
          "aggressive":true,
          "damage":45,
-          "hp": 100,
-          "armor": 100,
+          "hp": 70,
+          "armor": 80,
           "maxArmor":100,
           "maxHp":100
         },
@@ -23,7 +23,6 @@
           "maxHp":"int"
         },
      "rotation":0,
-     "type":"",
      "visible":true,
      "width":64,
      "x":-32,
