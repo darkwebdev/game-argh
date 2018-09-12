@@ -55,7 +55,7 @@ module.exports = ({ config, root, world, sound }) => {
   })
 
   on(EVENTS.SAIL, direction => {
-    play(sounds.sail)
+    // play(sounds.sail)
     emit(EVENTS.END_TURN, sailReducer(state)(direction))
   })
 
@@ -71,8 +71,7 @@ module.exports = ({ config, root, world, sound }) => {
 
   on(EVENTS.END_TURN, (newState = {}) => {
     if (newState.gameOver) {
-      console.log('!!!!!!!!! GAME OVER !!!!!!!!')
-      play(sounds.gameOver)
+      // play(sounds.gameOver)
       emit(EVENTS.UPDATE_STATE, gameOverReducer(newState))
     } else {
       console.log('+++++++++ TURN END +++++++++')

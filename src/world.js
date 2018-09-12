@@ -48,20 +48,14 @@ const entitiesFromLayers = (layers = []) => {
 const fromTemplate = ({ gid, name, visible, properties }) => ({ gid, name, visible, properties })
 
 const entitiesFromObjects = (objects = []) =>
-  objects.reduce((obj, entity) => {
-    console.log('GOT ENTITY', entity, entity.template, flatten({
-      ...entity,
-      ...fromTemplate(templates[entity.template].object),
-    }))
-
-    return ({
+  objects.reduce((obj, entity) =>
+    ({
       ...obj,
       [entity.id]: withFixedOffset(flatten({
         ...entity,
         ...fromTemplate(templates[entity.template].object),
       })),
-    })
-  }, {})
+    }), {})
 
 module.exports = {
   minX,
