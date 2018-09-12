@@ -24,20 +24,21 @@ e {
     position: absolute;
     top: 0;
     left: 0;
-  }
-  &[enemy]::after {
-    content: '!';
     line-height: 1;
     font-size: 10px;
   }
 
+  &[enemy]::after {
+    content: '!';
+  }
+
   &[armor-up]::after {
     content: 'U';
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 1;
-    font-size: 10px;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //line-height: 1;
+    //font-size: 10px;
   }
 
   //&[level]::before {
@@ -91,17 +92,15 @@ e {
   }
 
   &[gid="#{$gid-bomb}"] {
+    top: 32px;
+    left: 22px;
     background-color: transparent;
     background-position-x: -3 * $icon-ship-width;
 
     &::after {
       content: attr(timeout);
-      position: absolute;
-      top: 0;
-      right: 0;
-      line-height: 1;
-      font-size: 10px;
-      text-align: right;
+      top: -14px;
+      left: 6px;
     }
   }
 }
