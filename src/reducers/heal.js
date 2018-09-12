@@ -1,4 +1,4 @@
-const { playerEntity } = require('../enitity')
+const { playerEntity } = require('../entity')
 
 const healedHp = ({ hp, maxHp }, hpPerTurn) => hp < maxHp ? Math.min(hp + hpPerTurn, maxHp) : hp
 

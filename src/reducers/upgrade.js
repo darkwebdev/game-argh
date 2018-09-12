@@ -1,4 +1,4 @@
-const { playerEntity } = require('../enitity')
+const { playerEntity } = require('../entity')
 
 module.exports = state => portId => {
   const player = playerEntity(state.entities)

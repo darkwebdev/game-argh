@@ -1,6 +1,6 @@
 const { TGIDS } = require('../../const')
 const { coords } = require('../../world')
-const { entityAt } = require('../../enitity')
+const { entityAt } = require('../../entity')
 const { filter } = require('../../helpers')
 const Entity = require('../entity')
 

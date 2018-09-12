@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { entityAt, entitiesNearby } = require('../src/enitity')
+const { entityAt, entitiesNearby } = require('../src/entity')
 const x = 0
 const y = 0
 

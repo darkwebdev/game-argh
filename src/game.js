@@ -1,15 +1,7 @@
-const { TGIDS, DIRECTIONS } = require('./const')
-const { minX, maxX, minY, maxY } = require('./world')
+const { DIRECTIONS } = require('./const')
 const { EVENTS } = require('./events')
-const { enemiesNearby, alliesNearby, portsNearby, playerEntity, entityAt } = require('./enitity')
-const { terrainAt } = require('./terrain')
-
-const locationAt = ({ x, y }, direction) => ({ // do we need edge checks here or outside?
-    [DIRECTIONS.NORTH]: { x, y: y > minY ? y - 1 : y },
-    [DIRECTIONS.SOUTH]: { x, y: y < maxY ? y + 1: y },
-    [DIRECTIONS.EAST]: { x: x < maxX ? x + 1 : x, y },
-    [DIRECTIONS.WEST]: { x: x > minX ? x - 1 : x, y }
-  }[direction] || { x, y })
+const { alliesNearby, entitiesNearby, playerEntity, entityAt, isAlliedPort } = require('./entity')
+const { terrainAt, isLand, locationAt } = require('./terrain')
 
 const sailEvents = ({ terrain, entities, x, y }) =>
   Object.keys(DIRECTIONS).reduce((arr, key) => [
@@ -23,7 +15,7 @@ const sailEvent = ({ terrain, entities, x, y, direction }) => {
   const terrainAtNewLoc = terrainAt({ terrain, x: newX, y: newY })
   const entityAtNewLoc = entityAt({ entities, x: newX, y: newY, filter: e => e.hp > 0 || e.timeout > 0 })
 
-  if (terrainAtNewLoc === TGIDS.LAND) {
+  if (isLand(terrainAtNewLoc)) {
     return []
   }
 
@@ -60,14 +52,14 @@ const fightEvents = ({ entities, x, y }) => {
 
 const portEvents = ({ entities, x, y, armor, maxArmor }) => {
   const damagedArmor = maxArmor - armor
-  const ports = portsNearby({ entities, x, y })
+  const alliedPorts = entitiesNearby({ entities, x, y, filter: isAlliedPort })
 
-  const armorRepairEvents = damagedArmor <= 0 ? [] : ports.map(p => ({
+  const armorRepairEvents = damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
     event: EVENTS.REPAIR,
     portId: p.id
   }))
 
-  const armorUpEvents = ports.filter(p => p.armorUp > maxArmor).map(p => ({
+  const armorUpEvents = alliedPorts.filter(p => p.armorUp > maxArmor).map(p => ({
     event: EVENTS.UPGRADE,
     portId: p.id
   }))
@@ -131,8 +123,6 @@ module.exports = {
       damage2: dmg2 + loot(hp1, dmg1),
     }
   },
-
-  locationAt,
 
   playerActions({ state } = {}) {
     if (!state) return [

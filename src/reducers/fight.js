@@ -1,5 +1,5 @@
 const { roundOutcome } = require('../game')
-const { playerEntity } = require('../enitity')
+const { playerEntity } = require('../entity')
 
 module.exports = (state) => entityId => {
   const player = playerEntity(state.entities)

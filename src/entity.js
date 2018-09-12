@@ -29,6 +29,8 @@ const isPlayer = entity => entity.gid === EGIDS.PLAYER
 
 const isPort = entity => [EGIDS.ALLY_PORT, EGIDS.ENEMY_PORT].includes(entity.gid)
 
+const isAlliedPort = entity => entity.gid === EGIDS.ALLY_PORT
+
 module.exports = {
   toObj(entities) {
     return entities.reduce((es, e) => ({ ...es, [e.id]: e }), {})
@@ -55,6 +57,8 @@ module.exports = {
   },
 
   isPort,
+  isAlliedPort,
+  isPlayer,
 
   areOpposed(e1, e2) {
     const allies = [EGIDS.PLAYER, EGIDS.ALLY, EGIDS.ALLY_PORT]

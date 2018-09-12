@@ -1,5 +1,6 @@
 const { filterValues } = require('../helpers')
 const { EGIDS } = require('../const')
+const { isPort, isPlayer } = require('../entity')
 // todo: stop if in fight
 
 module.exports = ({ state: startState = {}, oldState = {}} = {}) => {
@@ -42,7 +43,7 @@ module.exports = ({ state: startState = {}, oldState = {}} = {}) => {
     })
   }
 
-  return filterValues(entities, e => e.hp > 0 && e.enemyId && e.gid !== EGIDS.PLAYER).reduce((reducedState, entity) => ({
+  return filterValues(entities, e => e.hp > 0 && e.enemyId && !isPort(e) && !isPlayer(e)).reduce((reducedState, entity) => ({
     ...reducedState,
     ...movedEntity({ state: reducedState, entity })
   }), startState)

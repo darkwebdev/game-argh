@@ -1,5 +1,5 @@
 const { map, filter } = require('../helpers')
-const { entityAt } = require('../enitity')
+const { entityAt } = require('../entity')
 
 module.exports = (state = {}) => {
   const entities = state.entities || {}

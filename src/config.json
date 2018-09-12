@@ -3,5 +3,5 @@
   "throttleKeysMs": 100,
   "flagFragmentWidthPx": 25,
   "flagFragments": 20,
-  "damageLevels": [ 0, 75, 150, 250, 99999 ]
+  "damageLevels": [ 0, 50, 100, 999 ]
 }

@@ -4,19 +4,26 @@
      "height":64,
      "id":1,
      "name":"Big Ally Port",
-     "properties":
-        {
-         "aggressive":true,
-         "armorUp":300,
-         "damage":150
-        },
-     "propertytypes":
-        {
-          "aggressive":"bool",
-          "armorUp":"int",
-         "damage":"int"
-        },
-     "rotation":0,
+      "properties":
+      {
+        "aggressive":true,
+        "armorUp":300,
+        "damage":150,
+        "hp": 200,
+        "armor": 200,
+        "maxArmor":200,
+        "maxHp":200
+      },
+      "propertytypes":
+      {
+        "aggressive":"bool",
+        "armorUp":"int",
+        "damage":"int",
+        "armor":"int",
+        "maxArmor":"int",
+        "maxHp":"int"
+      },
+      "rotation":0,
      "type":"port",
      "visible":true,
      "width":64,

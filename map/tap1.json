@@ -4,18 +4,25 @@
      "height":64,
      "id":1,
      "name":"Medium Ally Port",
-     "properties":
-        {
-         "aggressive":true,
-         "armorUp":200,
-         "damage":100
-        },
-     "propertytypes":
-        {
-          "aggressive":"bool",
-         "armorUp":"int",
-         "damage":"int"
-        },
+      "properties":
+      {
+        "aggressive":true,
+        "armorUp":200,
+        "damage":75,
+        "hp": 150,
+        "armor": 150,
+        "maxArmor":150,
+        "maxHp":150
+      },
+      "propertytypes":
+      {
+        "aggressive":"bool",
+        "armorUp":"int",
+        "damage":"int",
+        "armor":"int",
+        "maxArmor":"int",
+        "maxHp":"int"
+      },
      "rotation":0,
      "type":"port",
      "visible":true,

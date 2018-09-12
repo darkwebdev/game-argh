@@ -1,10 +1,10 @@
 const { filterValues } = require('../helpers')
 const { roundOutcome } = require('../game')
-const { entitiesNearby, areOpposed } = require('../enitity')
-const { EGIDS } = require('../const')
+const { entitiesNearby, areOpposed, isPlayer } = require('../entity')
 
-module.exports = (startState = {}) => {
+module.exports = ({ state: startState = {}, sound }) => {
   const entities = startState.entities || {}
+  const { sounds, play } = sound
 
   const foughtEntity = ({ state, entity }) => {
     const entities = state.entities || {}
@@ -17,12 +17,13 @@ module.exports = (startState = {}) => {
     const enemy = enemies[0]
     const { hp1, armor1, damage1, hp2, armor2, damage2 } = roundOutcome(entity, enemy)
 
+    play(sounds.cannons)
     console.log('FIGHT', name, id, '@', x, y, '/', hp1, armor1, entity.damage, 'vs',
       enemy.name, enemy.id, '@', enemy.x, enemy.y, '/', hp2, armor2, enemy.damage)
 
     return {
       ...state,
-      gameOver: state.gameOver || enemy.gid === EGIDS.PLAYER && hp2 <= 0,
+      gameOver: state.gameOver || isPlayer(enemy) && hp2 <= 0,
       entities: {
         ...entities,
         [entity.id]: {

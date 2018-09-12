@@ -1,4 +1,5 @@
 const { damageLevel } = require('../../game')
+const { isPort } = require('../../entity')
 
 const percent = (value, max) => value > 0 ? (value * 100) / max : 0
 
@@ -20,7 +21,7 @@ module.exports = ({ props = {}, config = {}}) => {
 
   const timeoutAttr = timeout === undefined ? '' : ` timeout=${timeout + 1}`
 
-  const isSinking = hp <= 0
+  const isSinking = !isPort(props) && hp <= 0
   const sinkAttr = isSinking ? ` sink` : ''
 
   const hpPercent = percent(hp, maxHp)

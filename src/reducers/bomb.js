@@ -1,5 +1,5 @@
 const { EGIDS } = require('../const')
-const { toObj, entitiesNearby } = require('../enitity')
+const { toObj, entitiesNearby } = require('../entity')
 const { filterValues } = require('../helpers')
 const { hpDamage, armorDamage } = require('../game')
 

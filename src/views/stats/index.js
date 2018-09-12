@@ -1,4 +1,4 @@
-const { playerEntity } = require('../../enitity')
+const { playerEntity } = require('../../entity')
 
 const stats = ({ title = 'Ship', hp, maxHp, armor, maxArmor, damage }) => {
   const hpClass = colorClass(hp, maxHp)

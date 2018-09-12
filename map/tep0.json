@@ -4,17 +4,25 @@
      "height":64,
      "id":1,
      "name":"Small Enemy Port",
-     "properties":
-        {
-          "aggressive":true,
-         "damage":70
-        },
-     "propertytypes":
-        {
-          "aggressive":"bool",
-         "damage":"int"
-        },
-     "rotation":0,
+      "properties":
+      {
+        "aggressive":true,
+        "damage":45,
+        "hp": 100,
+        "armor": 100,
+        "maxArmor":100,
+        "maxHp":100
+      },
+      "propertytypes":
+      {
+        "aggressive":"bool",
+        "damage":"int",
+        "hp":"int",
+        "armor":"int",
+        "maxArmor":"int",
+        "maxHp":"int"
+      },
+      "rotation":0,
      "type":"",
      "visible":true,
      "width":64,

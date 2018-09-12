@@ -1,7 +1,5 @@
-const { playerEntity, entityAt } = require('../enitity')
-const { terrainAt } = require('../terrain')
-const { locationAt } = require('../game')
-const { TGIDS } = require('../const')
+const { playerEntity, entityAt } = require('../entity')
+const { terrainAt, locationAt, isLand } = require('../terrain')
 
 module.exports = state => direction => {
   const entities = state.entities
@@ -11,7 +9,7 @@ module.exports = state => direction => {
   const terrainAtNewLoc = terrainAt({ terrain, x, y })
   const entityAtNewLoc = entityAt({ entities, x, y, filter: e => e.hp > 0 })
 
-  if (terrainAtNewLoc === TGIDS.LAND) {
+  if (isLand(terrainAtNewLoc)) {
     console.log('Can not travel by land')
     return {}
   }

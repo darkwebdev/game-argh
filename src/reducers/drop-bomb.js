@@ -1,5 +1,5 @@
 const { EGIDS } = require('../const')
-const { newId } = require('../enitity')
+const { newId } = require('../entity')
 
 module.exports = state => (x, y) => {
   const bombId = newId(state.entities)
@@ -15,7 +15,7 @@ module.exports = state => (x, y) => {
         x,
         y,
         timeout: 3,
-        damage: 90,
+        damage: 150,
       }
     }
   }

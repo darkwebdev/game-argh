@@ -9,7 +9,7 @@ const healReducer = require('./heal')
 const combinedReducers = (obj = {}, cbs = []) =>
   cbs.reduce((res, cb) => ({ ...res, ...cb(res) }), obj)
 
-module.exports = ({ oldState, state, config }) =>
+module.exports = ({ oldState, state, config, sound }) =>
   combinedReducers(
     {
       ...oldState,
@@ -17,12 +17,12 @@ module.exports = ({ oldState, state, config }) =>
     },
     [
       s => cleanUpReducer({ state: s, oldState }),
-      portReducer,
       bombReducer,
       s => followReducer({ state: s, oldState }),
-      fightReducer,
+      s => fightReducer({ state: s, sound }),
       sailReducer,
       s => healReducer({ state: s, config }),
+      portReducer,
     ],
   )
 

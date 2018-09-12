@@ -84,7 +84,7 @@ module.exports = ({ config, root, world, sound }) => {
   on(EVENTS.WORLD_TURN, newState => {
 
     console.log('-------- WORLD TURN -------')
-    emit(EVENTS.UPDATE_STATE, worldReducer({ oldState: state, state: newState, config }))
+    emit(EVENTS.UPDATE_STATE, worldReducer({ oldState: state, state: newState, config, sound }))
 
     emit(EVENTS.START_TURN)
   })

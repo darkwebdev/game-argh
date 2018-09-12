@@ -28,28 +28,16 @@ e {
     font-size: 10px;
   }
 
-  &[enemy]::after {
-    content: '!';
+  &[gid="#{$gid-enemy}"],
+  &[gid="#{$gid-ally}"] {
+    &[enemy]::after {
+      content: '!';
+    }
   }
 
   &[armor-up]::after {
     content: 'U';
-    //position: absolute;
-    //top: 0;
-    //left: 0;
-    //line-height: 1;
-    //font-size: 10px;
   }
-
-  //&[level]::before {
-  //  content: attr(level);//replace with image
-  //  position: absolute;
-  //  top: 0;
-  //  right: 0;
-  //  line-height: 1;//remove
-  //  font-size: 10px;//remove
-  //  text-align: right;//remove
-  //}
 
   &[gid] {
     background: $color-enemy url($img-sprite);

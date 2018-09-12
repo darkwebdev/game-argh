@@ -101,7 +101,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":28,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",
@@ -110,19 +110,8 @@
         {
          "firstgid":1,
          "source":"rogue64.json"
-        },
-        {
-         "firstgid":16,
-         "source":"..\/resources\/brig10.json"
-        },
-        {
-         "firstgid":17,
-         "source":"..\/resources\/tiles1px.json"
-        },
-        {
-         "firstgid":27,
-         "source":"..\/resources\/brig-red.json"
-        }],
+        }
+ ],
  "tilewidth":64,
  "type":"map",
  "version":1,
