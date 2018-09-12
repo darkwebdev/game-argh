@@ -1,32 +1,9 @@
 @import '../common';
 
 intro {
-  height: 100%;
   position: absolute;
+  height: 100%;
   width: 100%;
-
-  h1 {
-    position: absolute;
-    width: 100%;
-    bottom: 5%;
-    left: 0;
-    text-align: center;
-    color: white;
-  }
-
-  menu {
-    position: absolute;
-    padding: 0;
-    width: 100%;
-    left: 0;
-    bottom: 15%;
-    text-align: center;
-
-    button {
-      margin: 10px 0;
-      width: auto;
-    }
-  }
 }
 
 flag {

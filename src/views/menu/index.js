@@ -1,5 +1,6 @@
 const { EVENTS } = require('../../events')
 // const { DIRECTIONS } = require('../../const')
+const { GAME_NAME } = require('../../const')
 
 // const arrows = {
 //   [DIRECTIONS.NORTH]: '^', // todo: sprite imgs here
@@ -37,10 +38,17 @@ const menuItems = {
   // }),
 }
 
-module.exports = ({ state }) =>
-  (state.actions || []).map(a => {
+module.exports = ({ state }) => {
+  const buttons = (state.actions || []).filter(a => menuItems[a.event]).map(a => {
+    // console.log("MENU", a.event, menuItems[a.event])
     const { text, data = '' } = menuItems[a.event]({ ...a, entities: state.entities })
     const dataStr = typeof data === 'object' ? JSON.stringify(data) : `"${data}"`
 
     return `<button onclick='emit("${a.event.toString()}", ${dataStr})'>${text}</button>`
-  }).join('')
+  })
+
+  return `
+    ${buttons.join('')}
+    <h1>${GAME_NAME}</h1>
+`
+}

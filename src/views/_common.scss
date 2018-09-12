@@ -62,7 +62,6 @@ $world-height: 20;
   font-size: 40px;
   color: $color-danger;
   text-shadow: 2px 2px $color-white;
-  z-index: 10;
   transform: scale(2);
   animation: grow 1s ease-out;
 }
