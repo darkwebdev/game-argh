@@ -1,6 +1,6 @@
 const { DIRECTIONS } = require('./const')
 const { EVENTS } = require('./events')
-const { alliesNearby, entitiesNearby, playerEntity, entityAt, isAlliedPort } = require('./entity')
+const { entitiesNearby, playerEntity, entityAt, isAlliedPort } = require('./entity')
 const { terrainAt, isLand, locationAt } = require('./terrain')
 
 const sailEvents = ({ terrain, entities, x, y }) =>
@@ -26,18 +26,7 @@ const sailEvent = ({ terrain, entities, x, y, direction }) => {
   return [ { event: EVENTS.SAIL, direction } ]
 }
 
-const tradeEvents = ({ entities, x, y }) =>
-  alliesNearby({ entities, x, y }).map(a => ({
-    event: EVENTS.TRADE,
-    entityId: a.id
-  }))
-
 const fightEvents = ({ entities, x, y }) => {
-  // const enemyFightEvents = enemiesNearby({ entities, x, y }).map(e => ({
-  //   event: EVENTS.FIGHT,
-  //   entityId: e.id
-  // }))
-
   const bombEvent = {
     event: EVENTS.BOMB,
     x,
@@ -45,16 +34,15 @@ const fightEvents = ({ entities, x, y }) => {
   }
 
   return [
-    // ...enemyFightEvents,
     bombEvent,
   ]
 }
 
-const portEvents = ({ entities, x, y, armor, maxArmor }) => {
+const portEvents = ({ entities, x, y, armor, maxArmor, enemyId }) => {
   const damagedArmor = maxArmor - armor
   const alliedPorts = entitiesNearby({ entities, x, y, filter: isAlliedPort })
 
-  const armorRepairEvents = damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
+  const armorRepairEvents = enemyId !== undefined || damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
     event: EVENTS.REPAIR,
     portId: p.id
   }))
@@ -83,14 +71,6 @@ const damageLevel = (dmg, damageLevels = []) =>
 
 const damageToLevel = (dmg, damageLevels = []) =>
   damageLevels[damageLevel(dmg, damageLevels)] - dmg
-
-const percentToLevel = (dmg, damageLevels = []) => {
-  const level = damageLevel(dmg, damageLevels)
-  const toLevel = damageLevels[level] - dmg
-  const betweenLevels = damageLevels[level] - (damageLevels[level - 1] || 0)
-
-  return toLevel * 100 / betweenLevels
-}
 
 const percentOfLevel = (dmg, damageLevels = []) => {
   const level = damageLevel(dmg, damageLevels)
@@ -135,13 +115,12 @@ module.exports = {
 
     const entities = state.entities
     const terrain = state.world.terrain
-    const { x, y, armor, maxArmor } = playerEntity(entities)
+    const { x, y, armor, maxArmor, enemyId } = playerEntity(entities)
 
     return [// use flatmap here?
       ...sailEvents({ terrain, entities, x, y }),
-      // ...tradeEvents({ entities, x, y }),
       ...fightEvents({ entities, x, y }),
-      ...portEvents({ entities, x, y, armor, maxArmor }),
+      ...portEvents({ entities, x, y, armor, maxArmor, enemyId }),
     ]
   },
 

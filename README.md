@@ -11,16 +11,20 @@ If you escape the battle your enemy will pursue you until one of you is dead or 
 Two ships cannot reside at the same location (cell).
 
 ### Ports
-You can repair/upgrade at the friendly ports (green roofs). Hostile ports (red roofs) can be blown up either by cannons or by using the time bomb (barrel with explosives). After overtaking the port it becomes your ally.
+You can repair/upgrade at the friendly ports (green roofs). You cannot repair during the battle.
+Hostile ports (red roofs) can be blown up either by cannons or by using the time bomb (barrel with explosives). After overtaking the port it becomes your ally.
 Ports that have upgrades for your ship are marked with 'U'.
 
 All the ships and ports attack their enemies on sight (their sight is limited by one cell).
 
 ### Damage
-Ship's damage depends on the cannons on board, by sinking other ships you loot 10% of the cannons. The yellow bar on top of the screen indicates your total damage. When it reaches 100% your ship receives the next level.
+Ship's damage depends on the cannons on board, by sinking other ships you loot 10% of the cannons. The yellow bar on top of the screen indicates your total damage. When it reaches 100% your ship receives the next level and gains HP.
 
 ### HP
+Hitpoints are your ship and crew health. If your HP are lower than maximum they start increasing with each turn.
+
 ### Armor
+Armor is your ship's protection, it received the first blow from the enemies. Additional armor is gained by upgrading at the allied ports.
 
 ### Goal
 Your aim is to find another pirate on the map (ship with black sails) and defeat him.
