@@ -30,7 +30,8 @@ const keyThrottle = (cb, delayMs) => {
 
     if (!wait || e.code !== lastKey) {
       if (Element.prototype.scrollIntoViewIfNeeded) {
-        document.querySelector(`e[gid="${EGIDS.PLAYER}"]`).scrollIntoViewIfNeeded()
+        const el = document.querySelector(`e[gid="${EGIDS.PLAYER}"]`)
+        el && el.scrollIntoViewIfNeeded()
       }
 
       cb(e.code)
