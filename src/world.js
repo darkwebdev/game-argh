@@ -1,25 +1,25 @@
 const { layers = [], width, height, tilewidth, tileheight } = require('../map/map')
 const templates = {
   //player
-  'tp.json': require('../map/tp'),
+  'tp.json': require('../build/map/tp.js'),
   //boss
-  'tb.json': require('../map/tb'),
+  'tb.json': require('../build/map/tb.js'),
   // allied ports
-  'tap0.json': require('../map/tap0'),
-  'tap1.json': require('../map/tap1'),
-  'tap2.json': require('../map/tap2'),
+  'tap0.json': require('../build/map/tap0.js'),
+  'tap1.json': require('../build/map/tap1.js'),
+  'tap2.json': require('../build/map/tap2.js'),
   // enemy ports
-  'tep0.json': require('../map/tep0'),
-  'tep1.json': require('../map/tep1'),
-  'tep2.json': require('../map/tep2'),
+  'tep0.json': require('../build/map/tep0.js'),
+  'tep1.json': require('../build/map/tep1.js'),
+  'tep2.json': require('../build/map/tep2.js'),
   // allies
-  'ta0.json': require('../map/ta0'),
-  'ta1.json': require('../map/ta1'),
-  'ta2.json': require('../map/ta2'),
+  'ta0.json': require('../build/map/ta0.js'),
+  'ta1.json': require('../build/map/ta1.js'),
+  'ta2.json': require('../build/map/ta2.js'),
   //enemies
-  'te0.json': require('../map/te0'),
-  'te1.json': require('../map/te1'),
-  'te2.json': require('../map/te2'),
+  'te0.json': require('../build/map/te0.js'),
+  'te1.json': require('../build/map/te1.js'),
+  'te2.json': require('../build/map/te2.js'),
 }
 
 const { DIRECTIONS } = require('./const')
@@ -36,26 +36,17 @@ const withFixedOffset = entity => ({
   y: entity.y - mapYoffset
 })
 
-const flatten = ({ id, gid, name, visible, x, y, properties = undefined }) => ({
-  id, gid, name, visible, x: x / tilewidth, y: y / tileheight,
-  ...(properties ? properties : {})
+const fromTemplate = ({ template, x, y, ...props }) => ({
+  ...props, x: x / tilewidth, y: y / tileheight,
 })
-
-const entitiesFromLayers = (layers = []) => {
-  const objects = layers.reduce((arr, layer) => [ ...arr, ...layer.objects ], [])
-
-  return entitiesFromObjects(objects)
-}
-
-const fromTemplate = ({ gid, name, visible, properties }) => ({ gid, name, visible, properties })
 
 const entitiesFromObjects = (objects = []) =>
   objects.reduce((obj, entity) =>
     ({
       ...obj,
-      [entity.id]: withFixedOffset(flatten({
+      [entity.id]: withFixedOffset(fromTemplate({
         ...entity,
-        ...fromTemplate(templates[entity.template].object),
+        ...templates[entity.template],
       })),
     }), {})
 
@@ -69,7 +60,6 @@ module.exports = {
     width,
     terrain: terrain.data,
     entities: entitiesFromObjects(entities.objects),
-    // entities: entitiesFromLayers(entities.layers),
   },
 
   coords(pos) {
