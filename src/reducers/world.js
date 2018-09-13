@@ -22,7 +22,7 @@ module.exports = ({ oldState, state, config, sound }) =>
       s => followReducer({ state: s, oldState }),
       s => fightReducer({ state: s, sound }),
       sailReducer,
-      s => levelUpReducer({ state: s, oldState, config }),
+      s => levelUpReducer({ state: s, oldState, config, sound }),
       s => healReducer({ state: s, config }),
       portReducer,
     ],

@@ -2,9 +2,8 @@ const { playerEntity } = require('../entity')
 const { damageLevel } = require('../game')
 
 
-module.exports = ({ state = {}, oldState = {}, config = {} }) => {
-  const increasedMaxHp = ({ maxHp }) => maxHp + config.hpPerLevel
-
+module.exports = ({ state = {}, oldState = {}, config = {}, sound }) => {
+  const { sounds, play } = sound
   const entities = state.entities || {}
   const oldEntities = oldState.entities || {}
   const player = playerEntity(entities) || {}
@@ -13,19 +12,26 @@ module.exports = ({ state = {}, oldState = {}, config = {} }) => {
   const level = damageLevel(player.damage, config.damageLevels)
   const oldLevel = damageLevel(oldDamage, config.damageLevels)
 
-  const withUpdatedEntities = level > oldLevel ? {
-    entities: {
-      ...entities,
-      [player.id]: {
-        ...player,
-        hp: increasedMaxHp(player),
-        maxHp: increasedMaxHp(player)
-      }
+
+  const withIncreasedMaxHp = () => {
+    play(sounds.upgrade)
+
+    const increasedMaxHp = player.maxHp + config.hpPerLevel
+
+    return {
+      entities: {
+        ...entities,
+        [player.id]: {
+          ...player,
+          hp: increasedMaxHp,
+          maxHp: increasedMaxHp,
+        },
+      },
     }
-  } : {}
+  }
 
   return {
     ...state,
-    ...withUpdatedEntities,
+    ...(level > oldLevel ? withIncreasedMaxHp() : {}),
   }
 }
