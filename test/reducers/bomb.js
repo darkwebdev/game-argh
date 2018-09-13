@@ -27,6 +27,7 @@ describe('reducers/bomb', () => {
     }
     const expectedState = {
       gameOver: false,
+      victory: false,
       entities: {
         0: {
           id: 0,
@@ -76,6 +77,7 @@ describe('reducers/bomb', () => {
     }
     const expectedState = {
       gameOver: false,
+      victory: false,
       entities: {
         0: {
           id: 0,
@@ -128,6 +130,7 @@ describe('reducers/bomb', () => {
 
     const expectedState = {
       gameOver: false,
+      victory: false,
       entities: {
         0: {
           id: 0,

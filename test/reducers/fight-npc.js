@@ -11,9 +11,12 @@ const enemyAggressiveDead = require('../fixtures/enemy-aggressive-dead')
 const player = require('../fixtures/player-weak')
 const playerDead = require('../fixtures/player-dead')
 
+const sound = { sounds: {}, play: () => {} }
+
 describe('reducers/fight-npc', () => {
   it('should return empty state given empty state', () => {
-    expect(reducer()).to.deep.equal({})
+    const state = {}
+    expect(reducer({ state, sound })).to.deep.equal({})
   })
 
   it('should return same state given no aggressive entities', () => {
@@ -24,7 +27,7 @@ describe('reducers/fight-npc', () => {
         ...enemy,
       },
     }
-    expect(reducer(state)).to.deep.equal(state)
+    expect(reducer({ state, sound })).to.deep.equal(state)
   })
 
   it('should return state with same entities given dead enemies', () => {
@@ -35,7 +38,7 @@ describe('reducers/fight-npc', () => {
         ...enemyAggressiveDead,
       },
     }
-    expect(reducer(state)).to.deep.equal(state)
+    expect(reducer({ state, sound })).to.deep.equal(state)
   })
 
   it('should return state with fought entities given aggressive entities', () => {
@@ -49,12 +52,13 @@ describe('reducers/fight-npc', () => {
 
     const expectedState = {
       gameOver: false,
+      victory: false,
       entities: {
         ...allyFought,
         ...enemyFought,
       },
     }
-    expect(reducer(state)).to.deep.equal(expectedState)
+    expect(reducer({ state, sound })).to.deep.equal(expectedState)
   })
 
   it('should return gameOver given player die during battle', () => {
@@ -68,12 +72,13 @@ describe('reducers/fight-npc', () => {
 
     const expectedState = {
       gameOver: true,
+      victory: false,
       entities: {
         ...playerDead,
         ...enemyFoughtPlayer,
       },
     }
-    expect(reducer(state)).to.deep.equal(expectedState)
+    expect(reducer({ state, sound })).to.deep.equal(expectedState)
   })
 
 })

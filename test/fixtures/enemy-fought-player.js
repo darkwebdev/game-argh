@@ -9,7 +9,7 @@ module.exports = {
     y: 0,
     hp: 20,
     armor: 0,
-    damage: 10,
+    damage: 11,
     aggressive: true,
     destX: undefined,
     destY: undefined,

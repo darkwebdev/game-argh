@@ -40,8 +40,8 @@ module.exports = state => {
       ...(bomb.timeout ? reducedTimeout(bomb) : explodedEntities(bomb)),
     }), {})
 
-    const isPlayerBlown = find(affectedEntities, e => isPlayer(e) && e.hp <= 0)
-    const isBossBlown = find(affectedEntities, e => isBoss(e) && e.hp <= 0)
+    const isPlayerBlown = !!find(affectedEntities, e => isPlayer(e) && e.hp <= 0)
+    const isBossBlown = !!find(affectedEntities, e => isBoss(e) && e.hp <= 0)
 
     return ({
       ...state,

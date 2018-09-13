@@ -2,7 +2,7 @@ const { filterValues } = require('../helpers')
 const { roundOutcome } = require('../game')
 const { entitiesNearby, areOpposed, isPlayer, isBoss } = require('../entity')
 
-module.exports = ({ state: startState = {}, sound }) => {
+module.exports = ({ state: startState = {}, sound } = {}) => {
   const entities = startState.entities || {}
   const { sounds, play } = sound
 

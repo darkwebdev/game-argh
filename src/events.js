@@ -9,19 +9,15 @@ module.exports = {
     INTRO: 'intro',
     NEW_GAME: 'new-game',
     END_TURN: 'end-turn',
-    // NPC_TURN: 'npc-turn',//not implemented
     WORLD_TURN: 'world-turn',
     START_TURN: 'next-turn',
     KEY_PRESSED: 'key-pressed',
     UPDATE_STATE: 'update-state',
     SET_STATE: 'set-state',
     STATE_CHANGED: 'state-changed',
-    // ENTITY_DESTROYED: 'entity-destroyed',
     SAIL: 'sail',
     REPAIR: 'repair',
     UPGRADE: 'upgrade',
-    // TRADE: 'trade',//not implemented
-    // FIGHT: 'fight',
     BOMB: 'bomb',
   },
 
