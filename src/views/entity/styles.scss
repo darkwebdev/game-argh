@@ -28,13 +28,13 @@ e {
     font-size: 10px;
   }
 
-  &[gid="#{$gid-boss}"],
-  &[gid="#{$gid-enemy}"],
-  &[gid="#{$gid-ally}"] {
+  //&[gid="#{$gid-boss}"],
+  //&[gid="#{$gid-enemy}"],
+  //&[gid="#{$gid-ally}"] {
     &[enemy]::after {
       content: '!';
     }
-  }
+  //}
 
   &[armor-up]::after {
     content: 'U';

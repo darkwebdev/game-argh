@@ -1,3 +1,4 @@
+const { find } = require('./helpers')
 const { DIRECTIONS } = require('./const')
 const { EVENTS } = require('./events')
 const { entitiesNearby, playerEntity, entityAt, isAlliedPort } = require('./entity')
@@ -38,11 +39,12 @@ const fightEvents = ({ entities, x, y }) => {
   ]
 }
 
-const portEvents = ({ entities, x, y, armor, maxArmor, enemyId }) => {
+const portEvents = ({ entities, x, y, armor, maxArmor, id }) => {
   const damagedArmor = maxArmor - armor
   const alliedPorts = entitiesNearby({ entities, x, y, filter: isAlliedPort })
+  const isFollowed = find(entities, e => e.hp > 0 && e.enemyId === id)
 
-  const armorRepairEvents = enemyId !== undefined || damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
+  const armorRepairEvents = isFollowed || damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
     event: EVENTS.REPAIR,
     portId: p.id
   }))
@@ -115,12 +117,12 @@ module.exports = {
 
     const entities = state.entities
     const terrain = state.world.terrain
-    const { x, y, armor, maxArmor, enemyId } = playerEntity(entities)
+    const { x, y, armor, maxArmor, id } = playerEntity(entities)
 
     return [// use flatmap here?
       ...sailEvents({ terrain, entities, x, y }),
       ...fightEvents({ entities, x, y }),
-      ...portEvents({ entities, x, y, armor, maxArmor, enemyId }),
+      ...portEvents({ entities, x, y, armor, maxArmor, id }),
     ]
   },
 
