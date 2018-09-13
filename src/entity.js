@@ -6,7 +6,7 @@ const entityAt = ({ entities, x, y, filter = () => true }) =>
   find(entities, e => e.x === x && e.y === y && filter(e))
 
 const entityWillBeAt = ({ entities, x, y, filter = () => true }) =>
-  find(entities, e => filter(e) && (
+  find(entities, e => filter(e) && notSunk(e) && (
     e.destX === x && e.destY === y ||
     e.destX === undefined && e.destY === undefined && e.x === x && e.y === y
   ))

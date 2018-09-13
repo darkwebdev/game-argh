@@ -36,7 +36,7 @@ module.exports = ({ state: startState = {}, oldState = {}} = {}) => {
 
     const locationBusy = entityWillBeAt({ entities, x: enemyBefore.x, y: enemyBefore.y })
     if (locationBusy) {
-      console.log('Location busy, stop following')
+      console.log('Location', x, y, 'busy, stop following', locationBusy)
       return updatedState({ enemyId: undefined })
     }
 
