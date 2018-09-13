@@ -25,7 +25,8 @@ module.exports = state => direction => {
       [player.id]: {
         ...player,
         x,
-        y
+        y,
+        enemyId: undefined,
       }
     }
   }

@@ -13,7 +13,7 @@ module.exports = ({ state = {}, oldState = {}, config = {}, sound }) => {
   const oldLevel = damageLevel(oldDamage, config.damageLevels)
 
 
-  const withIncreasedMaxHp = () => {
+  const withIncreasedStats = () => {
     play(sounds.upgrade)
 
     const increasedMaxHp = player.maxHp + config.hpPerLevel
@@ -25,6 +25,7 @@ module.exports = ({ state = {}, oldState = {}, config = {}, sound }) => {
           ...player,
           hp: increasedMaxHp,
           maxHp: increasedMaxHp,
+          armor: player.maxArmor,
         },
       },
     }
@@ -32,6 +33,6 @@ module.exports = ({ state = {}, oldState = {}, config = {}, sound }) => {
 
   return {
     ...state,
-    ...(level > oldLevel ? withIncreasedMaxHp() : {}),
+    ...(level > oldLevel ? withIncreasedStats() : {}),
   }
 }

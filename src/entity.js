@@ -6,7 +6,7 @@ const entityAt = ({ entities, x, y, filter = () => true }) =>
   find(entities, e => e.x === x && e.y === y && filter(e))
 
 const entityWillBeAt = ({ entities, x, y, filter = () => true }) =>
-  find(entities, e => filter(e) && notSunk(e) && (
+  find(entities, e => filter(e) && notSunk(e) && !isBomb(e) && (
     e.destX === x && e.destY === y ||
     e.destX === undefined && e.destY === undefined && e.x === x && e.y === y
   ))
@@ -38,6 +38,8 @@ const isPort = entity => [EGIDS.ALLY_PORT, EGIDS.ENEMY_PORT].includes(entity.gid
 const isAlliedPort = entity => entity.gid === EGIDS.ALLY_PORT
 
 const isBoss = entity => entity.gid === EGIDS.BOSS
+
+const isBomb = entity => entity.gid === EGIDS.BOMB
 
 module.exports = {
   toObj(entities) {
