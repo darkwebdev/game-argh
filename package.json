@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "yarn tslint --project tsconfig.json --format verbose",
     "test": "yarn mocha --recursive",
     "dev": "yarn watch 'yarn build' src lib img fonts map",
     "build": "yarn styles && yarn js && yarn img && yarn fonts",
