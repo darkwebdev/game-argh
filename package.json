@@ -6,8 +6,9 @@
   "scripts": {
     "test": "yarn mocha --recursive",
     "dev": "yarn watch 'yarn build' src lib img fonts map",
-    "build": "yarn styles && yarn js && yarn img && yarn fonts",
+    "build": "yarn styles && yarn map && yarn js && yarn img && yarn fonts",
     "styles": "yarn node-sass src/views -o build/styles && cat build/styles/**/styles.css > build/styles.css",
+    "map": "mkdir -p build/map && for f in map/t*.json; do FILENAME=${f%%.*}; echo 'module.exports = ' > build/${FILENAME}.js && jq '.object | { gid, name, visible } + .properties' < ${f} >> build/${FILENAME}.js; done;",
     "js": "yarn browserify -p common-shakeify -p browser-pack-flat src -o build/game.js",
     "debug:js": "yarn browserify -p common-shakeify --full-paths --debug src -o build/game-full.js",
     "debug:disc": "yarn discify build/game-full.js >build/disc.html",

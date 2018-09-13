@@ -2,23 +2,22 @@ const { range } = require('../../helpers')
 const Menu = require('../menu')
 
 module.exports = ({ state, config }) => {
-  const logoWidthFrags = 8
-  const fragWidth = config.flagFragmentWidthPx
-  const totalFrags = config.flagFragments
-  const sideOffset = ((totalFrags - logoWidthFrags) / 2) * fragWidth
-  const scale = document.body.clientWidth / (fragWidth * totalFrags)
+  const fragmentWidth = config.flagFragmentWidthPx
+  const totalFragments = config.flagFragments
+  const flagWidth = fragmentWidth * totalFragments
+  const scale = .25 * document.body.clientWidth / flagWidth
 
-  const frags = range(totalFrags).map(i => {
-    const style = `background-position-x: ${-i * fragWidth + sideOffset}px;` +
+  const frags = range(totalFragments).map(i => {
+    const style = `background-position-x: ${-i * fragmentWidth}px;` +
                   `animation-delay: ${i * 50}ms;` +
-                  `width: ${fragWidth}px`
+                  `width: ${fragmentWidth}px`
 
     return `<span style="${style}"></span>`
   }).join('')
 
   return `
     <intro>
-      <flag style="transform: scale(${scale})">
+      <flag style="width: ${flagWidth}px; transform: scale(${scale})">
         ${frags}
       </flag>
       

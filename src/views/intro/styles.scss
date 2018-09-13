@@ -7,11 +7,11 @@ intro {
 }
 
 flag {
-  position: absolute;
+  display: block;
+  margin: auto;
   height: 300px;
-  top: 0;
-  left: 0;
-  transform-origin: left 20%;
+  width: 50%;
+  transform-origin: center 20%;
 
   span {
     @include pixelated;
