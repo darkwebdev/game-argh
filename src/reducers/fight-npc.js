@@ -21,6 +21,8 @@ module.exports = ({ state: startState = {}, sound }) => {
     console.log('FIGHT', name, id, '@', x, y, '/', hp1, armor1, entity.damage, 'vs',
       enemy.name, enemy.id, '@', enemy.x, enemy.y, '/', hp2, armor2, enemy.damage)
 
+    const enemyId = e => e.hp > 0 ? e.id : undefined
+
     return {
       ...state,
       gameOver: state.gameOver || isPlayer(enemy) && hp2 <= 0,
@@ -34,7 +36,7 @@ module.exports = ({ state: startState = {}, sound }) => {
           damage: damage1,
           destX: undefined,
           destY: undefined,
-          enemyId: enemy.hp > 0 ? enemy.id : undefined,
+          enemyId: enemyId(enemy),
         },
         [enemy.id]: {
           ...enemy,
@@ -43,7 +45,7 @@ module.exports = ({ state: startState = {}, sound }) => {
           damage: damage2,
           destX: undefined,
           destY: undefined,
-          enemyId: entity.hp > 0 ? entity.id : undefined,
+          enemyId: enemyId(entity),
         },
       }
     }

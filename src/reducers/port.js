@@ -12,6 +12,7 @@ module.exports = state => {
     gid: convertedPort(p.gid),
     hp: p.maxHp,
     armor: p.maxArmor,
+    enemyId: undefined,
   }))
 
   convertedPorts.length && console.log('PORT CONVERTED', convertedPorts)
