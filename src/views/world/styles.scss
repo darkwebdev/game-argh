@@ -4,10 +4,11 @@ world {
   overflow: scroll;
   position: absolute;
   top: 0;
-  left: 50%;
+  //left: 50%;
   width: #{$tile-width * $world-width};
   background: $color-water;
-  transform: translateX(-50%);
+  //transform: translateX(-50%);
+  scroll-behavior: smooth;
 }
 
 l,
@@ -21,7 +22,7 @@ w {
 }
 
 l {
-  background: $color-land/* url($img-land)*/;
+  background: $color-land;
 }
 
 w {

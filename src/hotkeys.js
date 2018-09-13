@@ -1,5 +1,5 @@
 const { emit, EVENTS } = require('./events')
-const { DIRECTIONS } = require('./const')
+const { DIRECTIONS, EGIDS } = require('./const')
 
 const tryAction = event => actions => {
   const action = actions.find(a => a.event === event)
@@ -19,7 +19,31 @@ const trySail = direction => actions => {
   }
 }
 
+const keyThrottle = (cb, delayMs) => {
+  let wait
+  let lastKey
+
+  return (e) => {
+    if (e.code === 'Space' && e.target === document.body) {
+      e.preventDefault();
+    }
+
+    if (!wait || e.code !== lastKey) {
+      document.querySelector(`e[gid="${EGIDS.PLAYER}"]`).scrollIntoViewIfNeeded()
+
+      cb(e.code)
+      wait = true
+
+      setTimeout(() => {
+        wait = false
+      }, delayMs);
+    }
+    lastKey = e.code
+  }
+}
+
 module.exports = {
+  keyThrottle,
   ArrowUp: trySail(DIRECTIONS.NORTH),
   ArrowDown: trySail(DIRECTIONS.SOUTH),
   ArrowLeft: trySail(DIRECTIONS.WEST),

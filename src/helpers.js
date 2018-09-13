@@ -34,25 +34,4 @@ module.exports = {
   range(length) {
     return [...Array(length).keys()]
   },
-
-  keyThrottle(cb, delayMs) {
-    let wait
-    let lastKey
-
-    return (e) => {
-      if (e.code === 'Space' && e.target === document.body) {
-        e.preventDefault();
-      }
-
-      if (!wait || e.code !== lastKey) {
-        cb(e.code)
-        wait = true
-
-        setTimeout(() => {
-          wait = false
-        }, delayMs);
-      }
-      lastKey = e.code
-    }
-  }
 }
