@@ -22,6 +22,8 @@ module.exports = ({ state, config }) => {
       </flag>
       
       <menu>${Menu({ state })}</menu>
+      
+      <q>Be the outlaw -- step out of(f) line...</q>
           
     </intro>
   `

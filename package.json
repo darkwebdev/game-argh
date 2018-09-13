@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn mocha --recursive",
-    "dev": "yarn watch 'yarn build' src lib img fonts map",
+    "dev": "yarn watch 'yarn build' src lib img fonts map --wait=1",
     "build": "yarn styles && yarn map && yarn js && yarn img && yarn fonts",
     "styles": "yarn node-sass src/views -o build/styles && cat build/styles/**/styles.css > build/styles.css",
     "map": "mkdir -p build/map && for f in map/t*.json; do FILENAME=${f%%.*}; echo 'module.exports = ' > build/${FILENAME}.js && jq '.object | { gid, name, visible } + .properties' < ${f} >> build/${FILENAME}.js; done;",
