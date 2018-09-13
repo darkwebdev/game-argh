@@ -1,11 +1,12 @@
 const { EGIDS } = require('../const')
-const { toObj, entitiesNearby } = require('../entity')
-const { filterValues } = require('../helpers')
+const { toObj, entitiesNearby, isBoss, isPlayer } = require('../entity')
+const { filterValues, find } = require('../helpers')
 const { hpDamage, armorDamage } = require('../game')
 
 module.exports = state => {
   const entities = state.entities
   const bombs = filterValues(entities, e => e.gid === EGIDS.BOMB && e.visible)
+
   const explodedEntities = bomb => {
     const { id, x, y, damage } = bomb
     const affectedEntities = entitiesNearby({
@@ -33,16 +34,25 @@ module.exports = state => {
     }
   })
 
-  const reduceBombs = bombs => ({
-    ...state,
-    entities: {
-      ...entities,
-      ...bombs.reduce((all, bomb) => ({
-        ...all,
-        ...(bomb.timeout ? reducedTimeout(bomb) : explodedEntities(bomb)),
-      }), {}),
-    }
-  })
+  const reducedBombs = bombs => {
+    const affectedEntities = bombs.reduce((all, bomb) => ({
+      ...all,
+      ...(bomb.timeout ? reducedTimeout(bomb) : explodedEntities(bomb)),
+    }), {})
 
-  return bombs.length ? reduceBombs(bombs) : {}
+    const isPlayerBlown = find(affectedEntities, e => isPlayer(e) && e.hp <= 0)
+    const isBossBlown = find(affectedEntities, e => isBoss(e) && e.hp <= 0)
+
+    return ({
+      ...state,
+      gameOver: state.gameOver || isPlayerBlown,
+      victory: state.victory || isBossBlown,
+      entities: {
+        ...entities,
+        ...affectedEntities,
+      },
+    })
+  }
+
+  return bombs.length ? reducedBombs(bombs) : {}
 }
