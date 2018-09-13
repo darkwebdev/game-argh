@@ -1,6 +1,5 @@
 const { filterValues } = require('../helpers')
-const { EGIDS } = require('../const')
-const { isPort, isPlayer } = require('../entity')
+const { isPort, isPlayer, entityWillBeAt } = require('../entity')
 // todo: stop if in fight
 
 module.exports = ({ state: startState = {}, oldState = {}} = {}) => {
@@ -32,6 +31,12 @@ module.exports = ({ state: startState = {}, oldState = {}} = {}) => {
     const tooFar = Math.abs(enemyBefore.x - x) > 1 || Math.abs(enemyBefore.y - y) > 1
     if (tooFar) {
       console.log('Enemy escaped, stop following')
+      return updatedState({ enemyId: undefined })
+    }
+
+    const locationBusy = entityWillBeAt({ entities, x: enemyBefore.x, y: enemyBefore.y })
+    if (locationBusy) {
+      console.log('Location busy, stop following')
       return updatedState({ enemyId: undefined })
     }
 

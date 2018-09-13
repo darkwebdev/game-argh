@@ -5,6 +5,12 @@ const { EGIDS, DIRECTIONS } = require('./const')
 const entityAt = ({ entities, x, y, filter = () => true }) =>
   find(entities, e => e.x === x && e.y === y && filter(e))
 
+const entityWillBeAt = ({ entities, x, y, filter = () => true }) =>
+  find(entities, e => filter(e) && (
+    e.destX === x && e.destY === y ||
+    e.destX === undefined && e.destY === undefined && e.x === x && e.y === y
+  ))
+
 const entitiesNearby = ({ entities, x, y, filter = () => true }) => {
   const entityTo = direction => {
     const { x: dx, y: dy } = directionCoords({ direction, x, y })
@@ -43,6 +49,7 @@ module.exports = {
   },
 
   entityAt,
+  entityWillBeAt,
 
   entitiesNearby,
 
