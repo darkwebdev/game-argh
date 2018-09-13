@@ -39,16 +39,20 @@ module.exports = {
     let wait
     let lastKey
 
-    return event => {
-      if (!wait || event.code !== lastKey) {
-        cb(event.code)
+    return (e) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+      }
+
+      if (!wait || e.code !== lastKey) {
+        cb(e.code)
         wait = true
 
         setTimeout(() => {
           wait = false
         }, delayMs);
       }
-      lastKey = event.code
+      lastKey = e.code
     }
   }
 }
