@@ -2,12 +2,10 @@
 
 world {
   overflow: scroll;
-  position: absolute;
-  top: 0;
-  //left: 50%;
+  display: block;
+  margin: auto;
   width: #{$tile-width * $world-width};
   background: $color-water;
-  //transform: translateX(-50%);
   scroll-behavior: smooth;
 }
 
