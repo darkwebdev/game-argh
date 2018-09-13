@@ -7,7 +7,7 @@ module.exports = ({ state, config }) => {
   const { damage } = playerEntity(state.entities) || {}
 
   const gameOver = state.gameOver ? '<game-over>Game Over</game-over>' : ''
-  const victory = state.victory ? '<victory>Victory</victory>' : ''
+  const victory = state.victory ? '<victory>Victory</victory><grats>YOU\'VE SUNK THE BASTARD!</grats>' : ''
 
   const ofLevel = percentOfLevel(damage, config.damageLevels)
   const dmgBar = `<bar class="dmg" style="width:${ofLevel}%"></bar>`

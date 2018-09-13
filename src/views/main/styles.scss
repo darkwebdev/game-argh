@@ -51,6 +51,13 @@ victory {
   color: $color-ok;
 }
 
+grats {
+  position: fixed;
+  width: 100%;
+  bottom: 16%;
+  text-align: center;
+}
+
 [game-over] {
   opacity: .2;
 }

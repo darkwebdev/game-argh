@@ -109,7 +109,7 @@ module.exports = {
       { event: EVENTS.NEW_GAME }
     ]
 
-    if (state.gameOver) return [
+    if (state.gameOver || state.victory) return [
       { event: EVENTS.NEW_GAME }
     ]
 
