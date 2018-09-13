@@ -1,6 +1,6 @@
 const { TGIDS } = require('../../const')
 const { coords } = require('../../world')
-const { entityAt } = require('../../entity')
+const { entityAt, playerEntity } = require('../../entity')
 const { filter } = require('../../helpers')
 const Entity = require('../entity')
 
@@ -11,6 +11,7 @@ const cells = {
 
 module.exports = ({ state, config }) => {
   const visibleEntities = filter(state.entities, e => e.visible);
+  const player = playerEntity(visibleEntities)
 
   return (state.world.terrain || [])
     .map((cell, i) => {
@@ -19,7 +20,7 @@ module.exports = ({ state, config }) => {
 
       const { x, y } = coords(i) // todo: optimize for performance???
       const entityInside = entityAt({ entities: visibleEntities, x, y }) || {}
-      const entity = entityInside.gid ? Entity({ props: entityInside, config }) : ''
+      const entity = entityInside.gid ? Entity({ props: entityInside, player, config }) : ''
 
       return `<${terrain}${terrainAttr}>${entity}</${terrain}>`
     })

@@ -5,7 +5,7 @@ const percent = (value, max) => value > 0 ? (value * 100) / max : 0
 
 const Bar = ({ className, valuePercent }) => `<bar class="${className}" style="width:${valuePercent}%"></bar>`
 
-module.exports = ({ props = {}, config = {}}) => {
+module.exports = ({ props = {}, player, config = {}}) => {
   const { hp, maxHp, armor, maxArmor, gid, name, timeout, damage, armorUp, enemyId } = props
 
   const level = damageLevel(damage, config.damageLevels)
@@ -14,10 +14,10 @@ module.exports = ({ props = {}, config = {}}) => {
   const enemyAttr = enemyId === undefined ? '' : ` enemy=${enemyId}`
 
   const stats = hp !== undefined ? ` [ ${hp} hp + ${armor}, dmg: ${ damage } ]` : ''
-  const upgrades = armorUp ? ` [ upgrade: armor(${armorUp}) ]` : ''
+  const upgrades = armorUp && armorUp > player.maxArmor ? ` [ upgrade: armor(${armorUp}) ]` : ''
   const title = name ? ` title="${name}${stats}${upgrades}"` : ''
 
-  const upgradeAttr = armorUp ? ` armor-up=${armorUp}` : ''
+  const upgradeAttr = upgrades ? ` armor-up=${armorUp}` : ''
 
   const timeoutAttr = timeout === undefined ? '' : ` timeout=${timeout + 1}`
 
