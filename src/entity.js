@@ -29,7 +29,7 @@ const notSunk = entity => entity.hp === undefined || entity.hp > 0
 
 const isAlly = entity => entity.gid === EGIDS.ALLY
 
-const isEnemy = entity => entity.gid === EGIDS.ENEMY
+const isEnemyShip = entity => entity.gid === EGIDS.ENEMY
 
 const isPlayer = entity => entity.gid === EGIDS.PLAYER
 
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   enemiesNearby({ entities, x, y }) {
-    return entitiesNearby({ entities, x, y, filter: isEnemy })
+    return entitiesNearby({ entities, x, y, filter: isEnemyShip })
   },
 
   portsNearby({ entities, x, y }) {
@@ -71,6 +71,7 @@ module.exports = {
   isAlliedPort,
   isPlayer,
   isBoss,
+  isEnemyShip,
 
   areOpposed(e1, e2) {
     const allies = [EGIDS.PLAYER, EGIDS.ALLY, EGIDS.ALLY_PORT]

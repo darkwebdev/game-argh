@@ -1,7 +1,7 @@
 const { find } = require('./helpers')
 const { DIRECTIONS } = require('./const')
 const { EVENTS } = require('./events')
-const { entitiesNearby, playerEntity, entityAt, isAlliedPort } = require('./entity')
+const { entitiesNearby, playerEntity, entityAt, isAlliedPort, isEnemyShip } = require('./entity')
 const { terrainAt, isLand, locationAt } = require('./terrain')
 
 const sailEvents = ({ terrain, entities, x, y }) =>
@@ -42,7 +42,7 @@ const fightEvents = ({ entities, x, y }) => {
 const portEvents = ({ entities, x, y, armor, maxArmor, id }) => {
   const damagedArmor = maxArmor - armor
   const alliedPorts = entitiesNearby({ entities, x, y, filter: isAlliedPort })
-  const isFollowed = find(entities, e => e.hp > 0 && e.enemyId === id)
+  const isFollowed = find(entities, e => e.enemyId === id && e.hp > 0 && isEnemyShip(e) )
 
   const armorRepairEvents = isFollowed || damagedArmor <= 0 ? [] : alliedPorts.map(p => ({
     event: EVENTS.REPAIR,
