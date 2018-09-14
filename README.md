@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/darkwebdev/game-argh.svg?branch=master)](https://travis-ci.org/darkwebdev/game-argh)
 
+[-=[ PLAY ]=-](https://js13kgames.com/entries/aaarrrrggg)
+
 Life of the pirate means always stepping out of(f) line. Crush, kill and loot fire power from other ships so that you can finally hunt down the greatest pirate in these waters and sink his big-ass ship. AAARRRRGGG!!
 
 ![AAARRRRGGG!! gameplay](https://i.snag.gy/BFUWmX.jpg)
