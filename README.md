@@ -59,6 +59,8 @@ Chrome, Safari, Firefox
 
 ## Developer manual
 
+Game is created using vanilla JS and DOM, without canvas. Map created with [Tiled Map Editor](https://www.mapeditor.org).
+
 ### Install dependencies
 ```yarn```
 
